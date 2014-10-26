@@ -1,0 +1,14 @@
+.error_form_reservar {
+	display: none;
+	font-size: 12px;
+}
+
+body {
+	background-image: url('../imgs/bg-home.jpg');
+	background-repeat: repeat-x;
+	background-position: center top;
+}
+
+.carousel {
+	margin-bottom: 20px;
+}
