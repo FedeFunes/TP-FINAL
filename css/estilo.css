@@ -12,3 +12,8 @@ body {
 .carousel {
 	margin-bottom: 20px;
 }
+
+.help-block {
+	font-size: 12px;
+	margin-top:0px;
+}
