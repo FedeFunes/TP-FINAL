@@ -148,22 +148,25 @@
 									<div class="col-md-6">
 
 										<!-- Fecha Partida -->
+										<div class="row">
+										 	
+										 	<div class="col-md-6">
+										 		<div class="form-group">
+													<label for="datepicker">Partida</label>
+													<input type="text" class="form-control" id="fecha_ida" name="fecha_ida" value="dd/mm/aaaa"/>
+												</div>
+										 	</div><!--/.col-md-6 -->
 
-									 	<div class="col-md-6">
-									 		<div class="form-group">
-												<label for="datepicker">Partida</label>
-												<input type="text" class="form-control" id="fecha_ida" name="fecha_ida" value="dd/mm/aaaa"/>
-											</div>
-									 	</div>
+										 	<!-- Fecha Regreso -->
 
-									 	<!-- Fecha Regreso -->
-
-									 	<div class="col-md-6">
-									 		<div class="form-group" id="campo_fecha_vuelta">
-												<label for="datepicker">Regreso</label>
-												<input type="text" class="form-control" id="fecha_vuelta" name="fecha_vuelta" value="dd/mm/aaaa"/>
-											</div>
-									 	</div>
+										 	<div class="col-md-6">
+										 		<div class="form-group" id="campo_fecha_vuelta">
+													<label for="datepicker">Regreso</label>
+													<input type="text" class="form-control" id="fecha_vuelta" name="fecha_vuelta" value="dd/mm/aaaa"/>
+												</div>
+										 	</div> <!--/.col-md-6 -->
+										 
+										 </div> <!--/.row -->
 
 									</div> <!--/.col-md-6 -->
 								</div> <!-- /.row -->		
