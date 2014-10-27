@@ -78,8 +78,18 @@
 												
 												<!-- Provincia -->
 										 		<div class="form-group">
-											  		<select class="form-control">
+											  		<select class="form-control" onChange="mostrarCiudades(this.value);">
 													  	<option value="">Provincia</option>
+														
+											 			<?php
+														$query = "SELECT * FROM provincias";
+														$result = mysqli_query($con,$query);
+												
+														while($row = mysqli_fetch_array($result)) {
+														  echo "<option value='".$row['descripcion']."'>".$row['descripcion']."</option>";
+														}
+														?>
+
 													</select>
 												</div>
 										
@@ -89,8 +99,9 @@
 										 		
 										 		<!-- Ciudad -->
 										 		<div class="form-group">
-											  		<select class="form-control">
-													  	<option value="ciudad1">Ciudad 1</option>
+											  		<select class="form-control" id="selectCiudad">
+													  	<option value="">Ciudad</option>
+														<!-- ACÁ AJAX EJECUTARÍA EL CÓDIGO PHP  -->
 													</select>
 												</div>
 										
