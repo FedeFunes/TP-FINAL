@@ -24,40 +24,8 @@
     </head>
     <body>
     <div class="container">
-		<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-
-					<nav class="navbar navbar-default fixed-top" role="navigation">
-					  	<div class="container-fluid">
-						    <!-- Brand and toggle get grouped for better mobile display -->
-						    <div class="navbar-header">
-						      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						        	<span class="sr-only">Toggle navigation</span>
-							        <span class="icon-bar"></span>
-							        <span class="icon-bar"></span>
-							        <span class="icon-bar"></span>
-						     	</button>
-						      	<a class="navbar-brand" href="index.html">
-									<img src="imgs/logo.png" width="40px" height="40px" />
-								</a>
-						    </div>
-
-					    <!-- Collect the nav links, forms, and other content for toggling -->
-					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						    <ul class="nav nav-pills">
-					      	 	<li><a href="index.php">Inicio</a></li>
-						        <li class="active"><a href="miReserva.php">Mi Reserva</a></li>
-						        <li><a href="vuelos.php">Vuelos</a></li>
-						        <li><a href="contacto.php">Contacto</a></li>
-						    </ul>
-					        <ul class="nav navbar-nav navbar-right">
-				            	<a href="#"><li><span class="glyphicon glyphicon-user"></span> Administrador</a></li>  
-				            </ul>
-					    </div><!-- /.navbar-collapse -->
-					</div><!-- /.container-fluid -->
-				</nav><!-- /.navbar navbar-default fixed-top -->
-			</div><!-- /.col-md-10 col-md-offset-1 -->
-		</div><!-- /.row -->
+		
+        <?php include("nav-bar.php"); ?>
 		
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -97,6 +65,9 @@
                 <span><!--<span class="glyphicon glyphicon-info-sign"></span>-->Recuerde que tiene hasta 48hs previas al vuelo para realizar su pago sino la reserva sera cancelada.</span></br><span>Y que reci&eacuten dentro de las 48hs previas al vuelo puede hacer el Check-In.</span>
             </div>
         </div>        
+        
+        <?php include("footer.php") ?>
+
     </div>
   
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
