@@ -4,6 +4,10 @@
 }
 
 body {
+	padding-top: 20px;
+}
+
+.body-index {
 	background-image: url('../imgs/bg-home.jpg');
 	background-repeat: repeat-x;
 	background-position: center top;
@@ -20,11 +24,30 @@ body {
 
 /* Estilo para Logo Avion en menu */
 .navbar-brand{margin-top:-10px}
+
 /* Estilo para Administrador */
-.navbar-nav  li{margin-top:-44px}
+.navbar-nav li{margin-top:-44px}
+
 /* Achica el grosor de los botones de movimiento del carousel */
 .carousel-control{width:5%}
 
 .centrar-navbar{
 	margin-top: 6px;
 }
+
+.carousel {
+	margin-bottom: 0px;
+}
+
+.thumbnail {
+	margin-top: 20px;	
+}
+
+.footer {
+	padding: 20px 0px;
+	margin-top: 20px;
+	color: #999;
+	text-align: center;
+	border-top: 1px solid #E5E5E5;
+}
+
