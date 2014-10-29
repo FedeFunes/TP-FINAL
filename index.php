@@ -113,15 +113,15 @@
 												
 												<!-- Provincia -->
 										 		<div class="form-group">
-											  		<select class="form-control" onChange="mostrarCiudades(this.value);">
+											  		<select class="form-control" id="" onChange="mostrarCiudades(this.value);">
 													  	<option value="">Provincia</option>
 														
 											 			<?php
 														$query = "SELECT * FROM provincias";
-														$result = mysqli_query($con,$query);
+														$result = mysqli_query($conexion,$query);
 												
 														while($row = mysqli_fetch_array($result)) {
-														  echo "<option value='".$row['descripcion']."'>".$row['descripcion']."</option>";
+														  echo "<option value='".$row['idProvincia']."'>".$row['descripcion']."</option>";
 														}
 														?>
 
@@ -156,7 +156,7 @@
 					  					
 					  					 		<div class="form-group">
 					  						  		<select class="form-control">
-					  								  	<option value="provincia1">Provincia 1</option>
+					  								  	<option value="">Provincia</option>
 				 									</select>					  					
 					  							</div>
 					  					
@@ -166,7 +166,7 @@
 					  					
 					  					 		<div class="form-group">
 					  						  		<select class="form-control">
-					  								  	<option value="ciudad1">Ciudad 1</option>
+					  								  	<option value="ciudad">Ciudad</option>
 					  								</select>
 					  							</div>
 					  					
