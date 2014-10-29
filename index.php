@@ -73,7 +73,7 @@
 								  		
 							  			<!-- Origen -->
 								  		<label>Origen</label>
-								  		<span class="help-block">Elija Provincia y Ciudad</span>
+								  		<span class="help-block">Elija Provincia y luego Ciudad</span>
 								  		
 								  		<div class="row">
 										 	<div class="col-md-6">
@@ -82,7 +82,7 @@
 										 		<div class="form-group">
 											  		<select class="form-control" onChange="mostrarCiudadesOrigen(this.value);">
 													  	
-													  	<option value="">Provincia</option>
+													  	<option value="" disabled selected>Provincia</option>
 														
 											 			<?php
 														$query = "SELECT * FROM provincias";
@@ -103,7 +103,7 @@
 										 		<!-- Ciudad -->
 										 		<div class="form-group">
 											  		<select class="form-control" id="selectCiudadOrigen">
-													  	<option value="">Ciudad</option>
+													  	<option value="" disabled selected>Ciudad</option>
 														<!-- ACÁ AJAX EJECUTARÍA EL CÓDIGO PHP  -->
 													</select>
 												</div>
@@ -117,7 +117,7 @@
 									
 									  	<!-- Destino -->
 					  			  		<label>Destino</label>
-					  			  		<span class="help-block">Elija Provincia y Ciudad</span>
+					  			  		<span class="help-block">Elija Provincia y luego Ciudad</span>
 					  			  		
 					  			  		<div class="row">
 					  					 	<div class="col-md-6">
@@ -125,7 +125,7 @@
 					  					 		<div class="form-group">
 					  						  		<select class="form-control" onChange="mostrarCiudadesDestino(this.value);">
 					  								  	
-					  								  	<option value="">Provincia</option>
+					  								  	<option value="" disabled selected>Provincia</option>
 					  								  	
 					  								  	<?php
 														$query = "SELECT * FROM provincias";
@@ -145,7 +145,7 @@
 					  					
 					  					 		<div class="form-group">
 					  						  		<select class="form-control" id="selectCiudadDestino">
-					  								  	<option value="">Ciudad</option>
+					  								  	<option value="" disabled selected>Ciudad</option>
 					  								  	<!-- ACÁ AJAX EJECUTARÍA EL CÓDIGO PHP  -->
 					  								</select>
 					  							</div>
@@ -162,8 +162,8 @@
 									  	<!-- Categoría -->
 									  	<div class="form-group">
 									  		<label for="categoria">Categor&iacutea</label>
-									  		<select class="form-control" id="categoria">
-											  	<option placeholder="Elija categor&iacutea"></option>
+									  		<select class="form-control" id="categoria">  	
+											  	<option value="" disabled selected>Categoría</option>
 											  	<option value="economy">Economy</option>
 											  	<option value="primeras">Primera</option>
 											</select>
