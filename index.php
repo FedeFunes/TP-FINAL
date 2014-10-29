@@ -31,6 +31,41 @@
 </head>
 <body>
 	<div class="container">
+		
+		<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+
+					<nav class="navbar navbar-default fixed-top" role="navigation">
+					  	<div class="container-fluid">
+						    <!-- Brand and toggle get grouped for better mobile display -->
+						    <div class="navbar-header">
+						      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						        	<span class="sr-only">Toggle navigation</span>
+							        <span class="icon-bar"></span>
+							        <span class="icon-bar"></span>
+							        <span class="icon-bar"></span>
+						     	</button>
+						      	<a class="navbar-brand" href="index.php">
+									<img src="imgs/logo.png" width="40px" height="40px" />
+								</a>
+						    </div>
+
+					    <!-- Collect the nav links, forms, and other content for toggling -->
+					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						    <ul class="nav nav-pills">
+					      	 	<li class="active"><a href="index.html">Inicio</a></li>
+						        <li><a href="miReserva.php">Mi Reserva</a></li>
+						        <li><a href="vuelos.php">Vuelos</a></li>
+						        <li><a href="contacto.php">Contacto</a></li>
+						    </ul>
+					        <ul class="nav navbar-nav navbar-right">
+				            	<a href="#"><li><span class="glyphicon glyphicon-user"></span> Administrador</a></li>  
+				            </ul>
+					    </div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav><!-- /.navbar navbar-default fixed-top -->
+			</div><!-- /.col-md-10 col-md-offset-1 -->
+		</div><!-- /.row -->
 
 		<!-- Sección Elegir-Vuelo -->
 		<div class="row">
@@ -196,6 +231,184 @@
 				</div> <!-- /.panel panel-primary -->
 			</div> <!-- /.col-md-10 col-md-offset-1 -->
 		</div> <!-- /.row -->
+		
+		<!-- Slider Destinos-->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Destinos Destacados</h3>
+					</div>
+					<!-- /panel-heading -->
+					
+					<!-- Well -->
+					<div class="well-none">
+						<!-- Carousel -->
+						<div id="myCarousel" class="carousel slide">
+							
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<div class="row">
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-xs-6 col-md-4--> 
+										
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-xs-6 col-md-4--> 
+										
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-xs-6 col-md-4--> 
+									</div>
+									<!--/row-->
+								</div>
+								<!--/item active-->
+								
+								<div class="item">
+									<div class="row">
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-xs-6 col-md-4--> 
+										
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-xs-6 col-md-4--> 
+										
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-sm-3 col-xs-6--> 
+									</div>
+									<!--/row-->
+								</div>
+								<!--/item-->
+								<div class="item">
+									<div class="row">
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-xs-6 col-md-4-->
+										
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-xs-6 col-md-4-->
+
+										<div class="col-xs-6 col-md-4">
+											<div class="thumbnail">
+												<div class="caption">
+													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
+													<h3>Canc&uacute;n</h3>
+													<p>$ 10000</p>
+													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
+												</div>
+												<!--/caption-->
+											</div>
+											<!--/thumbnail-->
+										</div>
+										<!--/col-xs-6 col-md-4--> 
+									</div>
+									<!--/row-->
+								</div>
+								<!--/item-->
+							</div>
+							<!--/carousel-inner--> 
+
+							<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left"></span>
+							</a>
+							<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+							</a>
+						</div>
+						<!--/myCarousel-->
+					</div>
+					<!--/well-->
+				</div>
+			</div>
+			<!-- /.col-md-12 -->
+		</div>
+		<!--/row-->
+		
 	</div> <!-- /.container -->
 
 	<!-- Primero siempre cargo las librerías jQuery -->	
