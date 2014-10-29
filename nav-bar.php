@@ -19,7 +19,7 @@
 					    <!-- Collect the nav links, forms, and other content for toggling -->
 					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						    <ul class="nav nav-pills centrar-navbar">
-					      	 	<li class="active"><a href="index.php">Inicio</a></li>
+					      	 	<li><a href="index.php">Inicio</a></li>
 						        <li><a href="miReserva.php">Mi Reserva</a></li>
 						        <li><a href="vuelos.php">Vuelos</a></li>
 						        <li><a href="contacto.php">Contacto</a></li>
