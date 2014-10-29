@@ -89,3 +89,5 @@ function mostrarCiudades(provincia) {
   xmlhttp.open("GET","mostrarCiudades.php?provincia="+provincia,true); //LLAMO AL PHP 
   xmlhttp.send();
 }
+
+

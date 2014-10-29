@@ -1,4 +1,4 @@
-<?php include("conectarBaseDeDatos.php"); ?>
+<?php //include("conectarBaseDeDatos.php"); ?>
 
 <!DOCTYPE html>				
 <html lang="en">
@@ -43,7 +43,7 @@
 						<div class="panel-body">							
 						 	
 						 	<!-- Form - Vuelos -->
-							<form role="form">
+							<form role="form" action="buscarVuelo.php" method="post">
 						  		
 								<div class="row">	
 							  		<div class="col-md-6">	
@@ -164,7 +164,7 @@
 										 	<div class="col-md-6">
 										 		<div class="form-group">
 													<label for="datepicker">Partida</label>
-													<input type="text" class="form-control" id="fecha_ida" name="fecha_ida" value="dd/mm/aaaa"/>
+													<input type="text" class="form-control" id="fecha_ida" name="fecha_ida" value="dd/mm/aaaa"  onChange="alertDate();"/>
 												</div>
 										 	</div><!--/.col-md-6 -->
 
