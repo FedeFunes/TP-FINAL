@@ -2,16 +2,15 @@
 	
 include("conectarBaseDeDatos.php"); 
 
-// get the "provincia" parameter from URL
-$provincia=$_REQUEST["provincia"];
+$idProvincia=$_REQUEST["idProvincia"]; // OBTENGO LA VARIABLE idProvincia
 
-$query = "SELECT * FROM ciudades WHERE id_provincia = 1"; // consulta improvisada
-$result = mysqli_query($con,$query);
+$query = "SELECT * FROM ciudades WHERE cod_provincia = $idProvincia";
+$result = mysqli_query($conexion,$query);
 
 while($row = mysqli_fetch_array($result)) {
-  echo "<option value='".$row['descripcion']."'>".$row['descripcion']."</option>";
+  echo "<option value='".$row['idCiudad']."'>".$row['descripcion']."</option>";
 }
 
-mysqli_close($con);
+mysqli_close($conexion);
 
 ?>
