@@ -52,7 +52,7 @@
 
 					    <!-- Collect the nav links, forms, and other content for toggling -->
 					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						    <ul class="nav nav-pills">
+						    <ul class="nav nav-pills centrar-navbar">
 					      	 	<li class="active"><a href="index.html">Inicio</a></li>
 						        <li><a href="miReserva.php">Mi Reserva</a></li>
 						        <li><a href="vuelos.php">Vuelos</a></li>

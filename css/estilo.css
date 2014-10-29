@@ -17,9 +17,14 @@ body {
 	font-size: 12px;
 	margin-top:0px;
 }
+
 /* Estilo para Logo Avion en menu */
 .navbar-brand{margin-top:-10px}
 /* Estilo para Administrador */
 .navbar-nav  li{margin-top:-44px}
 /* Achica el grosor de los botones de movimiento del carousel */
 .carousel-control{width:5%}
+
+.centrar-navbar{
+	margin-top: 6px;
+}
