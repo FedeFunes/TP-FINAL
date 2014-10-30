@@ -45,7 +45,7 @@
 						<div class="panel-body">							
 						 	
 						 	<!-- Form - Vuelos -->
-							<form role="form">
+							<form role="form" action="buscarVuelo.php" method="post">
 						  		
 								<div class="row">	
 							  		<div class="col-md-6">	
