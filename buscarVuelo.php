@@ -2,6 +2,8 @@
 
 $tipoViaje = $_POST["tipoViaje"];
 
+// Nota: las provincias y las ciudades contienen los número de id, no el nombre de estás
+
 $provinciaOrigen = $_POST["provinciaOrigen"];
 
 $ciudadOrigen = $_POST["ciudadOrigen"];
