@@ -80,7 +80,7 @@
 												
 												<!-- Provincia -->
 										 		<div class="form-group">
-											  		<select class="form-control" onChange="mostrarCiudadesOrigen(this.value);">
+											  		<select class="form-control" name="provinciaOrigen" onChange="mostrarCiudadesOrigen(this.value);">
 													  	
 													  	<option value="" disabled selected>Provincia</option>
 														
@@ -102,7 +102,7 @@
 										 		
 										 		<!-- Ciudad -->
 										 		<div class="form-group">
-											  		<select class="form-control" id="selectCiudadOrigen">
+											  		<select class="form-control" name="ciudadOrigen" id="selectCiudadOrigen">
 													  	<option value="" disabled selected>Ciudad</option>
 														<!-- ACÁ AJAX EJECUTARÍA EL CÓDIGO PHP  -->
 													</select>
@@ -123,7 +123,7 @@
 					  					 	<div class="col-md-6">
 					  					
 					  					 		<div class="form-group">
-					  						  		<select class="form-control" onChange="mostrarCiudadesDestino(this.value);">
+					  						  		<select class="form-control" name="provinciaDestino" onChange="mostrarCiudadesDestino(this.value);">
 					  								  	
 					  								  	<option value="" disabled selected>Provincia</option>
 					  								  	
@@ -144,7 +144,7 @@
 					  					 	<div class="col-md-6">
 					  					
 					  					 		<div class="form-group">
-					  						  		<select class="form-control" id="selectCiudadDestino">
+					  						  		<select class="form-control" name="ciudadDestino" id="selectCiudadDestino">
 					  								  	<option value="" disabled selected>Ciudad</option>
 					  								  	<!-- ACÁ AJAX EJECUTARÍA EL CÓDIGO PHP  -->
 					  								</select>
