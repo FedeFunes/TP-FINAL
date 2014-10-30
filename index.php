@@ -55,12 +55,12 @@
 								  		
 								  			<!-- Radio: Ida y Vuelta -->
 									  		<label class="radio-inline">
-											 	<input type="radio" name="tipo_viaje" id="inlineRadio1" value="ida_vuelta" checked="checked" onclick="mostrar_campo_fecha_vuelta();"> Ida y Vuelta
+											 	<input type="radio" name="tipoViaje" id="inlineRadio1" value="idaVuelta" checked="checked" onclick="mostrar_campo_fecha_vuelta();"> Ida y Vuelta
 											</label>
 										
 											<!-- Radio: Solo Ida -->	
 											<label class="radio-inline">
-											  	<input type="radio" name="tipo_viaje" id="inlineRadio2" value="ida" onclick="ocultar_campo_fecha_vuelta();"> Solo Ida
+											  	<input type="radio" name="tipoViaje" id="inlineRadio2" value="ida" onclick="ocultar_campo_fecha_vuelta();"> Solo Ida
 											</label>
 								  		
 								  		</div> <!-- /.form-group -->
