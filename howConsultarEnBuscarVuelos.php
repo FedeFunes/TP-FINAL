@@ -41,14 +41,14 @@ switch ($diaIda) {
 	case 'Sunday':
 		$vuelo_dia = "vuelo_domingo";
  		break;
-	
+	// así con todos los días
 	default:
 		# code...
 		break;
 }
 
 // $ciudadOrigen y $ciudadDestino van a retornar el cod_aeropuerto pertenecientes a estas ciudades
-// todavia lo modifique en el codigo aclaro.
+// todavia no lo modifique en el codigo aclaro.
 
 $query = "SELECT * 
 FROM programacionvuelos
@@ -64,12 +64,11 @@ if(mysqli_fetch_array($result) == null) {
 } 
 
 if(mysqli_fetch_array($result) != null) {
-	s
-	// si existe el vuelo en nuestra programación de vuelos 
-	// ahora lo que tengo hacer es 
+	
+	// si existe el vuelo en nuestra programación de vuelos ahora lo que tengo hacer es 
 	// vericar si ya existe este vuelo en la tabla "vuelos" y si existe, averiguar en la tabla "reservas"
 	// cuantas reservas hechas tiene en las distintas categorías, para saber la disponibilidad de estas
-	// según la categoría en la que quiere viajar el usuario. Si se da el caso en que puede quedar en lista de espera
+	// para la categoría en la que quiere viajar el usuario. Si se da el caso en que puede quedar en lista de espera
 	// le avisamos al usuario en reservar.php que si va realizar la reserva, va a quedar en lista de esperar. 
 	// Y si ni siquiera puede quedar en lista de espera -> vueloNoDisponible.php y informamos el porque.
 
