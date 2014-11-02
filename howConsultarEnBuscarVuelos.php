@@ -54,6 +54,16 @@ WHERE cod_aeropuerto_origen = $ciudadOrigen
 AND cod_aeropuerto_destino = $ciudadDestino
 AND $vuelo_dia = 1";
 
+"SELECT * 
+FROM programacionvuelos
+WHERE cod_aeropuerto_origen = $ciudadOrigen 
+AND cod_aeropuerto_destino = $ciudadDestino
+AND $vuelo_dia = 1";"SELECT * 
+FROM programacionvuelos
+WHERE cod_aeropuerto_origen = $ciudadOrigen 
+AND cod_aeropuerto_destino = $ciudadDestino
+AND $vuelo_dia = 1";
+
 $result = mysqli_query($conexion,$query);
 
 if(mysqli_fetch_array($result) == null) {
