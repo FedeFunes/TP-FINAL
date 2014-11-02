@@ -24,26 +24,24 @@ $fechaVuelta = $_POST["fechaVuelta"];
 $date = date_create_from_format("d-m-Y",$fechaVuelta);  
 $diaVuelta = date_format($date,"l");
 
-/*
+
 primera consulta
 
 Qué tablas necesito?
 
-"programacionvuelos" y "aereopuertos"
+"programacionvuelos", "aeropuertos"
 
 busca en tabla programacionvuelos con los atributos ,
 si la busqueda no concuerda, vueloNodisponible.php. 
 si la busqueda concuerda, mostramos reservar.php
-que pasa si el vuelo encontrado, 
-*/
+
 
 switch ($diaIda) {
 	case 'Sunday':
 		$vuelo_dia = "vuelo_domingo";
  		break;
-	// así con todos los días
+	// así con todos los días...
 	default:
-		# code...
 		break;
 }
 
@@ -52,8 +50,8 @@ switch ($diaIda) {
 
 $query = "SELECT * 
 FROM programacionvuelos
-WHERE cod_aereopuerto_origen = $ciudadOrigen 
-AND cod_aereopuerto_destino = $ciudadDestino
+WHERE cod_aeropuerto_origen = $ciudadOrigen 
+AND cod_aeropuerto_destino = $ciudadDestino
 AND $vuelo_dia = 1";
 
 $result = mysqli_query($conexion,$query);
@@ -66,7 +64,7 @@ if(mysqli_fetch_array($result) == null) {
 if(mysqli_fetch_array($result) != null) {
 	
 	// si existe el vuelo en nuestra programación de vuelos ahora lo que tengo hacer es 
-	// vericar si ya existe este vuelo en la tabla "vuelos" y si existe, averiguar en la tabla "reservas"
+	// vericar si ya existe este vuelo en la tabla "vuelos" en esa "fecha de partida" y si existe, averiguar en la tabla "reservas"
 	// cuantas reservas hechas tiene en las distintas categorías, para saber la disponibilidad de estas
 	// para la categoría en la que quiere viajar el usuario. Si se da el caso en que puede quedar en lista de espera
 	// le avisamos al usuario en reservar.php que si va realizar la reserva, va a quedar en lista de esperar. 
