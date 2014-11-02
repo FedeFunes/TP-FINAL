@@ -1,6 +1,6 @@
 <?php 
 include("conectarBaseDeDatos.php"); 
-session_start();
+//session_start();
 ?>
 
 <!DOCTYPE html>				
@@ -48,7 +48,7 @@ session_start();
 						<div class="panel-body">							
 						 	
 						 	<!-- Form - Vuelos -->
-							<form role="form" action="buscarVuelo.php" method="post">
+							<form role="form" action="howConsultarEnBuscarVuelos.php" method="post">
 						  		
 								<div class="row">	
 							  		<div class="col-md-6">	
@@ -165,7 +165,7 @@ session_start();
 									  	<!-- Categoría -->
 									  	<div class="form-group">
 									  		<label for="categoria">Categor&iacutea</label>
-									  		<select class="form-control" id="categoria">  	
+									  		<select class="form-control" name="categoria" id="categoria">  	
 											  	<option value="" disabled selected>Categoría</option>
 											  	<option value="economy">Economy</option>
 											  	<option value="primeras">Primera</option>
@@ -182,7 +182,7 @@ session_start();
 										 	<div class="col-md-6">
 										 		<div class="form-group">
 													<label for="datepicker">Partida</label>
-													<input type="text" class="form-control" id="fecha_ida" name="fecha_ida" value="dd/mm/aaaa"/>
+													<input type="text" class="form-control" id="fecha_ida" name="fechaIda" value="dd/mm/aaaa"/>
 												</div>
 										 	</div><!--/.col-md-6 -->
 
@@ -191,7 +191,7 @@ session_start();
 										 	<div class="col-md-6">
 										 		<div class="form-group" id="campo_fecha_vuelta">
 													<label for="datepicker">Regreso</label>
-													<input type="text" class="form-control" id="fecha_vuelta" name="fecha_vuelta" value="dd/mm/aaaa"/>
+													<input type="text" class="form-control" id="fecha_vuelta" name="fechaVuelta" value="dd/mm/aaaa"/>
 												</div>
 										 	</div> <!--/.col-md-6 -->
 										 
