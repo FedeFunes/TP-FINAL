@@ -1,4 +1,6 @@
 <?php
+session_start();
+include("conectarBaseDeDatos.php");
 
 $tipoViaje = $_POST["tipoViaje"];
 

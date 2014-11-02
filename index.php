@@ -1,4 +1,7 @@
-<?php include("conectarBaseDeDatos.php"); ?>
+<?php 
+include("conectarBaseDeDatos.php"); 
+session_start();
+?>
 
 <!DOCTYPE html>				
 <html lang="en">
