@@ -35,7 +35,7 @@ primera consulta
 
 Qué tablas necesito?
 
-"programacionvuelos" y "aereopuertos"
+"programacionvuelos" y "aeropuertos"
 
 busca en tabla programacionvuelos con los atributos ,
 si la busqueda no concuerda, vueloNodisponible.php. 
@@ -57,10 +57,10 @@ switch ($diaIda) {
 // todavia no lo modifique en el codigo aclaro.
 
 $query = "SELECT * 
-FROM programacionvuelos
-WHERE cod_aereopuerto_origen = $ciudadOrigen 
-AND cod_aereopuerto_destino = $ciudadDestino
-AND $vuelo_dia = 1";
+FROM cieloytierra.programacionvuelos 
+WHERE (cod_aeropuerto_origen = $ciudadOrigen
+AND cod_aeropuerto_destino = $ciudadDestino)
+AND vuelo_dia = 1";
 
 $result = mysqli_query($conexion,$query);
 
@@ -69,18 +69,30 @@ $result = mysqli_query($conexion,$query);
 // realiza la reserva
 # vueloNodisponible.php también va tener un link a grilla-vuelo.php, x ej: "Revise nuestra <a>grilla de vuelos</a>".
 
-if (mysqli_fetch_array($result) == null /* no existe este recorrido con $fechaIda */) {
-	// $_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha $fechaIda.";
-	// redirecciono a vueloNoDisponible.php y muestro el msj de arriba;
+if (mysqli_fetch_array($result) == null) { /* no existe este recorrido con $fechaIda */
+	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha $fechaIda.";
+	header("location: vueloNoDisponible.php"); // redirecciono a vueloNoDisponible.php y muestro el msj de arriba;
 }
 
-if (mysqli_fetch_array($result) != null /* existe este recorrido con $fechaIda */) {
+if (mysqli_fetch_array($result) != null) { /* existe este recorrido con $fechaIda */
 	
 	// consultas sql para responder el if de abajo
 
-	if (/* existe en la base de datos (tabla-vuelos) algun vuelo con este recorrido y con %fechaIda */) {	
+	$query = "SELECT * FROM cieloytierra.vuelos 
+	WHERE cod_programacion_vuelo = $row['idProgramacionVuelo']
+	AND fecha_vuelo = $fechaIda";
+
+	$result = mysqli_query($conexion,$query);
+
+	if (mysqli_fetch_array($result) == null) {	/* existe en la base de datos (tabla-vuelos) algun vuelo con este recorrido y con %fechaIda */
 		
 		// consultas sql para responder el if de abajo
+
+		$query = "SELECT * FROM cieloytierra.vuelos 
+		WHERE cod_programacion_vuelo = $row['idProgramacionVuelo']
+		AND fecha_vuelo = $fechaIda";
+
+		$result = mysqli_query($conexion,$query);
  
 		if (/* no hay cupo en la categoría que quiere viajar el usuario */) {
 			// $_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoría que quiere viajar el usuario con fecha $fechaIda";
@@ -114,9 +126,9 @@ if($tipoViaje = "idaVuelta") {
 	// todavia no lo modifique en el codigo aclaro.
 
 	$query = "SELECT * 
-	FROM programacionvuelos
-	WHERE cod_aereopuerto_origen = $ciudadOrigen 
-	AND cod_aereopuerto_destino = $ciudadDestino
+	FROM 
+	WHERE cod_aeropuerto_origen = $ciudadOrigen 
+	AND cod_aeropuerto_destino = $ciudadDestino
 	AND $vuelo_dia = 1";
 
 	$result = mysqli_query($conexion,$query);
