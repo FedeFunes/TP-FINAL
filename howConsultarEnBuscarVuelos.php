@@ -61,7 +61,7 @@ AND $vuelo_dia = 1";
 $result = mysqli_query($conexion,$query);
 $rowProgramacionVuelos = mysqli_fetch_array($result);
 
-if ( $rowProgramacionVuelos == null) { // en caso de que no exista el recorrido con $fechaIda en la tabla-programacionvuelos 
+if ( $rowProgramacionVuelos == null) { // en caso de que no exista 
 	
 	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha $fechaIda.";
 	header("location: vueloNoDisponible.php"); 
