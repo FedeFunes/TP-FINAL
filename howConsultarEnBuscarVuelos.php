@@ -63,12 +63,12 @@ $rowProgramacionVuelos = mysqli_fetch_array($result);
 
 if ($rowProgramacionVuelos == null) { // en caso de que no exista 
 	
-	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha $fechaIda.";
+	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha ida: $fechaIda.";
 	header("location: vueloNoDisponible.php"); 
 
 } else { // si existe 
 		
-	$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // variable para realizar la consulta posterior
+	$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // uso esta variable para realizar la consulta que sigue
 	
 	// Consulto en la tabla-vuelos si ya existe un vuelo de este recorrido en esa $fechaIda
 	$query = "SELECT * FROM cieloytierra.vuelos 
@@ -81,7 +81,7 @@ if ($rowProgramacionVuelos == null) { // en caso de que no exista
 
 	if ($rowVuelos != null) { // si existe  
 		
-		$idVuelo = $rowVuelos['idVuelo']; // variable para realizar la consulta posterior
+		$idVuelo = $rowVuelos['idVuelo']; // uso esta variable para realizar la consulta que sigue
 		
 		// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este para la categoría que eligió el usuario
 		$query = "SELECT $categoria FROM cieloytierra.reservas 
@@ -96,7 +96,7 @@ if ($rowProgramacionVuelos == null) { // en caso de que no exista
 			$cantidadDeReservasHechas++;
 		}
 
-		$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // variable para realizar la consulta posterior
+		$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // uso esta variable para realizar la consulta que sigue
 		
 		// Consulto cuál es el limite de reservas en esa categoría
 		$query = "SELECT $categoria FROM cieloytierra.programacionvuelos
@@ -107,14 +107,14 @@ if ($rowProgramacionVuelos == null) { // en caso de que no exista
 		$result = mysqli_query($conexion,$query);
 		$rowLimiteDeReservas = mysqli_fetch_array($result);
 
-		$limiteDeReservasMasListaDeEspera = $rowLimiteDeReservas[0] + 10;
+		$limiteDeReservasMasListaDeEspera = $rowLimiteDeReservas[0] + 10; // limite de reservas más la cantidad de reservas que pueden quedar en lista de espera
 		
 		if ($cantidadDeReservasHechas >= $rowLimiteDeReservas[0] && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
-			$_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con $fechaIda si realiza la reserva";					
+			$_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con fecha ida: $fechaIda si realiza la reserva";					
 		}
 
 		if ($cantidadDeReservasHechas == $limiteDeReservasMasListaDeEspera) { 
-			$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar el usuario con fecha $fechaIda";
+			$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar el usuario con fecha ida: $fechaIda";
 			header("location: vueloNoDisponible.php");
 		}
 	}
@@ -160,12 +160,12 @@ if($tipoViaje = "idaVuelta") {
 
 	if ($rowProgramacionVuelos == null) { // en caso de que no exista 
 		
-		$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha $fechaIda.";
+		$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha vuelta: $fechaVuelta.";
 		header("location: vueloNoDisponible.php"); 
 
 	} else {
 
-		$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // variable para realizar la consulta posterior
+		$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // uso esta variable para realizar la consulta que sigue
 		
 		// Consulto en la tabla-vuelos si ya existe un vuelo de este recorrido en esa $fechaVuelta
 		$query = "SELECT * FROM cieloytierra.vuelos 
@@ -178,7 +178,7 @@ if($tipoViaje = "idaVuelta") {
 
 		if ($rowVuelos != null) { // si existe  
 			
-			$idVuelo = $rowVuelos['idVuelo']; // variable para realizar la consulta posterior
+			$idVuelo = $rowVuelos['idVuelo']; // uso esta variable para realizar la consulta que sigue
 			
 			// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este para la categoría que eligió el usuario
 			$query = "SELECT $categoria FROM cieloytierra.reservas 
@@ -194,7 +194,7 @@ if($tipoViaje = "idaVuelta") {
 				$cantidadDeReservasHechas++;
 			}
 
-			$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // variable para realizar la consulta posterior
+			$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // uso esta variable para realizar la consulta que sigue
 			
 			// Consulto cuál es el limite de reservas de esa categoría
 			$query = "SELECT $categoria FROM cieloytierra.programacionvuelos
@@ -208,11 +208,11 @@ if($tipoViaje = "idaVuelta") {
 			$limiteDeReservasMasListaDeEspera = $rowLimiteDeReservas[0] + 10;
 			
 			if ($cantidadDeReservasHechas >= $rowLimiteDeReservas[0] && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
-				echo $_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con $fechaVuelta si realiza la reserva";					
+				echo $_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con fecha vuelta: $fechaVuelta si realiza la reserva";					
 			}
 
 			if ($cantidadDeReservasHechas == $limiteDeReservasMasListaDeEspera) { 
-				$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar el usuario con fecha $fechaVuelta";
+				$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar el usuario con fecha vuelta: $fechaVuelta";
 				header("location: vueloNoDisponible.php");
 			}
 		}
