@@ -82,9 +82,9 @@ if ( $rowProgramacionVuelos == null) { // en caso de que no exista
 		
 		$idVuelo = $rowVuelos['idVuelo'];
 		
-		// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este según la categoría que eligió el usuario
+		// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este para la categoría que eligió el usuario
 		$query = "SELECT $categoria FROM cieloytierra.reservas 
-		WHERE cod_vuelo = $idVuelo"; //	ERROR NO EXISTE LA COLUMNA RESERVA-RESERVA
+		WHERE cod_vuelo = $idVuelo"; //	ERROR NO EXISTE LA COLUMNA categoria, hay que crearla
 
 		$result = mysqli_query($conexion,$query);
 		$rowReservas = mysqli_fetch_array($result);
@@ -100,7 +100,7 @@ if ( $rowProgramacionVuelos == null) { // en caso de que no exista
 
 			$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo'];
 			
-			// Consulto cuál es el limite de reservas de esa categoría
+			// Consulto cuál es el limite de reservas en esa categoría
 			$query = "SELECT $categoria FROM cieloytierra.programacionvuelos
 			INNER JOIN cieloytierra.aviones
 			ON programacionvuelos.cod_avion = aviones.idAvion
@@ -112,7 +112,7 @@ if ( $rowProgramacionVuelos == null) { // en caso de que no exista
 			$limiteDeReservasMasListaDeEspera = $rowLimiteDeReservas[0] + 10;
 			
 			if ($cantidadDeReservasHechas >= $rowLimiteDeReservas[0] && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
-				echo $_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con $fechaIda si realiza la reserva";					
+				$_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con $fechaIda si realiza la reserva";					
 			}
 
 			if ($cantidadDeReservasHechas == $limiteDeReservasMasListaDeEspera) { 
@@ -125,7 +125,7 @@ if ( $rowProgramacionVuelos == null) { // en caso de que no exista
 
 if($tipoViaje = "idaVuelta") {
 
-	// según $diaIda creo la variable $vuelo_dia para usarla en la consulta posterior
+	// según $diaVuelta creo la variable $vuelo_dia para usarla en la consulta posterior
 	switch ($diaVuelta) {
 		case 'Sunday':
 			$vuelo_dia = "vuelo_domingo";
@@ -166,7 +166,7 @@ if($tipoViaje = "idaVuelta") {
 		
 		// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este para la categoría que eligió el usuario
 		$query = "SELECT $categoria FROM cieloytierra.reservas 
-		WHERE cod_vuelo = $idVuelo"; //	ERROR NO EXISTE LA COLUMNA RESERVA-RESERVA
+		WHERE cod_vuelo = $idVuelo"; //	ERROR NO EXISTE LA COLUMNA RESERVA-RESERVA hay que crearla
 
 		$result = mysqli_query($conexion,$query);
 		$rowReservas = mysqli_fetch_array($result);
