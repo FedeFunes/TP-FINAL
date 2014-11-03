@@ -72,8 +72,9 @@ if ( $rowProgramacionVuelos == null) { // en caso de que no exista
 	
 	// Consulto en la tabla-vuelos si ya existe un vuelo de este recorrido en esa $fechaIda
 	$query = "SELECT * FROM cieloytierra.vuelos 
-	WHERE cod_programacion_vuelo = $idProgramacionVuelo
-	AND fecha_vuelo = '$fechaIda'";
+	WHERE (cod_programacion_vuelo = $idProgramacionVuelo
+	AND fecha_vuelo = '$fechaIda')
+	AND tipo = $tipoViaje";
 
 	$result = mysqli_query($conexion,$query);
 	$rowVuelos = mysqli_fetch_array($result);
@@ -154,8 +155,9 @@ if($tipoViaje = "idaVuelta") {
 	
 	// Consulto en la tabla-vuelos si ya existe un vuelo de este recorrido en esa $fechaVuelta
 	$query = "SELECT * FROM cieloytierra.vuelos 
-	WHERE cod_programacion_vuelo = $idProgramacionVuelo
-	AND fecha_vuelo = '$fechaVuelta'";
+	WHERE (cod_programacion_vuelo = $idProgramacionVuelo
+	AND fecha_vuelo = '$fechaVuelta')
+	AND tipo = $tipoViaje";
 
 	$result = mysqli_query($conexion,$query);
 	$rowVuelos = mysqli_fetch_array($result);
