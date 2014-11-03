@@ -85,7 +85,7 @@ if ( $rowProgramacionVuelos == null) { // en caso de que no exista
 		
 		// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este para la categoría que eligió el usuario
 		$query = "SELECT $categoria FROM cieloytierra.reservas 
-		WHERE cod_vuelo = $idVuelo"; //	ERROR NO EXISTE LA COLUMNA categoria, hay que crearla
+		WHERE cod_vuelo = $idVuelo"; //	AVISO: no existe la columna categoria, hay que crearla
 
 		$result = mysqli_query($conexion,$query);
 		$rowReservas = mysqli_fetch_array($result);
@@ -168,7 +168,7 @@ if($tipoViaje = "idaVuelta") {
 		
 		// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este para la categoría que eligió el usuario
 		$query = "SELECT $categoria FROM cieloytierra.reservas 
-		WHERE cod_vuelo = $idVuelo"; //	ERROR NO EXISTE LA COLUMNA categoria hay que crearla
+		WHERE cod_vuelo = $idVuelo"; //	AVISO: no existe la columna categoria, hay que crearla
 
 		$result = mysqli_query($conexion,$query);
 		$rowReservas = mysqli_fetch_array($result);
