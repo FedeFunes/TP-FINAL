@@ -2,31 +2,32 @@
 session_start();
 include("conectarBaseDeDatos.php");
 
-echo $tipoViaje = $_POST["tipoViaje"]; 
-echo $provinciaOrigen = $_POST["provinciaOrigen"];
-echo $ciudadOrigen = $_POST["ciudadOrigen"];
-echo $provinciaDestino = $_POST["provinciaDestino"];
-echo $ciudadDestino = $_POST["ciudadDestino"];
-echo $categoria = $_POST["categoria"];
+$tipoViaje = $_POST["tipoViaje"]; 
+$provinciaOrigen = $_POST["provinciaOrigen"];
+$ciudadOrigen = $_POST["ciudadOrigen"];
+$provinciaDestino = $_POST["provinciaDestino"];
+$ciudadDestino = $_POST["ciudadDestino"];
+$categoria = $_POST["categoria"];
 
-echo $fechaIda = $_POST["fechaIda"];
-$date = date_create($fechaIda); 
-echo $diaIda = date_format($date,"l");
+$fechaIda = $_POST["fechaIda"];
+$date = date_create($fechaIda); // retorna un DateTime object de la fecha que le pasé
+$diaIda = date_format($date,"l"); // me devuelve el nombre del día de la fecha que le pasé pero en ingles
 
 $fechaVuelta = $_POST["fechaVuelta"];
 $date = date_create($fechaVuelta);  
 $diaVuelta = date_format($date,"l");
 
+// guardo los datos en la session 
 $_SESSION["tipoViaje"] = $tipoViaje;
 $_SESSION["categoria"] = $categoria;
 $_SESSION["provinciaOrigen"] = $provinciaOrigen;
 $_SESSION["ciudadOrigen"] = $ciudadOrigen; 
 $_SESSION["provinciaDestino"] = $provinciaDestino;
-$_SESSION["ciudadOrigen"] = $ciudadOrigen;
+$_SESSION["ciudadDestino"] = $ciudadDestino;
 $_SESSION["fechaIda"] = $fechaIda;
 $_SESSION["fechaVuelta"] = $fechaVuelta;
 
-
+// según $diaIda creo la variable $vuelo_dia para usarla en la consulta posterior
 switch ($diaIda) {
 	case 'Sunday':
 		$vuelo_dia = "vuelo_domingo";
@@ -51,93 +52,159 @@ switch ($diaIda) {
  		break;
 }
 
-echo $vuelo_dia; // prueba
-
+// Consulto en la tabla-programacionvuelos si existe el recorrido ($ciudadOrigen-$ciudadDestino) con $fechaIda */
 $query = "SELECT * FROM cieloytierra.programacionvuelos 
 WHERE (cod_aeropuerto_origen = $ciudadOrigen
 AND cod_aeropuerto_destino = $ciudadDestino)
 AND $vuelo_dia = 1";
 
 $result = mysqli_query($conexion,$query);
-
 $rowProgramacionVuelos = mysqli_fetch_array($result);
 
-if ( $rowProgramacionVuelos == null) {
-	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha $fechaIda.";	
-	// .header("location: vueloNoDisponible.php"); // prueba
-	echo $_SESSION["resultadoBuscarVuelo"]; // prueba
-} else {
+if ( $rowProgramacionVuelos == null) { /* en caso de que no exista el recorrido con $fechaIda en la tabla-programacionvuelos */
 	
-	echo "existe este recorrido con $fechaIda en la tabla recorridos"; // prueba
+	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha $fechaIda.";
+	header("location: vueloNoDisponible.php"); 
+
+} else { // si existe 
+		
+	$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; 
 	
-	echo $idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; // prueba
-	echo $fechaIda;
-	
+	// Consulto en la tabla-vuelos si ya existe un vuelo de este recorrido en esa $fechaIda
 	$query = "SELECT * FROM cieloytierra.vuelos 
 	WHERE cod_programacion_vuelo = $idProgramacionVuelo
 	AND fecha_vuelo = '$fechaIda'";
 
 	$result = mysqli_query($conexion,$query);
-
 	$rowVuelos = mysqli_fetch_array($result);
 
-	if ($rowVuelos != null) {	
+	if ($rowVuelos != null) { // si existe  
 		
-		echo "existe este recorrido con $fechaIda en la tabla vuelos"; // prueba
-
 		$idVuelo = $rowVuelos['idVuelo'];
 		
-		$query = "SELECT * FROM cieloytierra.reservas  
-		WHERE cod_vuelo = $idVuelo";
+		// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este según la categoría que eligió el usuario
+		$query = "SELECT $categoria FROM cieloytierra.reservas 
+		WHERE cod_vuelo = $idVuelo"; //	ERROR NO EXISTE LA COLUMNA RESERVA-RESERVA
 
 		$result = mysqli_query($conexion,$query);
-
-		$contador = 0;
-
 		$rowReservas = mysqli_fetch_array($result);
 
-		if ($rowReservas != null) {
+		if ($rowReservas != null) { 
 
-			echo "existe este recorrido con $fechaIda en la tabla reservas"; // prueba
+			$cantidadDeReservasHechas = 0; // inicializo el contador
 
-			$contador = 0;
-
-			while($rowReservas = mysqli_fetch_array($result)) { // while($rowReservas) asi no funciona
-				$contador++;
+			// Cuento la cantidad de reservas hechas
+			while($rowReservas = mysqli_fetch_array($result)) { // con while($rowReservas) no funciona
+				$cantidadDeReservasHechas++;
 			}
-
-			echo "contador".$contador;
-
-			///////////////////////////////////////////////////////////////////
 
 			$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo'];
 			
+			// Consulto cuál es el limite de reservas de esa categoría
 			$query = "SELECT $categoria FROM cieloytierra.programacionvuelos
 			INNER JOIN cieloytierra.aviones
 			ON programacionvuelos.cod_avion = aviones.idAvion
 			WHERE idProgramacionVuelo = $idProgramacionVuelo";
 
 			$result = mysqli_query($conexion,$query);
+			$rowLimiteDeReservas = mysqli_fetch_array($result);
 
-			$row = mysqli_fetch_array($result);
-
-			echo "limiteDeReservas".$row[0]."fin"; //prueba
-			// echo "limiteDeReservas".$row['$categoria']."fin"; // prueba
-
-			// echo $limiteDeReservas = $row[0] + 10;
-			echo $limiteDeReservas = 10;
-
-			if ($contador == $limiteDeReservas) { 
-				echo $_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar el usuario con fecha $fechaIda";
-				//header("location: vueloNoDisponible.php");
-			}
+			$limiteDeReservasMasListaDeEspera = $rowLimiteDeReservas[0] + 10;
 			
-			if ($contador >= 5 && $contador < $limiteDeReservas) { 
+			if ($cantidadDeReservasHechas >= $rowLimiteDeReservas[0] && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
 				echo $_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con $fechaIda si realiza la reserva";					
+			}
+
+			if ($cantidadDeReservasHechas == $limiteDeReservasMasListaDeEspera) { 
+				$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar el usuario con fecha $fechaIda";
+				header("location: vueloNoDisponible.php");
 			}
 		}	
 	}
 }
 
-?>
+if($tipoViaje = "idaVuelta") {
 
+	// según $diaIda creo la variable $vuelo_dia para usarla en la consulta posterior
+	switch ($diaVuelta) {
+		case 'Sunday':
+			$vuelo_dia = "vuelo_domingo";
+	 		break;
+	 	case 'Monday':
+			$vuelo_dia = "vuelo_lunes";
+	 		break;
+	 	case 'Tuesday':
+			$vuelo_dia = "vuelo_martes";
+	 		break;
+	 	case 'Wednesday':
+			$vuelo_dia = "vuelo_miercoles";
+	 		break;
+	 	case 'Thursday':
+			$vuelo_dia = "vuelo_jueves";
+	 		break;
+	 	case 'Friday':
+			$vuelo_dia = "vuelo_viernes";
+	 		break;
+	 	case 'Saturday':
+			$vuelo_dia = "vuelo_sabado";
+	 		break;
+	}
+
+	$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo']; 
+	
+	// Consulto en la tabla-vuelos si ya existe un vuelo de este recorrido en esa $fechaVuelta
+	$query = "SELECT * FROM cieloytierra.vuelos 
+	WHERE cod_programacion_vuelo = $idProgramacionVuelo
+	AND fecha_vuelo = '$fechaVuelta'";
+
+	$result = mysqli_query($conexion,$query);
+	$rowVuelos = mysqli_fetch_array($result);
+
+	if ($rowVuelos != null) { // si existe  
+		
+		$idVuelo = $rowVuelos['idVuelo'];
+		
+		// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este para la categoría que eligió el usuario
+		$query = "SELECT $categoria FROM cieloytierra.reservas 
+		WHERE cod_vuelo = $idVuelo"; //	ERROR NO EXISTE LA COLUMNA RESERVA-RESERVA
+
+		$result = mysqli_query($conexion,$query);
+		$rowReservas = mysqli_fetch_array($result);
+
+		if ($rowReservas != null) { 
+
+			$cantidadDeReservasHechas = 0; // inicializo el contador
+
+			// Cuento la cantidad de reservas hechas
+			while($rowReservas = mysqli_fetch_array($result)) { // con while($rowReservas) no funciona
+				$cantidadDeReservasHechas++;
+			}
+
+			$idProgramacionVuelo = $rowProgramacionVuelos['idProgramacionVuelo'];
+			
+			// Consulto cuál es el limite de reservas de esa categoría
+			$query = "SELECT $categoria FROM cieloytierra.programacionvuelos
+			INNER JOIN cieloytierra.aviones
+			ON programacionvuelos.cod_avion = aviones.idAvion
+			WHERE idProgramacionVuelo = $idProgramacionVuelo";
+
+			$result = mysqli_query($conexion,$query);
+			$rowLimiteDeReservas = mysqli_fetch_array($result);
+
+			$limiteDeReservasMasListaDeEspera = $rowLimiteDeReservas[0] + 10;
+			
+			if ($cantidadDeReservasHechas >= $rowLimiteDeReservas[0] && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
+				echo $_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con $fechaVuelta si realiza la reserva";					
+			}
+
+			if ($cantidadDeReservasHechas == $limiteDeReservasMasListaDeEspera) { 
+				$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar el usuario con fecha $fechaVuelta";
+				header("location: vueloNoDisponible.php");
+			}
+		}	
+	}
+}
+
+header("location: reservar.php");
+
+?>

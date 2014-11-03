@@ -182,7 +182,7 @@ include("conectarBaseDeDatos.php");
 										 	<div class="col-md-6">
 										 		<div class="form-group">
 													<label for="datepicker">Partida</label>
-													<input type="text" class="form-control" id="fecha_ida" name="fechaIda" value="dd/mm/aaaa"/>
+													<input type="text" class="form-control" id="fechaIda" name="fechaIda" value="aaaa/mm/dd"/>
 												</div>
 										 	</div><!--/.col-md-6 -->
 
@@ -191,7 +191,7 @@ include("conectarBaseDeDatos.php");
 										 	<div class="col-md-6">
 										 		<div class="form-group" id="campo_fecha_vuelta">
 													<label for="datepicker">Regreso</label>
-													<input type="text" class="form-control" id="fecha_vuelta" name="fechaVuelta" value="dd/mm/aaaa"/>
+													<input type="text" class="form-control" id="fechaVuelta" name="fechaVuelta" value="aaaa/mm/dd"/>
 												</div>
 										 	</div> <!--/.col-md-6 -->
 										 
