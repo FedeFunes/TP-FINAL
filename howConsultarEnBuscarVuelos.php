@@ -52,7 +52,7 @@ switch ($diaIda) {
  		break;
 }
 
-// Consulto en la tabla-programacionvuelos si existe el recorrido ($ciudadOrigen-$ciudadDestino) con $fechaIda */
+// Consulto en la tabla-programacionvuelos si existe el recorrido ($ciudadOrigen-$ciudadDestino) con $fechaIda
 $query = "SELECT * FROM cieloytierra.programacionvuelos 
 WHERE (cod_aeropuerto_origen = $ciudadOrigen
 AND cod_aeropuerto_destino = $ciudadDestino)
@@ -61,7 +61,7 @@ AND $vuelo_dia = 1";
 $result = mysqli_query($conexion,$query);
 $rowProgramacionVuelos = mysqli_fetch_array($result);
 
-if ( $rowProgramacionVuelos == null) { /* en caso de que no exista el recorrido con $fechaIda en la tabla-programacionvuelos */
+if ( $rowProgramacionVuelos == null) { // en caso de que no exista el recorrido con $fechaIda en la tabla-programacionvuelos 
 	
 	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha $fechaIda.";
 	header("location: vueloNoDisponible.php"); 
