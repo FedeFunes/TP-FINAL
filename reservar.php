@@ -6,20 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CYT Aerol&iacuteneas - Reservar</title>
 
-     <!-- CSS propio -->  
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <!-- jQuery UI CSS -->
-    <link rel="stylesheet" href="jquery/jquery-ui/jquery-ui.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <?php include("librerias-css.php") ?>
     
     </head>
     <body>
@@ -65,35 +52,35 @@
                     <!-- Campo Nombre -->
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" placeholder="Nombre" id="nombre">
+                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" >
                         <span class="text-danger error_form_reservar" id="error_nombreyapellido">No puedes dejar este campo en blanco.</span>
                     </div>
 
                     <!-- Campo Apellido -->
                     <div class="form-group">
                         <label for="nombre">Apellido</label>
-                        <input type="text" class="form-control" placeholder="Apellido" id="apellido">
+                        <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido">
                         <span class="text-danger error_form_reservar" id="error_apellido">No puedes dejar este campo en blanco.</span>
                     </div>
 
                     <!-- Campo Email -->                    
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" placeholder="Email" id="email">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                         <span class="text-danger error_form_reservar" id="error_email">No puedes dejar este campo en blanco o con un formato de Email incorrecto.</span>   
                     </div>
                     
                     <!-- Campo DNI -->                    
                     <div class="form-group">
                         <label for="dni">DNI</label>
-                        <input type="text" class="form-control" placeholder="DNI" id="dni">
+                        <input type="text" class="form-control" name="dni" id="dni" placeholder="DNI">
                         <span class="text-danger error_form_reservar" id="error_dni">No puedes dejar este campo en blanco o con un formato de DNI incorrecto.</span> 
                     </div>
 
                     <!-- Campo Fecha Nacimiento -->                    
                     <div class="form-group">
                         <label for="fecha_nac">Fecha de Nacimiento</label>
-                        <input type="text" class="form-control" placeholder="Fecha de Nacimiento" id="fecha_nac">
+                        <input type="text" class="form-control" name="fechaNacimiento" id="fecha_nac" placeholder="Fecha de Nacimiento">
                         <span class="text-danger error_form_reservar">No puedes dejar este campo en blanco.</span>
                     </div>
                     
@@ -108,17 +95,8 @@
         <?php include("footer.php");?>
 
     </div>
-    
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- jQueryUI -->
-    <script type="text/javascript" src="jquery/jquery-ui/jquery-ui.js"></script>
-    <!-- Script para DatePicker -->
-    <script type="text/javascript" src="jquery/script-datepicker.js"></script>
-    <!-- Scripts -->
-    <script type="text/javascript" src="javascript/scripts.js"></script>
-   
+
+        <?php include("librerias-js.php") ?>  
+
     </body>
 </html>
