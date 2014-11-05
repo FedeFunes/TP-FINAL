@@ -68,6 +68,8 @@ AND $vuelo_dia = 1";
 
 $result = mysqli_query($conexion,$query);
 
+// Nota: mysqli_num_rows() retorna el número de filas que devuelve la consulta
+
 if (mysqli_num_rows($result) == 0) { // en caso de que no exista 
 	
 	echo "</br> if: == 0 header a vueloNoDisponible.php"; // prueba
