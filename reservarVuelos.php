@@ -8,7 +8,7 @@ $apellido = $_POST["apellido"];
 $email = $_POST["email"];
 $dni = $_POST["dni"];
 $fechaDeNacimiento = $_POST["fechaNacimiento"];
-$fechaDeReserva = date("y-m-d");
+$fechaDeReserva = date("y-m-d"); // obtengo la fecha del servidor
 
 $categoria = $_SESSION["categoria"];
 $estadoVueloIda = $_SESSION["estadoVueloIda"];
@@ -21,29 +21,21 @@ $tipoViaje = $_SESSION["tipoViaje"];
 $fechaVuelta = $_SESSION["fechaVuelta"];
 
 
-if($idVueloIda != null) { 
+if($idVueloIda != null) { // si ya existe un vuelo para esta reserva, directamente la hago
 
 	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
 	VALUES ('$nombre', '$apellido', $dni, '$email', $fechaDeNacimiento, $fechaDeReserva, $idVueloIda, '$categoria', '$estadoVueloIda')";
 
 	mysqli_query($conexion, $sql);	
 
-} else { 
+} else {  // si no existe un vuelo para esta reserva, primero la creo y luego hago la reserva
 
 	$sql = "INSERT INTO vuelos (cod_programacion_vuelo, fecha_vuelo, tipo_viaje)
-	VALUES ($idProgramacionVuelo, $fechaIda, '$tipoViaje')";
+	VALUES ($idProgramacionVuelo, $fechaIda, 'ida')";
 
 	mysqli_query($conexion, $sql);	
 
-	$query = "SELECT idVuelo FROM vuelos
-	WHERE (cod_programacion_vuelo = $idProgramacionVuelo
-	AND fecha_vuelo = $fechaida)
-	AND tipo_viaje = $tipoViaje";
-	
-	$result = mysqli_query($conexion,$query);
-	$rowIdvuelo = mysqli_fetch_array($result);
-
-	$idVueloIda = $rowIdvuelo[0];
+	$idVueloIda = mysqli_insert_id($conexion); // esta función retorna el último id auto-incremental registrado
 
 	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
 	VALUES ('$nombre', '$apellido', $dni, '$email', $fechaDeNacimiento, $fechaDeReserva, $idVueloIda, '$categoria', '$estadoVueloIda')";
@@ -55,13 +47,16 @@ if($tipoViaje == "idaVuelta") {
 
 	if($idVueloVuelta != null) { 
 
-	
+		// misma logica, diferentes variables
+
 	} else { 
+
+		// misma logica, diferentes variables
 
 	}
 }
 
 $_SESSION["idReservaVuelta"] = mysqli_insert_id($conexion);
 
-header("location: resultadoReservar.php");
+// header("location: resultadoReservar.php"); // prueba
 ?>
