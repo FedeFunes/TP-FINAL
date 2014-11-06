@@ -20,7 +20,7 @@
 					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						    <ul class="nav nav-pills centrar-navbar">
 					      	 	<li><a href="index.php">Inicio</a></li>
-						        <li><a href="miReserva.php">Mi Reserva</a></li>
+						        <li><a href="reservas.php">Reservas</a></li>
 						        <li><a href="grilla-vuelos.php">Vuelos</a></li>
 						        <li><a href="contacto.php">Contacto</a></li>
 						    </ul>
