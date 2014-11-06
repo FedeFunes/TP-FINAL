@@ -3,6 +3,7 @@ session_start();
 include("conectarBaseDeDatos.php");
 
 
+// guardo los datos del form
 $nombre = $_POST["nombre"];
 $apellido = $_POST["apellido"];
 $email = $_POST["email"];
@@ -10,6 +11,7 @@ $dni = $_POST["dni"];
 $fechaDeNacimiento = $_POST["fechaNacimiento"];
 $fechaDeReserva = date("y-m-d"); // obtengo la fecha del servidor
 
+//guardo los datos de la session
 $categoria = $_SESSION["categoria"];
 $estadoVueloIda = $_SESSION["estadoVueloIda"];
 $estadoVueloVuelta = $_SESSION["estadoVueloVuelta"];
