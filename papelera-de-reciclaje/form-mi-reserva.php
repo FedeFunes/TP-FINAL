@@ -1,5 +1,5 @@
 						<!-- Mi Reserva -->
-						<div class="col-md-6">
+						<div class="col-md-6 col-md-offset-3">
 							<div class="panel panel-primary">
 	 							<div class="panel-heading">
 							    	<h3 class="panel-title">Mi Reserva</h3>
