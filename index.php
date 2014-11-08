@@ -14,13 +14,13 @@ include("conectarBaseDeDatos.php");
     
     <title>CYT Aerol&iacuteneas</title>
 
-    <?php include("librerias-css.php") ?>
+    <?php include("libreriasCSS.php") ?>
 
 </head>
 <body class="body-index">
 	<div class="container">
 		
-		<?php include("nav-bar.php") ?>
+		<?php include("navBar.php") ?>
 
 		<!-- Sección Elegir-Vuelo -->
 		<div class="row">
@@ -381,7 +381,7 @@ include("conectarBaseDeDatos.php");
 
 	</div> <!-- /.container -->
 
-	<?php include("librerias-js.php"); ?>
+	<?php include("libreriasJS.php"); ?>
 
 </body>
 </html>

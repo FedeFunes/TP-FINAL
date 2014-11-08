@@ -21,7 +21,7 @@
 						    <ul class="nav nav-pills centrar-navbar">
 					      	 	<li><a href="index.php">Inicio</a></li>
 						        <li><a href="reservas.php">Reservas</a></li>
-						        <li><a href="grilla-vuelos.php">Vuelos</a></li>
+						        <li><a href="grillaVuelos.php">Vuelos</a></li>
 						        <li><a href="contacto.php">Contacto</a></li>
 						    </ul>
 					        <ul class="nav navbar-nav navbar-right">

@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CYT Aerol&iacuteneas - Reservar</title>
 
-    <?php include("librerias-css.php") ?>
+    <?php include("libreriasCSS.php") ?>
     
     </head>
     <body>
     <div class="container">
 		
-        <?php include("nav-bar.php");?>
+        <?php include("navBar.php");?>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -96,7 +96,7 @@
 
     </div>
 
-        <?php include("librerias-js.php") ?>  
+        <?php include("libreriasJS.php") ?>  
 
     </body>
 </html>
