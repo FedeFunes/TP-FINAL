@@ -1,0 +1,46 @@
+Pasos para realizar reservas:
+1- index.php
+// el form buscar-vuelos llama a   
+2- buscarVuelos.php
+// sino coincide la busqueda 
+	3.a- vueloNoDisponible.php (fin)
+// si coincide
+	3.b- reservar.php 
+// aca el form-reservar.php llama a 
+4- reservarVuelos.php
+// este redirecciona a 
+5- resultadoReservarVuelos.php (fin)
+// y muestra lo/s id/s de la/s reserva/s
+
+Pasos para pagar una reserva: 
+1- index.php 
+2- reservas.php
+// el form buscar-reserva llama a  
+3- buscarReserva.php 
+// sino la encuentra
+	4.a- reservaNoEncontrada.php (fin)
+// si la encuentra
+	4.b- miReserva.php
+// el usuario elige la opcion "Pagar Reserva" y redirecciona a
+5- formPagarReserva.php
+6-pagarReserva.php
+7-resultadoPagarReserva.php
+
+Pasos para realizar el check-in de una reserva: 
+1- index.php 
+2- reservas.php
+// el form buscar-reserva llama a  
+3- buscarReserva.php 
+// sino la encuentra
+	4.a- reservaNoEncontrada.php (fin)
+// si la encuentra
+	4.b- miReserva.php
+// el usuario elige la opcion "Realizar Check-in" y redirecciona a
+(...) 
+
+Administrador:
+1- index.php 
+2- loginAdministrador.php  
+
+
+

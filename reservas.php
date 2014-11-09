@@ -24,8 +24,8 @@
                             
                             <!-- Ingrese Nro de Reserva -->
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nro de Reserva">
-                                <span class="help-block" style="color:black;">Consulte y realice el Pago o Check-In de su Reserva</span>
+                                <input type="text" name="nroReserva" class="form-control" placeholder="Nro de Reserva">
+                                <span class="help-block help-block-reservas">Consulte y realice el Pago o Check-In de su Reserva</span>
                             </div>
                             
                             <!-- Botón "Buscar" --> 
