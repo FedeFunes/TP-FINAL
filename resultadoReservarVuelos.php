@@ -15,19 +15,19 @@ include("conectarBaseDeDatos.php");
     
     </head>
     <body>
-   <div id="wrap">
-   <div class="container">
+        <div class="wrap">
+            <div class="container">
+                <?php include("navBar.php") ?>
 
-        <?php include("navBar.php") ?>
-
-        <?php
-        echo "</br>".$_SESSION["idReservaIda"];
-        echo "</br>".$_SESSION["idReservaVuelta"];
-        ?>
-
+                <?php
+                echo "</br>".$_SESSION["idReservaIda"];
+                echo "</br>".$_SESSION["idReservaVuelta"];
+                ?>
+            </div><!-- /.container -->
+        </div><!-- /.wrap -->
+        
         <?php include("footer.php") ?>
-    
+        
         <?php include("libreriasJS.php"); ?>
-   </div>
     </body>
 </html>

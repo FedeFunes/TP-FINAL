@@ -15,8 +15,8 @@
             <div class="container">
                 <?php include("navBar.php") ?>
             </div><!-- /.container -->
-        </div>
-            <?php include("footer.php") ?>
+        </div><!-- /.wrap -->
+        <?php include("footer.php") ?>
 
         <?php include("libreriasJS.php"); ?>
    

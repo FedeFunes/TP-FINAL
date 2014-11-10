@@ -13,7 +13,7 @@
     <div class="wrap">
         <div class="container">
             <?php include("navBar.php") ?>
-            <row>
+            <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-primary">
                          <div class="panel-body">   
@@ -33,13 +33,13 @@
                         </div>
                     </div>
                 </div>
-            </row>
+            </div>
         </div><!-- /.container -->
     </div><!-- /.wrap -->
             
-        <?php include("footer.php") ?>
-    
-        <?php include("libreriasJS.php"); ?>
+    <?php include("footer.php") ?>
+
+    <?php include("libreriasJS.php"); ?>
 
     </body>
 </html>

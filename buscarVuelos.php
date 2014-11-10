@@ -20,6 +20,10 @@ $diaVuelta = date_format($date,"l");
 
 
 // guardo los datos que puedo necesitar en la session 
+$_SESSION["provinciaOrigen"] = $provinciaOrigen;
+$_SESSION["ciudadOrigen"] = $ciudadOrigen;
+$_SESSION["provinciaDestino"] = $provinciaDestino;
+$_SESSION["ciudadDestino"] = $ciudadDestino;
 $_SESSION["tipoViaje"] = $tipoViaje;
 $_SESSION["categoria"] = $categoria;
 $_SESSION["fechaIda"] = $fechaIda;
@@ -61,10 +65,13 @@ switch ($diaIda) {
 
 
 // Consulto en la tabla-programacionvuelos si existe el recorrido ($ciudadOrigen-$ciudadDestino) con $fechaIda
-$query = "SELECT * FROM programacionvuelos 
-WHERE (cod_aeropuerto_origen = $ciudadOrigen
-AND cod_aeropuerto_destino = $ciudadDestino)
-AND $vuelo_dia = 1";
+$query = "SELECT * FROM programacionvuelos
+INNER JOIN aviones
+ON programacionvuelos.cod_avion = aviones.idAvion
+WHERE cod_aeropuerto_origen = $ciudadOrigen
+AND cod_aeropuerto_destino = $ciudadDestino
+AND $vuelo_dia = 1
+AND $categoria != 0;";
 
 $result = mysqli_query($conexion,$query);
 // mysqli_num_rows() retorna el número de filas que devuelve la consulta
@@ -72,8 +79,9 @@ $cantDeFilasDevueltas = mysqli_num_rows($result);
 
 if ($cantDeFilasDevueltas == 0) { // en caso de que no exista 
 		
-	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha ida: $fechaIda.";
-	// header("location: vueloNoDisponible.php"); 
+	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha ida: $fechaIda o no existe la categoria que eligió en el avión que realiza este vuelo.";
+	header("location: vueloNoDisponible.php"); 
+	die();
 
 } else { // si existe 
 			
@@ -88,7 +96,7 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 	$query = "SELECT * FROM vuelos 
 	WHERE (cod_programacion_vuelo = $idProgramacionVuelo
 	AND fecha_vuelo = '$fechaIda')
-	AND tipo_viaje = 'ida'"; 
+	AND tipo_viaje = 'ida';"; 
 
 	$result = mysqli_query($conexion,$query);
 	$cantDeFilasDevueltas = mysqli_num_rows($result); 
@@ -99,6 +107,7 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 
 		// guardo el id en la session
 		$_SESSION["idVueloIda"] = $rowVuelos['idVuelo']; 
+		
 		// uso esta variable para realizar la consulta que sigue
 		$idVuelo = $rowVuelos['idVuelo']; 
 
@@ -119,44 +128,34 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 		$result = mysqli_query($conexion,$query);
 		$rowLimiteDeReservas = mysqli_fetch_array($result);	
 		$limiteDeReservas = $rowLimiteDeReservas[0];
-	
-		if ($limiteDeReservas == 0) { // si no existe esta categoría
 			
-			$_SESSION["resultadoBuscarVuelo"] = "No existe esta categoria en ese recorrido con fecha ida: $fechaIda";
-			// header("location: vueloNoDisponible.php");				
-	
-		} else { // si existe 
-			
-			// limite de reservas más la cantidad de reservas que pueden quedar en lista de espera
-			$limiteDeReservasMasListaDeEspera = $limiteDeReservas + 10; 
-			
-			// si la cantidad de reservas hechas no superan el limite 
-			if ($cantidadDeReservasHechas < $limiteDeReservas) {  
-				$_SESSION["resultadoBuscarVuelo"] = "Vuelo/s Disponible/s";
-			}
-			
-			// si la cantidad de reservas hechas supera el limite pero puede quedar en lista de espera
-			if ($cantidadDeReservasHechas >= $limiteDeReservas && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
-				$_SESSION["resultadoBuscarVuelo"] = "Va a quedar en lista de espera en el recorrido con fecha ida: $fechaIda si realiza la reserva";					
-				$_SESSION["estadoVueloIda"] = "lista de espera";
-			} 
-
-			// si la lista de espera esta llena 
-			if ($cantidadDeReservasHechas == $limiteDeReservasMasListaDeEspera) { 
-				$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar el usuario con fecha ida: $fechaIda";
-				// header("location: vueloNoDisponible.php");
-			}	
+		// limite de reservas más la cantidad de reservas que pueden quedar en lista de espera
+		$limiteDeReservasMasListaDeEspera = $limiteDeReservas + 10; 
+		
+		// si la cantidad de reservas hechas supera el limite pero puede quedar en lista de espera
+		if ($cantidadDeReservasHechas >= $limiteDeReservas && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
+			$_SESSION["estadoVueloIda"] = "lista de espera";
+		} else {
+			$_SESSION["estadoVueloIda"] = "pendiente de cobro";
 		}
+
+		// si la lista de espera esta llena 
+		if ($cantidadDeReservasHechas == $limiteDeReservasMasListaDeEspera) { 
+			$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar en el recorrido con fecha ida: $fechaIda";
+			header("location: vueloNoDisponible.php");
+			die();
+		}	
 	}	
 }
 
 
 if($tipoViaje = "idaVuelta") {
 
-	//la misma logica con distintas variables
+	// variables que cambian: $diaIda, $fechaIda
+	// la misma logica con distintas variables
 
 }
 
-$_SESSION["estado"]	= "reserva";		
-// header("location: reservar.php");
+
+header("location: reservar.php");
 ?>

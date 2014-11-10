@@ -67,6 +67,7 @@ height: 100%;
 .footer {
 height: 60px;
 padding: 20px 0px;
+/*margin-top: 20px; no aplicar margin*/
 color: #999;
 text-align: center;
 border-top: 1px solid #E5E5E5;
