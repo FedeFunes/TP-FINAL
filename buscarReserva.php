@@ -1,9 +1,8 @@
-<?php
+b<?php
 session_start();
 include("conectarBaseDeDatos.php");
 
 $nroReserva = $_POST["nroReserva"];
-$_SESSION["nroReserva"] = $nroReserva;
 
 $query = "SELECT * FROM reservas 
 WHERE idReserva = $nroReserva";
@@ -14,6 +13,7 @@ $cantDeFilasDevueltas = mysqli_num_rows($result);
 if ($cantDeFilasDevueltas == 0) {
 	// header("location: reservaNoEncontrada.php"); 	
  } else {
+ 	$_SESSION["nroReserva"] = $nroReserva;
  	// header("location: miReserva.php");
  }
 

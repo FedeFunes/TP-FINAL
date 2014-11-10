@@ -10,12 +10,14 @@
     
     </head>
     <body>
-    <div class="container">
+        
+        <div class="wrap">
+            <div class="container">
+                <?php include("navBar.php") ?>
+            </div><!-- /.container -->
+        </div>
+            <?php include("footer.php") ?>
 
-        <?php include("navBar.php") ?>
-
-        <?php include("footer.php") ?>
-    
         <?php include("libreriasJS.php"); ?>
    
     </body>

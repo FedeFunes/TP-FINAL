@@ -1,7 +1,7 @@
 		<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 
-					<nav class="navbar navbar-default fixed-top" role="navigation">
+					<nav class="navbar navbar-default fixed-top navbar-estilo" role="navigation">
 					  	<div class="container-fluid">
 						    <!-- Brand and toggle get grouped for better mobile display -->
 						    <div class="navbar-header">

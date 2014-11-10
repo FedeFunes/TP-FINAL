@@ -10,35 +10,36 @@
     
     </head>
     <body>
-    <div class="container">
-
-        <?php include("navBar.php") ?>
-
-        <row>
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-primary">
-                     <div class="panel-body">   
-                        
-                        <!-- Form - Mi Reserva -->
-                        <form role="form" method="post" action="buscarReservar.php">
+    <div class="wrap">
+        <div class="container">
+            <?php include("navBar.php") ?>
+            <row>
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-primary">
+                         <div class="panel-body">   
                             
-                            <!-- Ingrese Nro de Reserva -->
-                            <div class="form-group">
-                                <input type="text" name="nroReserva" class="form-control" placeholder="Nro de Reserva">
-                                <span class="help-block help-block-reservas">Consulte y realice el Pago o Check-In de su Reserva</span>
-                            </div>
-                            
-                            <!-- Botón "Buscar" --> 
-                            <button type="submit" class="btn btn-primary">Buscar</button>
-                        </form>
+                            <!-- Form - Mi Reserva -->
+                            <form role="form" method="post" action="buscarReservar.php">
+                                
+                                <!-- Ingrese Nro de Reserva -->
+                                <div class="form-group">
+                                    <input type="text" name="nroReserva" class="form-control" placeholder="Nro de Reserva">
+                                    <span class="help-block help-block-reservas">Consulte y realice el Pago o Check-In de su Reserva</span>
+                                </div>
+                                
+                                <!-- Botón "Buscar" --> 
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </row>
-
+            </row>
+        </div><!-- /.container -->
+    </div><!-- /.wrap -->
+            
         <?php include("footer.php") ?>
     
         <?php include("libreriasJS.php"); ?>
-   
+
     </body>
 </html>

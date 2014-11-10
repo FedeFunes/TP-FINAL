@@ -3,8 +3,8 @@
 	font-size: 12px;
 }
 
-body {
-	padding-top: 20px;
+.navbar-estilo {
+	margin-top: 20px;
 }
 
 .body-index {
@@ -42,14 +42,33 @@ body {
 	margin-top: 20px;	
 }
 
-.footer {
-	padding: 20px 0px;
-	margin-top: 20px;
-	color: #999;
-	text-align: center;
-	border-top: 1px solid #E5E5E5;
-}
-
 .help-block-reservas {
 	color: black;
 }
+
+/* Estilos para que el footer quede abajo de todo siempre */
+
+html, body {
+height: 100%;
+/* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+.wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+.footer {
+height: 60px;
+padding: 20px 0px;
+color: #999;
+text-align: center;
+border-top: 1px solid #E5E5E5;
+}
+
