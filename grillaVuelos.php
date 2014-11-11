@@ -90,7 +90,7 @@
 										TRIM(CONCAT((CASE WHEN vuelo_lunes THEN 'Lunes' ELSE '' END),(CASE WHEN vuelo_martes THEN ' Martes' ELSE '' END),
                                         (CASE WHEN vuelo_miercoles THEN ' Miercoles' ELSE '' END),(CASE WHEN vuelo_jueves THEN ' Jueves' ELSE '' END),
 										(CASE WHEN vuelo_viernes THEN ' Viernes' ELSE '' END),(CASE WHEN vuelo_sabado THEN ' Sabado' ELSE '' END),
-										(CASE WHEN vuelo_domingo THEN ' Domingo' ELSE '' END))) as diasVuelos, TIME_FORMAT(PV.hora_partida,'%h:%i %p') as horaPartida
+										(CASE WHEN vuelo_domingo THEN ' Domingo' ELSE '' END))) as diasVuelos, TIME_FORMAT(PV.hora_partida,'%H:%i') as horaPartida
 										FROM programacionvuelos PV JOIN 
 											aeropuertos A1 ON A1.idAeropuerto = PV.cod_aeropuerto_origen JOIN 
 											aeropuertos A2 ON A2.idAeropuerto = PV.cod_aeropuerto_destino JOIN 
