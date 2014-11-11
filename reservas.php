@@ -15,8 +15,12 @@
             <?php include("navBar.php") ?>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="panel panel-primary">
-                         <div class="panel-body">   
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+				    		<h3 class="panel-title">Reservas</h3>
+				  		</div>	
+				
+						<div class="panel-body">   
                             
                             <!-- Form - Mi Reserva -->
                             <form role="form" method="post" action="buscarReservar.php">
@@ -30,10 +34,10 @@
                                 <!-- Botón "Buscar" --> 
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </div><!-- /.panel-body -->
+                    </div><!-- /.panel panel-primary -->
+                </div><!-- /.col-md-6 col-md-offset-3 -->
+            </div><!-- /.row -->
         </div><!-- /.container -->
     </div><!-- /.wrap -->
             

@@ -20,61 +20,60 @@
 		<div class="container">
 			<?php include("navBar.php") ?>
 			<?php include("libreriasJS.php"); ?>
-
-			<div class="jumbotron">
-				<h1>
-					Programaci&oacute;n de Vuelos
-				</h1>
+			
+			<div class="panel panel-primary">
+				<div class="panel-heading">					
+					<h1>
+						Programaci&oacute;n de Vuelos
+					</h1>
+				</div>
 			</div>
-					
-					
+						
 		<div class="table-responsive">  
 			<table class="table" id="tabla">
 				<thead>
-				<div class="panel panel primary">
-				  <tr>
-					<th>
-					  Id
-					</th>
-									
-					
-					<th>
-					  Aeropuerto Origen
-					</th>
-									
-					
-					<th>
-					  Ciudad Origen
-					</th>
-									
-					
-					<th>
-					  Aeropuerto Destino
-					</th>
-									
-					
-					<th>
-					  Ciudad Destino
-					</th>
-					
-					<th>
-					  Precio Primera
-					</th>
-					
-					<th>
-					  Precio Economy
-					</th>
-					
-					<th>
-					  Vuelos D&iacute;as
-					</th>
-					
-					<th>
-					  Hora Partida
-					</th>
+					<tr>
+						<th>
+						  Id
+						</th>
+										
+
+						<th>
+						  Aeropuerto Origen
+						</th>
+										
+
+						<th>
+						  Ciudad Origen
+						</th>
+										
+
+						<th>
+						  Aeropuerto Destino
+						</th>
+										
+
+						<th>
+						  Ciudad Destino
+						</th>
+
+						<th>
+						  Precio Primera
+						</th>
+
+						<th>
+						  Precio Economy
+						</th>
+
+						<th>
+						  Vuelos D&iacute;as
+						</th>
+
+						<th>
+						  Hora Partida
+						</th>
 								  
-				  </tr>
-				</div>			  
+					</tr>		  
 				</thead>
 							
 
