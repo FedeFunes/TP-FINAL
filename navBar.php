@@ -25,7 +25,7 @@
 						        <li><a href="contacto.php">Contacto</a></li>
 						    </ul>
 					        <ul class="nav navbar-nav navbar-right">
-				            	<a href="#"><li><span class="glyphicon glyphicon-user"></span> Administrador</a></li>  
+				            	<a href="login.php"><li><span class="glyphicon glyphicon-user"></span> Administrador</a></li>  
 				            </ul>
 					    </div><!-- /.navbar-collapse -->
 					</div><!-- /.container-fluid -->
