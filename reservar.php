@@ -20,7 +20,7 @@ ciudades C1 ON C1.idCiudad = A1.cod_ciudad JOIN
 ciudades C2 ON C2.idCiudad = A2.cod_ciudad JOIN 
 provincias P1 ON C1.cod_provincia = P1.idProvincia JOIN
 provincias P2 ON C2.cod_provincia = P2.idProvincia
-WHERE PV.idProgramacionVuelo = ".$_SESSION["idProgramacionVuelo"].""; 
+WHERE PV.idProgramacionVuelo = ".$_SESSION["idProgramacionVuelo"].";"; 
 
 $result = mysqli_query($conexion,$query);
 $vueloElegido = mysqli_fetch_array($result); 
@@ -78,11 +78,11 @@ $vueloElegido = mysqli_fetch_array($result);
                     <div class="col-md-8 col-md-offset-2">
                         <?php 
                         if ($_SESSION["estadoVueloIda"] == 'lista de espera') {
-                            echo "<div class='alert alert-danger' role='alert'> AVISO: Va a quedar en lista de espera en el vuelo de fecha partida: ".$_SESSION["estadoVueloIda"]." si realiza la reserva.</div>";   
+                            echo "<div class='alert alert-danger' role='alert'> AVISO: Va a quedar en lista de espera en el vuelo de fecha partida: ".$_SESSION["fechaIda"]." si realiza la reserva.</div>";   
                         }
 
                         if ($_SESSION["estadoVueloVuelta"] == 'lista de espera') {
-                            echo "<div class='alert alert-danger' role='alert'>AVISO: Va a quedar en lista de espera en el vuelo de fecha regreso: ".$_SESSION["estadoVueloVuelta"]." si realiza la reserva.</div>";   
+                            echo "<div class='alert alert-danger' role='alert'>AVISO: Va a quedar en lista de espera en el vuelo de fecha regreso: ".$_SESSION["fechaVuelta"]." si realiza la reserva.</div>";   
                         }
                         ?>                   
                     </div><!-- /.row -->
@@ -92,7 +92,7 @@ $vueloElegido = mysqli_fetch_array($result);
                     <div class="col-md-4 col-md-offset-4">
                         
                         <!-- Formulario -->
-                        <form action="reservarVuelos.php" method="post" onsubmit="return validar_form_reservar()" role="form" >
+                        <form onSubmit="return validar_form_reservar();"  action="reservarVuelos.php" method="post" role="form" >
                             
                             <h4>Complete el formulario para reservarlo</h4>
                             
@@ -100,7 +100,7 @@ $vueloElegido = mysqli_fetch_array($result);
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" >
-                                <span class="text-danger error_form_reservar" id="error_nombreyapellido">No puedes dejar este campo en blanco.</span>
+                                <span class="text-danger error_form_reservar" id="error_nombre">No puedes dejar este campo en blanco.</span>
                             </div>
 
                             <!-- Campo Apellido -->

@@ -17,13 +17,13 @@
                 <div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-				    		<h3 class="panel-title">Reservas</h3>
+				    		<h3 class="panel-title">Mi Reserva</h3>
 				  		</div>	
 				
 						<div class="panel-body">   
                             
                             <!-- Form - Mi Reserva -->
-                            <form role="form" method="post" action="buscarReservar.php">
+                            <form role="form" method="post" action="buscarReserva.php">
                                 
                                 <!-- Ingrese Nro de Reserva -->
                                 <div class="form-group">

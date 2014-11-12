@@ -46,6 +46,10 @@ body {
 	color: black;
 }
 
+table {
+	background-color: white;
+}
+
 /* Estilos para que el footer quede abajo de todo siempre */
 
 html, body {
@@ -72,3 +76,4 @@ color: #999;
 text-align: center;
 border-top: 1px solid #E5E5E5;
 }
+

@@ -1,12 +1,9 @@
 <?php
 session_start();
-include("conectarBaseDeDatos.php");
+include("conectarBaseDeDatos.php"); 
 
-$nroReserva = $_SESSION["nroReserva"]; 
+$sql = "UPDATE reservas SET estado='pendiente de check-in' WHERE idReserva=".$_SESSION["nroReserva"].";";
+mysqli_query($conexion, $sql);
 
-$sql = "UPDATE reservas SET estado='pagada' WHERE id=$nroReserva";
-mysqli_query($conn, $sql);
-
-// redirecciona a la pagina que va a crear el pdf
-// header(""); 
+header("location: resultadoPagarReserva.php");
 ?>

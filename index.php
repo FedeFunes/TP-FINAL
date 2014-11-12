@@ -33,7 +33,7 @@ include("conectarBaseDeDatos.php");
 						<div class="panel-body">							
 						 	
 						 	<!-- Form - Vuelos -->
-							<form role="form" action="buscarVuelos.php" method="post">
+							<form role="form" onSubmit="return validarFormBuscarVuelos();" action="buscarVuelos.php" method="post">
 						  		
 								<div class="row">	
 							  		<div class="col-md-6">	
