@@ -24,8 +24,6 @@ $fechaVuelta = $_SESSION["fechaVuelta"];
 
 
 if($idVueloIda != null) { // si ya existe un vuelo para esta reserva, directamente la hago
-
-	echo "$idVueloIda != null";
 	
 	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
 	VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloIda, '$categoria', '$estadoVueloIda')";

@@ -36,8 +36,7 @@ $_SESSION["provinciaDestino"] = $reserva["provinciaDestino"];
 $_SESSION["ciudadDestino"] = $reserva["ciudadDestino"];
 $_SESSION["categoria"] = $reserva["categoria"];
 $_SESSION["precioCategoria"] = $reserva["precioCategoria"];
-$_SESSION["reserva"] = $reserva["fechaVuelo"]; 
-
+$_SESSION["fechaVuelo"] = $reserva["fechaVuelo"]; 
 ?>
 
 <!DOCTYPE html>
@@ -68,17 +67,17 @@ $_SESSION["reserva"] = $reserva["fechaVuelo"];
                                 <th>Nro Reserva</th>
                                 <th>Origen</th>
                                 <th>Destino</th>
-                                <th>Precio - <?php echo $_SESSION["categoria"]; ?></th>
+                                <th>Precio (<?php echo $_SESSION["categoria"]; ?>)</th>
                                 <th>Fecha Vuelo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th><?php echo $_SESSION["nroReserva"]; ?></th>
-                                <td><?php echo $reserva["provinciaOrigen"]." - ".$reserva["ciudadOrigen"] ?></td>
-                                <td><?php echo $reserva["provinciaDestino"]." - ".$reserva["ciudadDestino"] ?></td>
-                                <td><?php echo "$".$reserva["precioCategoria"]?></td>
-                                <td><?php echo $reserva["fechaVuelo"]?></td>
+                                <td><?php echo $_SESSION["provinciaOrigen"]." - ".$_SESSION["ciudadOrigen"] ?></td>
+                                <td><?php echo $_SESSION["provinciaDestino"]." - ".$_SESSION["ciudadDestino"] ?></td>
+                                <td><?php echo "$".$_SESSION["precioCategoria"]?></td>
+                                <td><?php echo $_SESSION["fechaVuelo"]?></td>
                             </tr>
                         </tbody>   
                     </table>
@@ -89,9 +88,9 @@ $_SESSION["reserva"] = $reserva["fechaVuelo"];
                         echo "<button class='btn btn-link' disabled='disabled'> >> Realizar Check-In</button>";
                     }
 
-                    if ($reserva["estado"] == 'pediente de check-in') {
-                        echo "<button class='btn btn-link' disabled='disabled'><a href='formPagarReserva.php'> >> Pagar Reserva</a></button></br>";
-                        echo "<a href='#''><button class='btn btn-link'><a href=''> >> Realizar Check-In<</button></a>";
+                    if ($reserva["estado"] == 'pendiente de check-in') {
+                        echo "<button class='btn btn-link' disabled='disabled'><a href='formPagarReserva.php'> >> Pagar Reserva (ya est&aacute paga)</a></button></br>";
+                        echo "<a href='#''><button class='btn btn-link'><a href=''> >> Realizar Check-In</button></a>";
                     }
                     ?>    
                 </div>
@@ -99,8 +98,8 @@ $_SESSION["reserva"] = $reserva["fechaVuelo"];
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="alert alert-warning" role="alert">
-                        Recuerde que tiene hasta 48hs previas al vuelo para realizar su pago sino la reserva sera cancelada.
-                        </br>Y que reci&eacuten dentro de las 48hs previas al vuelo puede hacer el Check-In.        
+                        Recuerde que hasta 48hs previas al vuelo puede realizar el pago sino la reserva sera cancelada.
+                        Y reci&eacuten dentro de las 48hs previas al vuelo puede realizar el Check-In.        
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.col-md-10 col-md-offset-1 -->         
