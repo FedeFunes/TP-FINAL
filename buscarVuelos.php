@@ -139,7 +139,12 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 			$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar en el recorrido con fecha ida: $fechaIda";
 			header("location: vueloNoDisponible.php");
 			die();
-		}	
+		}
+
+		// esto nunca tiene que pasar
+		if ($cantidadDeReservasHechas > $limiteDeReservasMasListaDeEspera) {
+			die("Error: CantidadDeReservasHechas ($cantidadDeReservasHechas) > LimiteDeReservaMasListaDeEspera ($limiteDeReservasMasListaDeEspera)");
+		}
 	}	
 }
 
