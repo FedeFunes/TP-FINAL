@@ -98,41 +98,36 @@ $vueloElegido = mysqli_fetch_array($result);
                             
                             <!-- Campo Nombre -->
                             <div class="form-group">
-                                <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" >
                                 <span class="text-danger error_form_reservar" id="error_nombre">No puedes dejar este campo en blanco.</span>
                             </div>
 
                             <!-- Campo Apellido -->
                             <div class="form-group">
-                                <label for="nombre">Apellido</label>
                                 <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido">
                                 <span class="text-danger error_form_reservar" id="error_apellido">No puedes dejar este campo en blanco.</span>
                             </div>
 
                             <!-- Campo Email -->                    
                             <div class="form-group">
-                                <label for="email">Email</label>
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                                 <span class="text-danger error_form_reservar" id="error_email">No puedes dejar este campo en blanco o con un formato de Email incorrecto.</span>   
                             </div>
                             
                             <!-- Campo DNI -->                    
                             <div class="form-group">
-                                <label for="dni">DNI</label>
                                 <input type="text" class="form-control" name="dni" id="dni" placeholder="DNI">
                                 <span class="text-danger error_form_reservar" id="error_dni">No puedes dejar este campo en blanco o con un formato de DNI incorrecto.</span> 
                             </div>
 
                             <!-- Campo Fecha Nacimiento -->                    
                             <div class="form-group">
-                                <label for="fecha_nac">Fecha de Nacimiento</label>
                                 <input type="text" class="form-control" name="fechaNacimiento" id="fechaNac" placeholder="Fecha de Nacimiento">
                                 <span class="text-danger error_form_reservar">No puedes dejar este campo en blanco.</span>
                             </div>
                             
                             <!-- Submit Reservar-->
-                            <div class="form-group">
+                            <div class="form-group" style="text-align: center;">
                                 <input type="submit" class="btn btn-primary" value="Reservar">
                             </div>
                         </form>

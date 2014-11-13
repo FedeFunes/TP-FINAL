@@ -31,10 +31,7 @@ if($idVueloIda != null) { // si ya existe un vuelo para esta reserva, directamen
 	mysqli_query($conexion, $sql);	
 
 } else {  // si no existe un vuelo para esta reserva, primero la creo y luego hago la reserva
-
-	echo "else $idVueloIda != null";
 	
-
 	$sql = "INSERT INTO vuelos (cod_programacion_vuelo, fecha_vuelo, tipo_viaje)
 	VALUES ($idProgramacionVuelo, '$fechaIda', 'ida')";
 
@@ -54,12 +51,24 @@ if($tipoViaje == "idaVuelta") {
 
 	if($idVueloVuelta != null) { 
 
-		// misma logica, diferentes variables
+		$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
+		VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloVuelta, '$categoria', '$estadoVueloVuelta')";
 
-	} else { 
+		mysqli_query($conexion, $sql);
 
-		// misma logica, diferentes variables
+	} else { // si no existe un vuelo para esta reserva, primero la creo y luego hago la reserva
 
+		$sql = "INSERT INTO vuelos (cod_programacion_vuelo, fecha_vuelo, tipo_viaje)
+		VALUES ($idProgramacionVuelo, '$fechaVuelta', 'vuelta')";
+
+		mysqli_query($conexion, $sql);	
+
+		$idVueloIda = mysqli_insert_id($conexion); // esta función retorna el último id auto-incremental registrado
+
+		$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
+		VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloVuelta, '$categoria', '$estadoVueloVuelta')";
+
+		mysqli_query($conexion, $sql);
 	}
 }
 

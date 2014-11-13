@@ -155,8 +155,115 @@ if($_SESSION["estadoVueloIda"] == null) {
 
 if($tipoViaje = "idaVuelta") {
 
-	// variables que cambian: $diaIda, $fechaIda
-	// la misma logica con distintas variables
+	// según $diaIda creo la variable $vuelo_dia para usarla en la consulta posterior
+	switch ($diaVuelta) {
+		case 'Sunday':
+			$vuelo_dia = "vuelo_domingo";
+	 		break;
+	 	case 'Monday':
+			$vuelo_dia = "vuelo_lunes";
+	 		break;
+	 	case 'Tuesday':
+			$vuelo_dia = "vuelo_martes";
+	 		break;
+	 	case 'Wednesday':
+			$vuelo_dia = "vuelo_miercoles";
+	 		break;
+	 	case 'Thursday':
+			$vuelo_dia = "vuelo_jueves";
+	 		break;
+	 	case 'Friday':
+			$vuelo_dia = "vuelo_viernes";
+	 		break;
+	 	case 'Saturday':
+			$vuelo_dia = "vuelo_sabado";
+	 		break;
+	}
+
+
+	// Consulto en la tabla-programacionvuelos si existe el recorrido ($ciudadOrigen-$ciudadDestino) con $fechaVuelta 
+	// y si en el avion que realiza el vuelo existe esa $categoria 
+	$query = "SELECT * FROM programacionvuelos
+	INNER JOIN aviones
+	ON programacionvuelos.cod_avion = aviones.idAvion
+	WHERE cod_aeropuerto_origen = $ciudadOrigen
+	AND cod_aeropuerto_destino = $ciudadDestino
+	AND $vuelo_dia = 1
+	AND $categoria != 0;";
+
+	$result = mysqli_query($conexion,$query);
+	// mysqli_num_rows() retorna el número de filas que devuelve la consulta
+	$cantDeFilasDevueltas = mysqli_num_rows($result); 
+
+	if ($cantDeFilasDevueltas == 0) { // en caso de que no exista 
+			
+		$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha vuelta: $fechaVuelta o no existe la categoria que eligió en el avión que realiza este vuelo.";
+		header("location: vueloNoDisponible.php"); 
+		die();
+
+	} else { // si existe 
+				
+		$rowProgramacionVuelos = mysqli_fetch_array($result);
+		
+		// guardo el id en la session 
+		$_SESSION["idProgramacionVuelo"] = $rowProgramacionVuelos['idProgramacionVuelo'];  
+
+		// Consulto en la tabla-vuelos si ya existe un vuelo de este recorrido en esa $fechaIda
+		$query = "SELECT * FROM vuelos 
+		WHERE (cod_programacion_vuelo = ".$rowProgramacionVuelos['idProgramacionVuelo']."
+		AND fecha_vuelo = '$fechaVuelta')
+		AND tipo_viaje = 'vuelta';"; 
+
+		$result = mysqli_query($conexion,$query);
+		$cantDeFilasDevueltas = mysqli_num_rows($result); 
+
+		if ($cantDeFilasDevueltas != 0) { // si existe  
+					
+			$rowVuelos = mysqli_fetch_array($result); 	
+
+			// guardo el id en la session
+			$_SESSION["idVueloVuelta"] = $rowVuelos['idVuelo'];  
+
+			// Consulto en la tabla-reservas por este vuelo para conocer el cupo de este para la categoría que eligió el usuario
+			$query = "SELECT * FROM reservas 
+			WHERE cod_vuelo = ".$rowVuelos['idVuelo']."
+			AND categoria = '$categoria';"; 
+
+			$result = mysqli_query($conexion,$query);		
+			
+			$cantidadDeReservasHechas = mysqli_num_rows($result);
+
+			// Consulto cuál es el limite de reservas en esa categoría en el avión que va a realizar el vuelo
+			$query = "SELECT $categoria FROM programacionvuelos
+			INNER JOIN aviones
+			ON programacionvuelos.cod_avion = aviones.idAvion
+			WHERE idProgramacionVuelo = ".$rowProgramacionVuelos['idProgramacionVuelo'].";";
+
+			$result = mysqli_query($conexion,$query);
+			$rowLimiteDeReservas = mysqli_fetch_array($result);	
+			$limiteDeReservas = $rowLimiteDeReservas[0];
+				
+			// limite de reservas más la cantidad de reservas que pueden quedar en lista de espera
+			$limiteDeReservasMasListaDeEspera = $limiteDeReservas + 10; 
+			
+			// si la cantidad de reservas hechas supera el limite pero puede quedar en lista de espera
+			if ($cantidadDeReservasHechas >= $limiteDeReservas && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
+				$_SESSION["estadoVueloVuelta"] = "lista de espera";
+			}
+
+			// si la lista de espera esta llena 
+			if ($cantidadDeReservasHechas == $limiteDeReservasMasListaDeEspera) { 
+				$_SESSION["resultadoBuscarVuelo"] = "No hay cupo en la categoria que quiere viajar en el recorrido con fecha vuelta: $fechaVuelta";
+				header("location: vueloNoDisponible.php");
+				die();
+			}
+
+			// esto nunca tiene que pasar
+			if ($cantidadDeReservasHechas > $limiteDeReservasMasListaDeEspera) {
+				die("Error: CantidadDeReservasHechas ($cantidadDeReservasHechas) > LimiteDeReservaMasListaDeEspera ($limiteDeReservasMasListaDeEspera)");
+			}
+		}	
+	}	
 
 }
 

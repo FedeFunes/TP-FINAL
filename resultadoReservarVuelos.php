@@ -26,7 +26,9 @@ include("conectarBaseDeDatos.php");
                                 <?php
                                 echo "</br>ID Reserva IDA: ".$_SESSION["idReservaIda"];
                                 echo "</br>ID Reserva VUELTA: ".$_SESSION["idReservaVuelta"];
+                                session_destroy();
                                 ?>
+
                             </div><!-- /.panel-body -->
                         </div><!-- /.panel panel-default -->
                     </div><!-- /.col-md-6 -->  
