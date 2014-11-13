@@ -1,3 +1,8 @@
+.errorFormBuscarVuelos {
+	/*display: none;*/
+	font-size: 12px;
+}
+
 .error_form_reservar {
 	display: none;
 	font-size: 12px;

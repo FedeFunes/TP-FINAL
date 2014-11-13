@@ -82,6 +82,7 @@ include("conectarBaseDeDatos.php");
 														?>
 
 													</select>
+													<span class="errorFormBuscarVuelos text-danger" id="errorProvinciaOrigen">Elija Provincia y luego Ciudad</span>
 												</div>
 										
 										 	</div> <!-- /.col-md-6 -->
@@ -124,7 +125,8 @@ include("conectarBaseDeDatos.php");
 														}
 														?>
 
-				 									</select>					  					
+				 									</select>
+				 									<span class="errorFormBuscarVuelos text-danger" id="errorProvinciaDestino">Elija Provincia y luego Ciudad</span>					  					
 					  							</div>
 					  					
 					  					 	</div> <!-- /.col-md-6 -->
@@ -155,6 +157,7 @@ include("conectarBaseDeDatos.php");
 											  	<option value="economy">Economy</option>
 											  	<option value="primera">Primera</option>
 											</select>
+											<span class="errorFormBuscarVuelos text-danger" id="errorCategoria">Elija Categor&iacutea</span>
 										</div>
 
 									</div> <!--/.col-md-6 -->
@@ -168,6 +171,7 @@ include("conectarBaseDeDatos.php");
 										 		<div class="form-group">
 													<label for="datepicker">Partida</label>
 													<input type="text" class="form-control" id="fechaIda" name="fechaIda" placeholder="aaaa-mm-dd"/>
+													<span class="errorFormBuscarVuelos text-danger" id="errorFechaPartida">Elija Fecha de Partida</span>
 												</div>
 										 	</div><!--/.col-md-6 -->
 
@@ -177,6 +181,7 @@ include("conectarBaseDeDatos.php");
 										 		<div class="form-group" id="campo_fecha_vuelta">
 													<label for="datepicker">Regreso</label>
 													<input type="text" class="form-control" id="fechaVuelta" name="fechaVuelta" placeholder="aaaa-mm-dd"/>
+													<span class="errorFormBuscarVuelos text-danger" id="errorFechaRegreso">Elija Fecha de Regreso</span>
 												</div>
 										 	</div> <!--/.col-md-6 -->
 										 
