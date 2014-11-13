@@ -60,9 +60,9 @@
 								<!-- Boton Ingresar -->
 
 								<div class="col-sm-12 controls">
-									<a href="administracion.php" class="btn btn-primary">
+									<button type="submit" class="btn btn-primary btn-lg center-block">
 										Ingresar
-									</a>
+									</button>
 								</div><!-- ./col-sm-12 controls -->
 							</div><!-- ./form-group -->
 
