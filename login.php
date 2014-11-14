@@ -3,6 +3,8 @@
 	<?php 
 		include("conectarBaseDeDatos.php"); 
 
+		//session_start();
+		
 		if(isset($_GET['mensaje']) && $_GET['mensaje'] == '1'){
 			echo "<script>
 				alert('Usuario/Password incorrecto. Vuelva a loguearse');
@@ -18,7 +20,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		
-		<title>CYT Aerol&iacuteneas</title>
+		<title>CYT Aerol&iacuteneas </title>
 
 		<?php include("libreriasCSS.php") ?>
 

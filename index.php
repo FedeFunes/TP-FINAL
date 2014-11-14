@@ -1,6 +1,6 @@
 <?php 
-include("conectarBaseDeDatos.php"); 
-//session_start();
+	include("conectarBaseDeDatos.php"); 
+	session_start();
 ?>
 
 <!DOCTYPE html>				
@@ -82,7 +82,9 @@ include("conectarBaseDeDatos.php");
 														?>
 
 													</select>
-													<span class="errorFormBuscarVuelos text-danger" id="errorProvinciaOrigen">Elija Provincia y luego Ciudad</span>
+													<span class="errorFormBuscarVuelos text-danger" id="errorProvinciaOrigen">
+														Elija Provincia y luego Ciudad
+													</span>
 												</div>
 										
 										 	</div> <!-- /.col-md-6 -->
@@ -126,7 +128,9 @@ include("conectarBaseDeDatos.php");
 														?>
 
 				 									</select>
-				 									<span class="errorFormBuscarVuelos text-danger" id="errorProvinciaDestino">Elija Provincia y luego Ciudad</span>					  					
+				 									<span class="errorFormBuscarVuelos text-danger" id="errorProvinciaDestino">
+														Elija Provincia y luego Ciudad
+													</span>					  			
 					  							</div>
 					  					
 					  					 	</div> <!-- /.col-md-6 -->
@@ -157,7 +161,9 @@ include("conectarBaseDeDatos.php");
 											  	<option value="economy">Economy</option>
 											  	<option value="primera">Primera</option>
 											</select>
-											<span class="errorFormBuscarVuelos text-danger" id="errorCategoria">Elija Categor&iacutea</span>
+											<span class="errorFormBuscarVuelos text-danger" id="errorCategoria">
+												Elija Categor&iacutea
+											</span>
 										</div>
 
 									</div> <!--/.col-md-6 -->

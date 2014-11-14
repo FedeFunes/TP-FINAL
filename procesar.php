@@ -1,18 +1,20 @@
 <?php 
 	include("conectarBaseDeDatos.php"); 
 	
-	$usuario = 'administrador';
-	$password = '12345';
+	session_start();
 	
-	$sql = "SELECT idUsuario from usuarios WHERE usuario = '" . $_POST['usuario'] . "' AND password = '" . $_POST['password'];
-	$consultaUsuario = mysqli_query($sql, $conexion) or die ("Usuario inexistente");		
+	$usuario = 'administrador';
+	$password = 12345;
+	
+	$sql = "SELECT idUsuario from usuarios WHERE usuario = '" . $_POST['usuario'] . "' AND password = '" . $_POST['password'] . "' ";
+	echo $sql;
+	$consultaUsuario = mysqli_query($conexion, $sql) or die ("Usuario inexistente");		
 	$cantFilas = mysqli_num_rows($consultaUsuario);									
 	$resultUsuario = mysqli_fetch_array($consultaUsuario);	
 	
 	mysqli_close($conexion);
 	
 	if($cantFilas != 1){
-		alert('Usuario/Contrase&ntilde;a incorrecto');
 		header('location:login.php?mensaje=1');
 	}
 	else{
