@@ -43,8 +43,6 @@
 		function darDeBajaReservas(){
 			include("conectarBaseDeDatos.php"); 
 			
-			session_start();
-			
 			//$sql = "UPDATE reservas SET estado = 3 WHERE estado = 1 AND "
 		}
 	?>

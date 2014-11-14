@@ -1,6 +1,9 @@
 <?php
 	include("conectarBaseDeDatos.php"); 
-	//session_start();
+	if (!isset($_SESSION))
+	{
+		session_start();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +20,7 @@
     <body>
     <div class="wrap">
         <div class="container">
-            <?php include("navBar.php") ?>
+            <?php include("logoutNavBar.php") ?>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-primary">
@@ -39,8 +42,6 @@
     <?php include("footer.php") ?>
 
     <?php include("libreriasJS.php"); ?>
-	
-	<?php session_destroy(); ?>
 	
     </body>
 </html>

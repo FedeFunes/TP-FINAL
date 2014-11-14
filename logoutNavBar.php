@@ -32,20 +32,20 @@
 						        <li><a href="contacto.php">Contacto</a></li>
 								<?php								
 									if(isset($_SESSION['usuario']) and $_SESSION['usuario'] !='') {
-										echo '<li><a href="administracion.php"><span>Administraci&oacute;n</span></a></li>';
+										session_destroy();
 									}
 									else{
-										session_destroy();
+										echo '<li><a href="administracion.php"><span>Administraci&oacute;n</span></a></li>';
 									}
 								?> 
 						    </ul>
 					        <ul class="nav navbar-nav navbar-right">
 				            	<?php									
 									if(isset($_SESSION['usuario']) and $_SESSION['usuario'] !='') {
-										echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>';
+										echo '<li><a href="login.php"><span class="glyphicon glyphicon-user"></span> Administrador</a></li>';
 									}
 									else{
-										echo '<li><a href="login.php"><span class="glyphicon glyphicon-user"></span> Administrador</a></li>';
+										echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>';
 									}
 								?>
 								
