@@ -78,6 +78,30 @@ INSERT INTO `aviones` VALUES (1,'Embraer','EMB-120',30,30,10,3,0,0,0),(2,'Embrae
 UNLOCK TABLES;
 
 --
+-- Table structure for table `categorias`
+--
+
+DROP TABLE IF EXISTS `categorias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categorias` (
+  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) NOT NULL,
+  PRIMARY KEY (`idCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categorias`
+--
+
+LOCK TABLES `categorias` WRITE;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1,'Primera'),(2,'Economy');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ciudades`
 --
 
@@ -102,6 +126,30 @@ LOCK TABLES `ciudades` WRITE;
 /*!40000 ALTER TABLE `ciudades` DISABLE KEYS */;
 INSERT INTO `ciudades` VALUES (1,'Alto R&iacute;o Senguer',1),(2,'Azul',2),(3,'Bah&iacute;a Blanca',2),(4,'Bariloche',3),(5,'Bol&iacute;var',2),(6,'Buenos Aires',4),(7,'Campo de Mayo',2),(8,'Caviahue',5),(9,'Ceres',6),(10,'Chamical',7),(11,'Chepes',7),(12,'Chilecito',7),(13,'Clorinda',8),(14,'Comodoro Rivadavia',1),(15,'C&oacute;rdoba',9),(16,'Concordia',10),(17,'Coronel Su&aacute;rez',2),(18,'Corrientes',11),(19,'Curuz&uacute; Cuati&aacute;',11),(20,'Cutral-Co',5),(21,'Dolores',2),(22,'Don Torcuato',2),(23,'El Bols&oacute;n',3),(24,'El Calafate',12),(25,'El Calafate',12),(26,'El Palomar',2),(27,'Esquel',1),(28,'Ezeiza',2),(29,'Formosa',8),(30,'General Alvear',13),(31,'General Pico',14),(32,'General Roca',3),(33,'Ingeniero Jacobacci',3),(34,'Isla Mart&iacute;n Garc&iacute;a',2),(35,'Jos&eacute; C. Paz',2),(36,'Jun&iacute;n',2),(37,'Laboulaye',9),(38,'La Cumbre',9),(39,'La Plata',2),(40,'La Rioja',7),(41,'Las Heras',12),(42,'Las Lomitas',8),(43,'Malarg&uuml;e',13),(44,'Mar del Plata',2),(45,'Mendoza',13),(46,'Merlo',15),(47,'Miramar',2),(48,'Monte Caseros',11),(49,'Mor&oacute;n',2),(50,'Necochea',2),(51,'Neuqu&eacute;n',5),(52,'Olavarr&iacute;a',2),(53,'Paran&aacute;',10),(54,'Paso de los Libres',11),(55,'Pehuaj&oacute;',2),(56,'Perico',16),(57,'Perito Moreno',12),(58,'Posadas',17),(59,'Puerto Deseado',12),(60,'Puerto Iguaz&uacute;',17),(61,'Puerto Madryn',1),(62,'Puerto San Juli&aacute;n',12),(63,'Puerto Santa Cruz',12),(64,'Presidencia Roque Saenz Pe&ntilde;a',18),(65,'Reconquista',6),(66,'Resistencia',18),(67,'R&iacute;o Cuarto',9),(68,'R&iacute;o Gallegos',12),(69,'R&iacute;o Grande',19),(70,'R&iacute;o Turbio',12),(71,'Rosario',6),(72,'Salta',20),(73,'San Fernando',2),(74,'San Fernando del Valle de Catamarca',21),(75,'San Juan',22),(76,'San Luis',15),(77,'San Rafael',13),(78,'San Ram&oacute;n de la Nueva Or&aacute;n',20),(79,'San Justo',2),(80,'San Miguel de Tucum&aacute;n',23),(81,'Santa Rosa',14),(82,'Santa Teresita',2),(83,'Santiago del Estero',24),(84,'San Mart&iacute;n de los Andes',5),(85,'Sauce Viejo',6),(86,'Sunchales',6),(87,'Tandil',2),(88,'Tartagal',20),(89,'Termas de R&iacute;o Hondo',24),(90,'Trelew',1),(91,'Tres Arroyos',2),(92,'Ushuaia',19),(93,'Viedma',3),(94,'Villa Dolores',9),(95,'Villa Gesell',2),(96,'Villa Reynolds',15),(97,'Villaguay',10),(98,'Zapala',5);
 /*!40000 ALTER TABLE `ciudades` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `estados_reservas`
+--
+
+DROP TABLE IF EXISTS `estados_reservas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estados_reservas` (
+  `idEstadoReserva` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) NOT NULL,
+  PRIMARY KEY (`idEstadoReserva`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estados_reservas`
+--
+
+LOCK TABLES `estados_reservas` WRITE;
+/*!40000 ALTER TABLE `estados_reservas` DISABLE KEYS */;
+INSERT INTO `estados_reservas` VALUES (1,'Pendiente de Pago'),(2,'Pendiente de Check In'),(3,'Anulada'),(4,'En Lista de Espera'),(5,'Completada');
+/*!40000 ALTER TABLE `estados_reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -191,7 +239,7 @@ CREATE TABLE `reservas` (
   PRIMARY KEY (`idReserva`),
   KEY `cod_vuelo_idx` (`cod_vuelo`),
   CONSTRAINT `cod_vuelo` FOREIGN KEY (`cod_vuelo`) REFERENCES `vuelos` (`idVuelo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +248,32 @@ CREATE TABLE `reservas` (
 
 LOCK TABLES `reservas` WRITE;
 /*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
+INSERT INTO `reservas` VALUES (2,'brian','lamilla',36921178,'brian.lamilla@gmail.com','1992-05-10','2014-12-13',1,'1','1');
 /*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tiposviajes`
+--
+
+DROP TABLE IF EXISTS `tiposviajes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tiposviajes` (
+  `idTipoViaje` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) NOT NULL,
+  PRIMARY KEY (`idTipoViaje`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tiposviajes`
+--
+
+LOCK TABLES `tiposviajes` WRITE;
+/*!40000 ALTER TABLE `tiposviajes` DISABLE KEYS */;
+INSERT INTO `tiposviajes` VALUES (1,'Ida'),(2,'Vuelta'),(3,'Ida y Vuelta');
+/*!40000 ALTER TABLE `tiposviajes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -238,12 +311,13 @@ DROP TABLE IF EXISTS `vuelos`;
 CREATE TABLE `vuelos` (
   `idVuelo` int(11) NOT NULL AUTO_INCREMENT,
   `cod_programacion_vuelo` int(11) NOT NULL,
-  `fecha_vuelo` date NOT NULL,
+  `fecha_partida` date DEFAULT NULL,
+  `fecha_regreso` date DEFAULT NULL,
   `tipo_viaje` char(6) NOT NULL,
   PRIMARY KEY (`idVuelo`),
   KEY `cod_programacion_vuelo_idx` (`cod_programacion_vuelo`),
   CONSTRAINT `cod_programacion_vuelo` FOREIGN KEY (`cod_programacion_vuelo`) REFERENCES `programacionvuelos` (`idProgramacionVuelo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,6 +326,7 @@ CREATE TABLE `vuelos` (
 
 LOCK TABLES `vuelos` WRITE;
 /*!40000 ALTER TABLE `vuelos` DISABLE KEYS */;
+INSERT INTO `vuelos` VALUES (1,1,'2014-12-20','2014-12-27','3');
 /*!40000 ALTER TABLE `vuelos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -264,4 +339,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-10 23:16:55
+-- Dump completed on 2014-11-16 22:14:09

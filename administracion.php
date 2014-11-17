@@ -43,7 +43,22 @@
 		function darDeBajaReservas(){
 			include("conectarBaseDeDatos.php"); 
 			
-			//$sql = "UPDATE reservas SET estado = 3 WHERE estado = 1 AND "
+			$difVentaNoConfirmada = "SELECT DATEDIFF(V.fecha_partida,curdate()) * 24 AS diferencia24Horas 
+										FROM vuelos V JOIN 
+												reservas R ON V.idVuelo = R.cod_vuelo 
+										WHERE R.estado = 1"
+			
+			if($difVentaNoConfirmada <= 24){
+				$actualizarEstadoReservasNoConfirmadas = "UPDATE reservas SET estado = 3 WHERE estado = 1";
+			}
+			
+			$listaDeEspera = "SELECT email FROM reservas WHERE estado = 4";
+			$para = $listaDeEspera;
+			$titulo = 'Habilitaci&oacute;n para compra';
+			$mensaje = 'Usted ha sido habilitado para realizar una reserva en la fecha seleccionada';
+			$mensaje = wordwrap($mensaje, 70, "/r/n");
+			$cabeceras = 'De: administrador@cieloytierra.com.ar' . "\r\n" .
+			mail($para, $titulo, $mensaje, $cabeceras);
 		}
 	?>
 		
