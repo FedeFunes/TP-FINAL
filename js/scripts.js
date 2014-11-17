@@ -1,6 +1,25 @@
 /* VALIDAR FORM BUSCAR-VUELOS */
+function validarFormBuscarVuelos() {
+  
+    var provinciaOrigen = document.getElementById("provinciaOrigen"); 
+    var provinciaDestino = document.getElementById("provinciaDestino");
+    var categoria = document.getElementById("categoria");
+    var fechaIda = document.getElementById("fechaIda");
+    var fechaVuelta = document.getElementById("fechaVuelta");
 
-// pendiente...
+    var errorProvinciaOrigen = document.getElementById("errorProvinciaOrigen");
+    var errorProvinciaDestino = document.getElementById("errorProvinciaDestino");
+    var errorCategoria = document.getElementById("errorCategoria");
+    var errorFechaVuelta = document.getElementById("errorFechaVuelta");
+    var errorFechaIda = document.getElementById("errorFechaIda");
+
+    if(provinciaOrigen == "") {
+        errorProvinciaOrigen.style.display = "inline";
+        return false;
+    } else {
+        errorProvinciaOrigen.style.display = "none";
+    }
+}
 
 /* VALIDAR FORM RESERVAR */
 
