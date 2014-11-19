@@ -176,8 +176,8 @@
 										 	<div class="col-md-6">
 										 		<div class="form-group">
 													<label for="datepicker">Partida</label>
-													<input type="text" class="form-control" id="fechaIda" name="fechaIda" placeholder="aaaa-mm-dd"/>
-													<span class="errorFormBuscarVuelos text-danger" id="errorFechaPartida">Elija Fecha de Partida</span>
+													<input type="text" class="form-control" id="fechaIda" name="fechaIda" placeholder="aaaa-mm-dd" value=""/>
+													<span class="errorFormBuscarVuelos text-danger" id="errorFechaIda">Elija Fecha de Partida</span>
 												</div>
 										 	</div><!--/.col-md-6 -->
 
@@ -186,8 +186,8 @@
 										 	<div class="col-md-6">
 										 		<div class="form-group" id="campo_fecha_vuelta">
 													<label for="datepicker">Regreso</label>
-													<input type="text" class="form-control" id="fechaVuelta" name="fechaVuelta" placeholder="aaaa-mm-dd"/>
-													<span class="errorFormBuscarVuelos text-danger" id="errorFechaRegreso">Elija Fecha de Regreso</span>
+													<input type="text" class="form-control" id="fechaVuelta" name="fechaVuelta" placeholder="aaaa-mm-dd" value=""/>
+													<span class="errorFormBuscarVuelos text-danger" id="errorFechaVuelta">Elija Fecha de Regreso</span>
 												</div>
 										 	</div> <!--/.col-md-6 -->
 										 

@@ -10,15 +10,43 @@ function validarFormBuscarVuelos() {
     var errorProvinciaOrigen = document.getElementById("errorProvinciaOrigen");
     var errorProvinciaDestino = document.getElementById("errorProvinciaDestino");
     var errorCategoria = document.getElementById("errorCategoria");
-    var errorFechaVuelta = document.getElementById("errorFechaVuelta");
     var errorFechaIda = document.getElementById("errorFechaIda");
+    var errorFechaVuelta = document.getElementById("errorFechaVuelta");
 
-    if(provinciaOrigen == "") {
+    if(provinciaOrigen.value == "") {
         errorProvinciaOrigen.style.display = "inline";
         return false;
     } else {
         errorProvinciaOrigen.style.display = "none";
     }
+    if(provinciaDestino.value == "") {
+        errorProvinciaDestino.style.display = "inline";
+        return false;
+    } else {
+        errorProvinciaDestino.style.display = "none";
+    }
+
+    if(categoria.value == "") {
+        errorCategoria.style.display = "inline";
+        return false;
+    } else {
+        errorCategoria.style.display = "none";
+    }
+
+    if(fechaIda.value == "") {
+        errorFechaIda.style.display = "inline";
+        return false;
+    } else {
+        errorFechaIda.style.display = "none";
+    }
+
+    if(fechaVuelta.value == "") {
+        errorFechaVuelta.style.display = "inline";
+        return false;
+    } else {
+        errorFechaVuelta.style.display = "none";
+    }
+
 }
 
 /* VALIDAR FORM RESERVAR */
@@ -64,8 +92,6 @@ function validar_form_reservar() {
     } else {
         error_dni.style.display = "none";
     }
-
-    return true;
 } 
 
 /* OCULTAR/MOSTRAR CAMPO FECHA-VUELTA DEPENDIENDO DEL RADIO ELEGIDO (IDA Y VUELTA/SOLO IDA) */
