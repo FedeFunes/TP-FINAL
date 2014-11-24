@@ -15,7 +15,7 @@ $( "#fechaVuelta" ).datepicker({
 });
 
 $(function() {
-	$( "#fechaNac" ).datepicker({
+	$( "#fecha_nacimiento" ).datepicker({
 		dateFormat: 'yy-mm-dd', 
 		changeMonth: true, 
 		changeYear: true, 

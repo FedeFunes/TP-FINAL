@@ -57,12 +57,13 @@ function validar_form_reservar() {
 	var apellido = document.getElementById("apellido").value;
 	var email = document.getElementById("email").value;
 	var dni = document.getElementById("dni").value;
+    var fecha_nacimiento = document.getElementById("fecha_nacimiento").value;
 
 	var error_nombre = document.getElementById("error_nombre");
 	var error_apellido = document.getElementById("error_apellido");
 	var error_email = document.getElementById("error_email");
 	var error_dni = document.getElementById("error_dni");
-
+    var error_fecha_nacimiento = document.getElementById("error_fecha_nacimiento");
 
 
     if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
@@ -91,6 +92,13 @@ function validar_form_reservar() {
         return false;
     } else {
         error_dni.style.display = "none";
+    }
+
+    if (fecha_nacimiento == "") {
+        error_fecha_nacimiento.style.display = "inline";
+        return false;
+    } else {
+        error_fecha_nacimiento.style.display = "none";
     }
 } 
 

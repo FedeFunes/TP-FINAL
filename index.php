@@ -176,7 +176,7 @@
 										 	<div class="col-md-6">
 										 		<div class="form-group">
 													<label for="datepicker">Partida</label>
-													<input type="text" class="form-control" id="fechaIda" name="fechaIda" placeholder="aaaa-mm-dd" value=""/>
+													<input type="text" class="form-control" id="fechaIda" name="fechaIda" placeholder="aaaa-mm-dd"  value="" />
 													<span class="errorFormBuscarVuelos text-danger" id="errorFechaIda">Elija Fecha de Partida</span>
 												</div>
 										 	</div><!--/.col-md-6 -->

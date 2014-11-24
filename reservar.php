@@ -122,8 +122,8 @@ $vueloElegido = mysqli_fetch_array($result);
 
                             <!-- Campo Fecha Nacimiento -->                    
                             <div class="form-group">
-                                <input type="text" class="form-control" name="fechaNacimiento" id="fechaNac" placeholder="Fecha de Nacimiento">
-                                <span class="text-danger error_form_reservar">No puedes dejar este campo en blanco.</span>
+                                <input type="text" class="form-control" name="fechaNacimiento" id="fecha_nacimiento" placeholder="Fecha de Nacimiento" value="">
+                                <span class="text-danger error_form_reservar" id="error_fecha_nacimiento">No puedes dejar este campo en blanco.</span>
                             </div>
                             
                             <!-- Submit Reservar-->
