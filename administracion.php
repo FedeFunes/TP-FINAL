@@ -32,7 +32,8 @@
 						</div><!-- ./panel-heading -->
 
 						<div class="panel-body" >
-							<button type="button" class="btn btn-default" onclick="darDeBajaReservas()">Dar de Baja</button>
+							<button type="button" class="btn btn-default" onclick="anularReservas.php">Dar de Baja</button>
+							<!--<button type="button" class="btn btn-default" onclick='anularReservas.php'>Emitir Informes de Gesti&oacute;n</button>-->
 						</div>
 					</div>
 				</div>
@@ -40,7 +41,7 @@
 		</div><!-- /.container -->
 		
 	<?php
-		function darDeBajaReservas(){
+		/*function darDeBajaReservas(){
 			include("conectarBaseDeDatos.php"); 
 			
 			$difVentaNoConfirmada = "SELECT DATEDIFF(V.fecha_partida,curdate()) * 24 AS diferencia24Horas 
@@ -62,7 +63,7 @@
 				mail($para, $titulo, $mensaje, $cabeceras);
 			}
 			
-		}
+		}*/
 	?>
 		
     <?php include("footer.php") ?>
