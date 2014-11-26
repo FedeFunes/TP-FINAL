@@ -23,56 +23,56 @@ $tipoViaje = $_SESSION["tipoViaje"];
 $fechaVuelta = $_SESSION["fechaVuelta"];
 
 
-if($idVueloIda != null) { // si ya existe un vuelo para esta reserva, directamente la hago
+// if($idVueloIda != null) { // si ya existe un vuelo para esta reserva, directamente la hago
 	
-	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
-	VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloIda, '$categoria', '$estadoVueloIda')";
+// 	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
+// 	VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloIda, '$categoria', '$estadoVueloIda')";
 
-	mysqli_query($conexion, $sql);	
+// 	mysqli_query($conexion, $sql);	
 
-} else {  // si no existe un vuelo para esta reserva, primero la creo y luego hago la reserva
+// } else {  // si no existe un vuelo para esta reserva, primero la creo y luego hago la reserva
 	
-	$sql = "INSERT INTO vuelos (cod_programacion_vuelo, fecha_vuelo, tipo_viaje)
-	VALUES ($idProgramacionVuelo, '$fechaIda', 'ida')";
+// 	$sql = "INSERT INTO vuelos (cod_programacion_vuelo, fecha_vuelo, tipo_viaje)
+// 	VALUES ($idProgramacionVuelo, '$fechaIda', 'ida')";
 
-	mysqli_query($conexion, $sql);	
+// 	mysqli_query($conexion, $sql);	
 
-	$idVueloIda = mysqli_insert_id($conexion); // esta función retorna el último id auto-incremental registrado
+// 	$idVueloIda = mysqli_insert_id($conexion); // esta función retorna el último id auto-incremental registrado
 
-	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
-	VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloIda, '$categoria', '$estadoVueloIda')";
+// 	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
+// 	VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloIda, '$categoria', '$estadoVueloIda')";
 
-	mysqli_query($conexion, $sql);
-}
+// 	mysqli_query($conexion, $sql);
+// }
 
-$_SESSION["idReservaIda"] = mysqli_insert_id($conexion);
+// $_SESSION["idReservaIda"] = mysqli_insert_id($conexion);
 
-if($tipoViaje == "idaVuelta") {
+// if($tipoViaje == "idaVuelta") {
 
-	if($idVueloVuelta != null) { 
+// 	if($idVueloVuelta != null) { 
 
-		$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
-		VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloVuelta, '$categoria', '$estadoVueloVuelta')";
+// 		$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
+// 		VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloVuelta, '$categoria', '$estadoVueloVuelta')";
 
-		mysqli_query($conexion, $sql);
+// 		mysqli_query($conexion, $sql);
 
-	} else { // si no existe un vuelo para esta reserva, primero la creo y luego hago la reserva
+// 	} else { // si no existe un vuelo para esta reserva, primero la creo y luego hago la reserva
 
-		$sql = "INSERT INTO vuelos (cod_programacion_vuelo, fecha_vuelo, tipo_viaje)
-		VALUES ($idProgramacionVuelo, '$fechaVuelta', 'vuelta')";
+// 		$sql = "INSERT INTO vuelos (cod_programacion_vuelo, fecha_vuelo, tipo_viaje)
+// 		VALUES ($idProgramacionVuelo, '$fechaVuelta', 'vuelta')";
 
-		mysqli_query($conexion, $sql);	
+// 		mysqli_query($conexion, $sql);	
 
-		$idVueloIda = mysqli_insert_id($conexion); // esta función retorna el último id auto-incremental registrado
+// 		$idVueloIda = mysqli_insert_id($conexion); // esta función retorna el último id auto-incremental registrado
 
-		$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
-		VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloVuelta, '$categoria', '$estadoVueloVuelta')";
+// 		$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
+// 		VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloVuelta, '$categoria', '$estadoVueloVuelta')";
 
-		mysqli_query($conexion, $sql);
-	}
-}
+// 		mysqli_query($conexion, $sql);
+// 	}
+// }
 
-$_SESSION["idReservaVuelta"] = mysqli_insert_id($conexion);
+// $_SESSION["idReservaVuelta"] = mysqli_insert_id($conexion);
 
-header("location: resultadoReservarVuelos.php");
+// header("location: resultadoReservarVuelos.php");
 ?>

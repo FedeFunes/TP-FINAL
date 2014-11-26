@@ -11,7 +11,7 @@ switch ($_SESSION["categoria"]) {
         break;
 }
 
-$query = "SELECT P1.descripcion as provinciaOrigen, C1.descripcion as ciudadOrigen,
+$query = "SELECT PV.hora_partida as horarioPartida, P1.descripcion as provinciaOrigen, C1.descripcion as ciudadOrigen,
 P2.descripcion as provinciaDestino, C2.descripcion as ciudadDestino,
 V.fecha_vuelo as fechaVuelo, PV.$precio_categoria as precioCategoria,
 R.categoria as categoria, R.estado as estado, R.cod_vuelo as codVuelo, R.categoria as categoria
@@ -37,6 +37,7 @@ $_SESSION["ciudadDestino"] = $reserva["ciudadDestino"];
 $_SESSION["categoria"] = $reserva["categoria"];
 $_SESSION["precioCategoria"] = $reserva["precioCategoria"];
 $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"]; 
+$_SESSION["horarioPartida"] = $reserva["horarioPartida"];
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +69,7 @@ $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
                                 <th>Origen</th>
                                 <th>Destino</th>
                                 <th>Precio (<?php echo $_SESSION["categoria"]; ?>)</th>
-                                <th>Fecha Vuelo</th>
+                                <th>Fecha - Horario</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,7 +78,7 @@ $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
                                 <td><?php echo $_SESSION["provinciaOrigen"]." - ".$_SESSION["ciudadOrigen"] ?></td>
                                 <td><?php echo $_SESSION["provinciaDestino"]." - ".$_SESSION["ciudadDestino"] ?></td>
                                 <td><?php echo "$".$_SESSION["precioCategoria"]?></td>
-                                <td><?php echo $_SESSION["fechaVuelo"]?></td>
+                                <td><?php echo $_SESSION["fechaVuelo"]." - ".$_SESSION["horarioPartida"] ?></td>
                             </tr>
                         </tbody>   
                     </table>
@@ -88,9 +89,28 @@ $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
                         echo "<button class='btn btn-link' disabled='disabled'> >> Realizar Check-In</button>";
                     }
 
+                    date_default_timezone_set('America/Argentina/Buenos_Aires');
+                    $fechaDespegue =  $_SESSION["fechaVuelo"];
+                    $horarioDespegue = $_SESSION["horarioPartida"];
+                    $fechaYHorarioDespegue = "".$fechaDespegue." ".$horarioDespegue."";
+                    $fechaYHorarioDespegue48hsAntes = strtotime('-2 day',strtotime($fechaYHorarioDespegue));
+                    $fechaYHorarioDespegue2hsAntes = strtotime('-2 hours',strtotime($fechaYHorarioDespegue));
+                    $fechaHorarioActual = strtotime(date("Y-m-d h:i:s"));
+
+                    // Test
+                    echo "</br>Fecha y Horario actual: ".date("Y-m-d H:i:s",$fechaHorarioActual);
+                    echo "</br>Fecha y Horario 48hs antes del despegue: ".date("Y-m-d H:i:s",$fechaYHorarioDespegue48hsAntes);
+                    echo "</br>Fecha y Horario 48hs antes del despegue: ".date("Y-m-d H:i:s",$fechaYHorarioDespegue2hsAntes);
+
                     if ($reserva["estado"] == 'pendiente de check-in') {
-                        echo "<button class='btn btn-link' disabled='disabled'><a href='formPagarReserva.php'> >> Pagar Reserva (ya est&aacute paga)</a></button></br>";
-                        echo "<a href='#''><button class='btn btn-link'><a href=''> >> Realizar Check-In</button></a>";
+
+                        if ($fechaHorarioDespegue48hsAntes > $fechaHorarioActual && $fechaHorarioActual < $fechaHorarioDespegue2hsAntes) {
+                            echo "<button class='btn btn-link' disabled='disabled'> >> Pagar Reserva (ya est&aacute paga)</button></br>";
+                            echo "<a href='#''><button class='btn btn-link'><a href=''> >> Realizar Check-In</button></a>";
+                        } else {
+                            echo "<button class='btn btn-link' disabled='disabled'> >> Pagar Reserva (ya est&aacute paga)</button></br>";
+                            echo "<button class='btn btn-link' disabled='disabled'> >> Realizar Check-In</button>";
+                        }
                     }
                     ?>    
                 </div>

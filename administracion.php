@@ -32,7 +32,9 @@
 						</div><!-- ./panel-heading -->
 
 						<div class="panel-body" >
-							<button type="button" class="btn btn-default" onclick="anularReservas.php">Dar de Baja</button>
+							<form action="anularReservas.php">
+							<input type="submit" class="btn btn-default" onclick="" value="Dar de baja">
+						</form>
 							<!--<button type="button" class="btn btn-default" onclick='anularReservas.php'>Emitir Informes de Gesti&oacute;n</button>-->
 						</div>
 					</div>

@@ -6,11 +6,12 @@ Pasos para realizar reservas:
 	3.a- vueloNoDisponible.php (fin)
 // si coincide
 	3.b- reservar.php 
-// aca el form-reservar.php llama a 
+// aca el form-reservar llama a 
 4- reservarVuelos.php
 // este redirecciona a 
 5- resultadoReservarVuelos.php (fin)
 // y muestra lo/s id/s de la/s reserva/s
+
 
 Pasos para pagar una reserva: 
 1- index.php 
@@ -24,7 +25,7 @@ Pasos para pagar una reserva:
 // el usuario elige la opcion "Pagar Reserva" y redirecciona a
 5- formPagarReserva.php
 6-pagarReserva.php
-7-resultadoPagarReserva.php
+7-resultadoPagarReserva.php (fin)
 
 Pasos para realizar el check-in de una reserva: 
 1- index.php 

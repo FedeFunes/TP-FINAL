@@ -21,12 +21,12 @@ include("conectarBaseDeDatos.php");
                 
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
-                        <div class="panel panel-default">
+                        <!-- <div class="panel panel-default"> -->
                             <div class="panel-body">
                                 <?php
                                 echo "</br>ID Reserva IDA: ".$_SESSION["idReservaIda"];
                                 echo "</br>ID Reserva VUELTA: ".$_SESSION["idReservaVuelta"];
-                                session_destroy();
+                                // session_destroy();
                                 ?>
 
                             </div><!-- /.panel-body -->
