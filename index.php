@@ -68,7 +68,7 @@
 												
 												<!-- Provincia -->
 										 		<div class="form-group">
-											  		<select class="form-control" name="provinciaOrigen" id="provinciaOrigen" onChange="mostrarCiudadesOrigen(this.value);">
+											  		<select class="form-control" name="provinciaOrigen" onChange="mostrarCiudadesOrigen(this.value);">
 													  	
 													  	<option value="" disabled selected>Provincia</option>
 														
@@ -114,7 +114,7 @@
 					  					 	<div class="col-md-6">
 					  					
 					  					 		<div class="form-group">
-					  						  		<select class="form-control" name="provinciaDestino" id="provinciaDestino" onChange="mostrarCiudadesDestino(this.value);">
+					  						  		<select class="form-control" name="provinciaDestino" onChange="mostrarCiudadesDestino(this.value);">
 					  								  	
 					  								  	<option value="" disabled selected>Provincia</option>
 					  								  	
