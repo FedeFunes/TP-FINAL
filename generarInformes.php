@@ -36,20 +36,30 @@
 			
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Pasajes Vendidos</label>
-				<div class="col-sm-10">
-					<p class="form-control-static">email@example.com</p>
-				</div><br>
-					<label class="col-sm-2 control-label">Pasajes Vendidos Economy</label>
-				<div class="col-sm-10">
-					<p class="form-control-static">email@example.com</p>
-				</div><br>
-					<label class="col-sm-2 control-label">Pasajes Vendidos Primera</label>
-				<div class="col-sm-10">
-					<p class="form-control-static">email@example.com</p>
-				</div>
-				<select class="form-control" name="ciudades" id="ciudades" onChange="mostrarValorDestino();">												  	
-					<option value="" selected>Seleccionar Ciudad...</option>
+				<?php
+					$queryCantidadPasajesVendidos = "SELECT COUNT(*) 
+											FROM reservas
+											WHERE fecha_reserva BETWEEN '2014-11-01' AND '2014-12-31'";
+											
+					$cantidadPasajesVendidos = mysqli_query($conexion, $queryCantidadPasajesVendidos);
+					
+					echo '<label class="col-sm-2 control-label">Pasajes Vendidos</label>
+							<div class="col-sm-10">
+								<p class="form-control-static">' . $cantidadPasajesVendidos . '</p>
+							</div><br>
+								<label class="col-sm-2 control-label">Pasajes Vendidos Economy</label>
+							<div class="col-sm-10">
+								<p class="form-control-static">email@example.com</p>
+							</div><br>
+								<label class="col-sm-2 control-label">Pasajes Vendidos Primera</label>
+							<div class="col-sm-10">
+								<p class="form-control-static">email@example.com</p>
+							</div><br>
+							<label class="col-sm-2 control-label">Pasajes Vendidos Por Destino</label>
+							<select class="form-control" name="ciudades" id="ciudades" onChange="mostrarValorDestino();">												  	
+								<option value="" selected>Seleccionar Ciudad...</option>';
+				?>
+				
 					
 					<?php
 					$query = "SELECT * FROM ciudades ORDER BY descripcion";
