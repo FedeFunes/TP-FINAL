@@ -46,6 +46,33 @@ INSERT INTO `aeropuertos` VALUES (1,'SAVR',1,'Aeropuerto Alto R&iacute;o Senguer
 UNLOCK TABLES;
 
 --
+-- Table structure for table `asientos`
+--
+
+DROP TABLE IF EXISTS `asientos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `asientos` (
+  `idAsiento` int(11) NOT NULL AUTO_INCREMENT,
+  `numFila` int(11) NOT NULL,
+  `numCol` int(11) NOT NULL,
+  `cod_reserva` int(11) NOT NULL,
+  PRIMARY KEY (`idAsiento`),
+  KEY `cod_reserva_idx` (`cod_reserva`),
+  CONSTRAINT `cod_reserva` FOREIGN KEY (`cod_reserva`) REFERENCES `reservas` (`idReserva`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `asientos`
+--
+
+LOCK TABLES `asientos` WRITE;
+/*!40000 ALTER TABLE `asientos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `asientos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `aviones`
 --
 
@@ -139,7 +166,7 @@ CREATE TABLE `estados_reservas` (
   `idEstadoReserva` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`idEstadoReserva`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +175,7 @@ CREATE TABLE `estados_reservas` (
 
 LOCK TABLES `estados_reservas` WRITE;
 /*!40000 ALTER TABLE `estados_reservas` DISABLE KEYS */;
-INSERT INTO `estados_reservas` VALUES (1,'Pendiente de Pago'),(2,'Pendiente de Check In'),(3,'Anulada'),(4,'En Lista de Espera'),(5,'Completada');
+INSERT INTO `estados_reservas` VALUES (1,'Pendiente de Pago'),(2,'Pendiente de Check In'),(3,'Anulada'),(4,'lista de espera'),(5,'Completada'),(6,'Habilitado');
 /*!40000 ALTER TABLE `estados_reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +266,7 @@ CREATE TABLE `reservas` (
   PRIMARY KEY (`idReserva`),
   KEY `cod_vuelo_idx` (`cod_vuelo`),
   CONSTRAINT `cod_vuelo` FOREIGN KEY (`cod_vuelo`) REFERENCES `vuelos` (`idVuelo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +275,7 @@ CREATE TABLE `reservas` (
 
 LOCK TABLES `reservas` WRITE;
 /*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
-INSERT INTO `reservas` VALUES (2,'brian','lamilla',36921178,'brian.lamilla@gmail.com','1992-05-10','2014-12-13',1,'1','1');
+INSERT INTO `reservas` VALUES (2,'brian','lamilla',36921178,'brian.lamilla@gmail.com','1992-05-10','2014-12-13',1,'1','1'),(3,'lucas','gonzalez',36921179,'brian.lamilla@gmail.com','1992-05-10','2014-12-13',1,'2','1');
 /*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,7 +353,7 @@ CREATE TABLE `vuelos` (
 
 LOCK TABLES `vuelos` WRITE;
 /*!40000 ALTER TABLE `vuelos` DISABLE KEYS */;
-INSERT INTO `vuelos` VALUES (1,1,'2014-12-20','2014-12-27','3');
+INSERT INTO `vuelos` VALUES (1,1,'2014-11-26','2014-12-27','3');
 /*!40000 ALTER TABLE `vuelos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -339,4 +366,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-16 22:14:09
+-- Dump completed on 2014-11-26 22:46:34
