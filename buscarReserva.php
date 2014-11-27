@@ -11,13 +11,22 @@ $result = mysqli_query($conexion,$query);
 $cantDeFilasDevueltas = mysqli_num_rows($result);
 
 if ($cantDeFilasDevueltas == 0) {
+
 	header("location: reservaNoEncontrada.php"); 	
 	die();
+ 
  } else {
- 	$reserva = mysqli_fetch_array($result);
- 	$_SESSION["categoria"] = $reserva["categoria"];
- 	$_SESSION["nroReserva"] = $nroReserva;
- 	header("location: miReserva.php");
+
+	$reserva = mysqli_fetch_array($result);
+
+	// Datos de la Reserva
+	$_SESSION["idReserva"] = $reserva["idReserva"];
+	$_SESSION["dniPasajero"] = $reserva["dni"];
+	$_SESSION["codVuelo"] = $reserva["cod_vuelo"];
+	$_SESSION["estado"] = $reserva["estado"];
+	$_SESSION["categoria"] = $reserva["categoria"]; 
+
+	header("location: miReserva.php");
  }
 
 ?>

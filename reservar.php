@@ -3,11 +3,11 @@ session_start();
 include("conectarBaseDeDatos.php");
 
 switch ($_SESSION["categoria"]) {
-    case 'economy':
-        $precio_categoria = 'precio_economy';
-        break;
-    case 'primera':
+    case '1': // id primera
         $precio_categoria = 'precio_primera';
+        break;
+    case '2': // id economy
+        $precio_categoria = 'precio_economy';
         break;
 }
 

@@ -158,8 +158,8 @@
 									  		<label for="categoria">Categor&iacutea</label>
 									  		<select class="form-control" name="categoria" id="categoria">  	
 											  	<option value="" disabled selected>Categoría</option>
-											  	<option value="economy">Economy</option>
-											  	<option value="primera">Primera</option>
+											  	<option value="1">Primera</option>
+											  	<option value="2">Economy</option>
 											</select>
 											<span class="errorFormBuscarVuelos text-danger" id="errorCategoria">
 												Elija Categor&iacutea

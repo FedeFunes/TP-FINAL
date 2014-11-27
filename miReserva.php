@@ -2,6 +2,8 @@
 session_start();
 include("conectarBaseDeDatos.php");
 
+#CÓDIGO BUGUEADO. NO INDISPENSABLE
+/*
 switch ($_SESSION["categoria"]) {
     case 'economy':
         $precio_categoria = 'precio_economy';
@@ -36,7 +38,8 @@ $_SESSION["provinciaDestino"] = $reserva["provinciaDestino"];
 $_SESSION["ciudadDestino"] = $reserva["ciudadDestino"];
 $_SESSION["categoria"] = $reserva["categoria"];
 $_SESSION["precioCategoria"] = $reserva["precioCategoria"];
-$_SESSION["fechaVuelo"] = $reserva["fechaVuelo"]; 
+$_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
+*/ 
 ?>
 
 <!DOCTYPE html>
@@ -47,15 +50,15 @@ $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CYT Aerol&iacuteneas - Mi Reserva</title>
 
-	<?php include("libreriasCSS.php"); ?>
+    <?php include("libreriasCSS.php"); ?>
 
     </head>
     <body>
     <div class="wrap">
         <div class="container">
-    		
+            
             <?php include("navBar.php"); ?>
-    		
+            
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
 
@@ -65,32 +68,52 @@ $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
                         <thead>
                             <tr>
                                 <th>Nro Reserva</th>
+                                <th>DNI Pasajero</th>
+                                <th>Id Vuelo</th>
+                                <th>Categor&iacutea</th>
+                                <th>Estado</th>
+                                
+                                <!-- CODIGO BUGUEADO. NO INDISPENSABLE.
                                 <th>Origen</th>
                                 <th>Destino</th>
                                 <th>Precio (<?php echo $_SESSION["categoria"]; ?>)</th>
-                                <th>Fecha Vuelo</th>
+                                <th>Fecha Vuelo</th> 
+                                -->
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th><?php echo $_SESSION["nroReserva"]; ?></th>
+                                <th><?php echo $_SESSION["idReserva"]; ?></th>
+                                <th><?php echo $_SESSION["dniPasajero"]; ?></th>
+                                <th><?php echo $_SESSION["codVuelo"]; ?></th>
+                                <th><?php echo $_SESSION["categoria"]; ?></th>
+                                <th><?php echo $_SESSION["estado"]; ?></th>
+                                
+                                <!-- CODIGO BUGUEADO. NO INDISPENSABLE.
                                 <td><?php echo $_SESSION["provinciaOrigen"]." - ".$_SESSION["ciudadOrigen"] ?></td>
                                 <td><?php echo $_SESSION["provinciaDestino"]." - ".$_SESSION["ciudadDestino"] ?></td>
                                 <td><?php echo "$".$_SESSION["precioCategoria"]?></td>
-                                <td><?php echo $_SESSION["fechaVuelo"]?></td>
+                                <td><?php echo $_SESSION["fechaVuelo"]?></td> 
+                                -->
                             </tr>
                         </tbody>   
                     </table>
                     <?php
                    
-                    if ($reserva["estado"] == 'pendiente de pago') {
+                    if ($_SESSION["estado"] == 1) { // 1 es el id de "Pendiente de Pago"
+                       
+                        #HASTA FECHA-HORARIO PUEDE REALIZAR EL PAGO?
+
                         echo "<a href='formPagarReserva.php'><button class='btn btn-link'> >> Pagar Reserva</button></a></br>";
                         echo "<button class='btn btn-link' disabled='disabled'> >> Realizar Check-In</button>";
                     }
 
-                    if ($reserva["estado"] == 'pendiente de check-in') {
+                    if ($_SESSION["estado"] == 2) { // 2 es el id de "Pendiente de Check-In"
+                        
+                        #VALIDAR FECHA-HORARIO
+
                         echo "<button class='btn btn-link' disabled='disabled'><a href='formPagarReserva.php'> >> Pagar Reserva (ya est&aacute paga)</a></button></br>";
-                        echo "<a href='#''><button class='btn btn-link'><a href=''> >> Realizar Check-In</button></a>";
+                        echo "<a href='#''><button class='btn btn-link'> >> Realizar Check-In</button></a>";
                     }
                     ?>    
                 </div>
