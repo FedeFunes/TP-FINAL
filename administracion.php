@@ -32,8 +32,13 @@
 						</div><!-- ./panel-heading -->
 
 						<div class="panel-body" >
-							<button type="button" class="btn btn-default" onclick="anularReservas.php">Dar de Baja</button>
-							<!--<button type="button" class="btn btn-default" onclick='anularReservas.php'>Emitir Informes de Gesti&oacute;n</button>-->
+							<form>
+								<input type="button" class="btn btn-default" value="Dar de Baja" onClick="parent.location='anularReservas.php'">
+							</form>
+							<br>
+							<form>
+								<input type="button" class="btn btn-default" value="Generar Informe de Gesti&oacute;n" onClick="parent.location='generarInformes.php'">
+							</form>
 						</div>
 					</div>
 				</div>
