@@ -15,8 +15,8 @@ $date = date_create($fechaIda); // retorna un DateTime object de la fecha que le
 $diaIda = date_format($date,"l"); // me devuelve el nombre del día de la fecha que le pasé pero en ingles
 
 $fechaVuelta = $_POST["fechaVuelta"];
-$date = date_create($fechaVuelta);  
-$diaVuelta = date_format($date,"l");
+$date = date_create($fechaVuelta); // idem
+$diaVuelta = date_format($date,"l"); // idem
 
 
 // guardo los datos que puedo necesitar en la session 

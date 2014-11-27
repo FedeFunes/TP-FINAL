@@ -1,9 +1,12 @@
 <?php 
-	include("conectarBaseDeDatos.php");
-	if(!isset($_SESSION)) 
-		{ 
-			session_start(); 
-		}
+	/* todas las las paginas se conectan a la base de datos */
+	//include("conectarBaseDeDatos.php");
+	
+	/* todas las paginas inician session */
+	// if(!isset($_SESSION)) 
+	// 	{ 
+	// 		session_start(); 
+	// 	}
 ?>
 		<div class="row">
 				<div class="col-md-10 col-md-offset-1">
@@ -31,17 +34,17 @@
 						        <li><a href="grillaVuelos.php">Vuelos</a></li>
 						        <li><a href="contacto.php">Contacto</a></li>
 								<?php								
-									if(isset($_SESSION['usuario']) and $_SESSION['usuario'] !='') {
+									if(isset($_SESSION['usuario'])) { // and $_SESSION['usuario'] !='' // no es necesario
 										echo '<li><a href="administracion.php"><span>Administraci&oacute;n</span></a></li>';
 									}
 									else{
-										session_destroy();
+										// session_destroy();  // rompe la sessiones que estan iniciazadas antes de este php
 									}
 								?> 
 						    </ul>
 					        <ul class="nav navbar-nav navbar-right">
 				            	<?php									
-									if(isset($_SESSION['usuario']) and $_SESSION['usuario'] !='') {
+									if(isset($_SESSION['usuario'])) {
 										echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>';
 									}
 									else{
