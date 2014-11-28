@@ -2,8 +2,8 @@
 session_start();
 include("conectarBaseDeDatos.php");
 
-#CÓDIGO BUGUEADO. NO INDISPENSABLE
-/*
+/*#CÓDIGO BUGUEADO. NO INDISPENSABLE#############################################
+
 switch ($_SESSION["categoria"]) {
     case 'economy':
         $precio_categoria = 'precio_economy';
@@ -39,7 +39,8 @@ $_SESSION["ciudadDestino"] = $reserva["ciudadDestino"];
 $_SESSION["categoria"] = $reserva["categoria"];
 $_SESSION["precioCategoria"] = $reserva["precioCategoria"];
 $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
-*/ 
+
+###############################################################################*/ 
 ?>
 
 <!DOCTYPE html>
@@ -110,11 +111,30 @@ $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
 
                     if ($_SESSION["estado"] == 2) { // 2 es el id de "Pendiente de Check-In"
                         
-                        #VALIDAR FECHA-HORARIO
+                        //Consulto la FECHA y el HORARIO del VUELO
+                        $query = "SELECT fecha_vuelo, hora_partida FROM reservas R 
+                        INNER JOIN vuelos V ON R.cod_vuelo = V.idVuelo 
+                        INNER JOIN programacionvuelos PV ON V.cod_programacion_vuelo = PV.idProgramacionVuelo
+                        WHERE idReserva =".$_SESSION["idReserva"].";";
 
-                        echo "<button class='btn btn-link' disabled='disabled'><a href='formPagarReserva.php'> >> Pagar Reserva (ya est&aacute paga)</a></button></br>";
-                        echo "<a href='#''><button class='btn btn-link'> >> Realizar Check-In</button></a>";
+                        $result = mysqli_query($conexion,$query);
+                        $row = mysqli_fetch_array($result);
+                        
+
+                        $fechaHorarioVuelo = "".$row['fecha_vuelo']." ".$row['hora_partida'].""; // cocateno la fecha y el horario 
+                        date_default_timezone_set("America/Argentina/Buenos_Aires"); // seteo la zona horaria
+                        $fechaHorarioActual = date("Y-m-d H:i:s"); // obtengo la hora actual en un string 
+
+                        $fechaHorarioVuelo2hsAntes = strtotime("-2 hours", $fechaHorarioVuelo); // le resto 2hs 
+                        $fechaHorarioVuelo48hsAntes = strtotime("-48 hours", $fechaHorarioVuelo); // le resto 48hs
+
+                        if($fechaHorarioVuelo2hsAntes > strtotime($fechaHorarioActual) and strtotime($fechaHorarioActual) < $fechaHorarioVuelo48hsAntes) {
+                            echo "<button class='btn btn-link' disabled='disabled'> >> Pagar Reserva (ya est&aacute paga)</button>";
+                            echo "</br>";
+                            echo "<a href='#''><button class='btn btn-link'> >> Realizar Check-In</button></a>";
+                        } 
                     }
+
                     ?>    
                 </div>
             </div>
