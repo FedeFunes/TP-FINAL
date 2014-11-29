@@ -136,8 +136,8 @@ $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
                     }
 
                     ?>    
-                </div>
-            </div>
+                </div><!-- /.row -->
+            </div><!-- /.col-md-10 col-md-offset-1 --> 
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="alert alert-warning" role="alert">
