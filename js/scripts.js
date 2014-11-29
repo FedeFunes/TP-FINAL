@@ -41,8 +41,6 @@ function validarFormBuscarVuelos() {
     } else {
         errorFechaIda.style.display = "none";
     }
-
-    alert(radioIdaVuelta.checked)
      
     if(radioIdaVuelta.checked == true) {    
         
