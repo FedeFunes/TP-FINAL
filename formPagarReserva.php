@@ -28,24 +28,30 @@ include("conectarBaseDeDatos.php");
 						<div class="panel-body">   
                             
                             <!-- Form - Mi Reserva -->
-                            <form role="form" method="post" action="pagarReserva.php">
+                            <form role="form" method="post" action="pagarReserva.php" onSubmit="return validarFormPagarReserva();">
                                 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nro de Tarjeta">
+                                    <label for="nroDeTarjeta">Nro de Tarjeta</label>
+                                    <input type="text" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx" id="nroDeTarjeta">
+                                    <span class="text-danger errorFormPagarReserva" id="errorNroDeTarjeta">No puedes dejar este campo en blanco o con un formato incorrecto.</span>   
+
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Codigo de Seguridad">
+                                    <label for="codigoDeSeguridad">Codigo de Seguridad</label>
+                                    <input type="text" class="form-control" placeholder="xxxx" id="codigoDeSeguridad">
+                                    <span class="text-danger errorFormPagarReserva" id="errorCodigoDeSeguridad">No puedes dejar este campo en blanco o con un formato incorrecto.</span>   
                                 </div>
 
                                 <div class="form-group">
                                     <label for="tarjeta">Tarjeta</label>
-                                    <select class="form-control">   
+                                    <select class="form-control" id="tarjeta">   
                                         <option value="" disabled selected>Tarjeta</option>
-                                        <option value="">Visa</option>
-                                        <option value="">AmericanExpress</option>
-                                        <option value="">MasterCard</option>
+                                        <option value="visa">Visa</option>
+                                        <option value="american express">American Express</option>
+                                        <option value="mastercard">MasterCard</option>
                                     </select>
+                                    <span class="text-danger errorFormPagarReserva" id="errorTarjeta">Seleccione una tarjeta.</span>   
                                 </div>
 
                                 <!-- Botón "Pagar" --> 

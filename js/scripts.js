@@ -1,4 +1,4 @@
-/* VALIDAR FORM BUSCAR-VUELOS */
+/* VALIDAR FORM - BUSCAR VUELOS */
 function validarFormBuscarVuelos() {
   
     var provinciaOrigen = document.getElementById("provinciaOrigen"); 
@@ -6,6 +6,8 @@ function validarFormBuscarVuelos() {
     var categoria = document.getElementById("categoria");
     var fechaIda = document.getElementById("fechaIda");
     var fechaVuelta = document.getElementById("fechaVuelta");
+
+    var radioIdaVuelta = document.getElementById("inlineRadio1");
 
     var errorProvinciaOrigen = document.getElementById("errorProvinciaOrigen");
     var errorProvinciaDestino = document.getElementById("errorProvinciaDestino");
@@ -40,16 +42,20 @@ function validarFormBuscarVuelos() {
         errorFechaIda.style.display = "none";
     }
 
-    if(fechaVuelta.value == "") {
-        errorFechaVuelta.style.display = "inline";
-        return false;
-    } else {
-        errorFechaVuelta.style.display = "none";
+    alert(radioIdaVuelta.checked)
+     
+    if(radioIdaVuelta.checked == true) {    
+        
+        if(fechaVuelta.value == "") {
+            errorFechaVuelta.style.display = "inline";
+            return false;
+        } else {
+            errorFechaVuelta.style.display = "none";
+        }
     }
-
 }
 
-/* VALIDAR FORM RESERVAR */
+/* VALIDAR FORM - RESERVAR */
 
 function validar_form_reservar() {
 
@@ -184,3 +190,37 @@ function mostrarCiudadesDestino(idProvincia) {
   xmlhttp.send();
 }
 
+/* VALIDAR FORM - PARGAR RESERVA */
+function validarFormPagarReserva() {
+    var nroDeTarjeta = document.getElementById('nroDeTarjeta');
+    var codigoDeSeguridad = document.getElementById('codigoDeSeguridad');
+    var tarjeta = document.getElementById('tarjeta');
+
+    var errorNroDeTarjeta = document.getElementById('errorNroDeTarjeta');
+    var errorCodigoDeSeguridad = document.getElementById('errorCodigoDeSeguridad');
+    var errorTarjeta = document.getElementById('errorTarjeta');
+
+    // validar nro de tarjeta
+    if (!/^\d{4}-\d{4}-\d{4}-\d{4}$/.test(nroDeTarjeta.value)) {
+        errorNroDeTarjeta.style.display = "inline";
+        return false;
+    } else {
+        errorNroDeTarjeta.style.display = "none";
+    }
+
+    // validar código de seguridad
+    if (!/^\d{4}$/.test(codigoDeSeguridad.value)) {
+        errorCodigoDeSeguridad.style.display = "inline";
+        return false;
+    } else {
+        errorCodigoDeSeguridad.style.display = "none";
+    }
+
+    // validar tarjeta
+    if (tarjeta.value == "") {
+        errorTarjeta.style.display = "inline";
+        return false;
+    } else {
+        errorTarjeta.style.display = "none";
+    }
+}
