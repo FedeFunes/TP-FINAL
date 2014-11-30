@@ -1,8 +1,8 @@
 CREATE DATABASE  IF NOT EXISTS `cieloytierra` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `cieloytierra`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: cieloytierra
+-- Host: 127.0.0.1    Database: cieloytierra
 -- ------------------------------------------------------
 -- Server version	5.6.20
 
@@ -54,13 +54,11 @@ DROP TABLE IF EXISTS `asientos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `asientos` (
   `idAsiento` int(11) NOT NULL AUTO_INCREMENT,
-  `numFila` int(11) NOT NULL,
-  `numCol` int(11) NOT NULL,
+  `columna` int(11) NOT NULL,
+  `fila` int(11) NOT NULL,
   `cod_reserva` int(11) NOT NULL,
-  PRIMARY KEY (`idAsiento`),
-  KEY `cod_reserva_idx` (`cod_reserva`),
-  CONSTRAINT `cod_reserva` FOREIGN KEY (`cod_reserva`) REFERENCES `reservas` (`idReserva`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idAsiento`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,6 +67,7 @@ CREATE TABLE `asientos` (
 
 LOCK TABLES `asientos` WRITE;
 /*!40000 ALTER TABLE `asientos` DISABLE KEYS */;
+INSERT INTO `asientos` VALUES (1,1,2,2),(2,1,10,2),(3,1,10,2),(4,1,3,2);
 /*!40000 ALTER TABLE `asientos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +165,7 @@ CREATE TABLE `estados_reservas` (
   `idEstadoReserva` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`idEstadoReserva`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +174,7 @@ CREATE TABLE `estados_reservas` (
 
 LOCK TABLES `estados_reservas` WRITE;
 /*!40000 ALTER TABLE `estados_reservas` DISABLE KEYS */;
-INSERT INTO `estados_reservas` VALUES (1,'Pendiente de Pago'),(2,'Pendiente de Check In'),(3,'Anulada'),(4,'lista de espera'),(5,'Completada'),(6,'Habilitado');
+INSERT INTO `estados_reservas` VALUES (1,'Pendiente de Pago'),(2,'Pendiente de Check In'),(3,'Anulada'),(4,'En Lista de Espera'),(5,'Completada');
 /*!40000 ALTER TABLE `estados_reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +265,7 @@ CREATE TABLE `reservas` (
   PRIMARY KEY (`idReserva`),
   KEY `cod_vuelo_idx` (`cod_vuelo`),
   CONSTRAINT `cod_vuelo` FOREIGN KEY (`cod_vuelo`) REFERENCES `vuelos` (`idVuelo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -275,7 +274,7 @@ CREATE TABLE `reservas` (
 
 LOCK TABLES `reservas` WRITE;
 /*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
-INSERT INTO `reservas` VALUES (2,'brian','lamilla',36921178,'brian.lamilla@gmail.com','1992-05-10','2014-12-13',1,'1','1'),(3,'lucas','gonzalez',36921179,'brian.lamilla@gmail.com','1992-05-10','2014-12-13',1,'2','1');
+INSERT INTO `reservas` VALUES (2,'brian','lamilla',36921178,'brian.lamilla@gmail.com','1992-05-10','2014-12-13',1,'2','1');
 /*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,7 +298,7 @@ CREATE TABLE `tiposviajes` (
 
 LOCK TABLES `tiposviajes` WRITE;
 /*!40000 ALTER TABLE `tiposviajes` DISABLE KEYS */;
-INSERT INTO `tiposviajes` VALUES (1,'Ida'),(2,'Vuelta'),(3,'Ida y Vuelta');
+INSERT INTO `tiposviajes` VALUES (1,'Ida'),(2,'Vuelta');
 /*!40000 ALTER TABLE `tiposviajes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -338,8 +337,7 @@ DROP TABLE IF EXISTS `vuelos`;
 CREATE TABLE `vuelos` (
   `idVuelo` int(11) NOT NULL AUTO_INCREMENT,
   `cod_programacion_vuelo` int(11) NOT NULL,
-  `fecha_partida` date DEFAULT NULL,
-  `fecha_regreso` date DEFAULT NULL,
+  `fecha_vuelo` date NOT NULL,
   `tipo_viaje` char(6) NOT NULL,
   PRIMARY KEY (`idVuelo`),
   KEY `cod_programacion_vuelo_idx` (`cod_programacion_vuelo`),
@@ -353,7 +351,7 @@ CREATE TABLE `vuelos` (
 
 LOCK TABLES `vuelos` WRITE;
 /*!40000 ALTER TABLE `vuelos` DISABLE KEYS */;
-INSERT INTO `vuelos` VALUES (1,1,'2014-11-26','2014-12-27','3');
+INSERT INTO `vuelos` VALUES (1,1,'2014-12-20','3');
 /*!40000 ALTER TABLE `vuelos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -366,4 +364,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-26 22:46:34
+-- Dump completed on 2014-11-29 15:25:28

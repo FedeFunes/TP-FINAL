@@ -9,6 +9,8 @@ $apellido = $_POST["apellido"];
 $email = $_POST["email"];
 $dni = $_POST["dni"];
 $fechaDeNacimiento = $_POST["fechaNacimiento"];
+
+date_default_timezone_set("America/Argentina/Buenos_Aires"); // seteo la zona horaria
 $fechaDeReserva = date("y-m-d"); // obtengo la fecha del servidor
 
 //guardo los datos de la session
@@ -26,7 +28,7 @@ $fechaVuelta = $_SESSION["fechaVuelta"];
 if($idVueloIda != null) { // si ya existe un vuelo para esta reserva, directamente la hago
 	
 	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
-	VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloIda, '$categoria', '$estadoVueloIda')";
+	VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloIda, '".$_SESSION["categoria"]."', '$estadoVueloIda')";
 
 	// mysqli_query($conexion, $sql); #Codigo original
 	

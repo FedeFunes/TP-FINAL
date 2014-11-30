@@ -1,45 +1,21 @@
 <?php
 session_start();
-include("conectarBaseDeDatos.php");
+include("conectarBaseDeDatos.php"); 
+
+require('/fpdf/fpdf.php');
+
+$pdf = new FPDF('P','mm','A4'); 
+$pdf->AddPage(); 
+$pdf->SetFont('Arial','B',16); 
+$pdf->Cell(40,10,"RESERVA",0,1);
+$pdf->Cell(40,10,"Nro de Reserva - Ida: ".$_SESSION["idReservaIda"]."",0,1);
+$pdf->Cell(40,10,"Nro de Reserva - Vuelta: ".$_SESSION["idReservaVuelta"]."",0,1);
+$pdf->Cell(40,10,"Fecha Vuelo: ".$_SESSION["fechaVuelo"]."",0,1);
+$pdf->Cell(40,10,"Origen: ".$_SESSION["provinciaOrigen"]." - ".$_SESSION["ciudadOrigen"]."",0,1);  
+$pdf->Cell(40,10,"Origen: ".$_SESSION["provinciaDestino"]." - ".$_SESSION["ciudadDestino"]."",0,1);
+$pdf->Cell(40,10,"Categoria: ".$_SESSION["categoria"]."",0,1);
+$pdf->Cell(40,10,"Precio: ".$_SESSION["precioCategoria"]."",0,1);
+$pdf->Output();
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CYT Aerol&iacuteneas - Reservar</title>
-
-    <?php include("libreriasCSS.php"); ?>
-    
-    </head>
-    <body>
-        <div class="wrap">
-            <div class="container">
-                <?php include("navBar.php") ?>
-                
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <?php
-                                echo "</br>ID Reserva IDA: ".$_SESSION["idReservaIda"];
-                                echo "</br>ID Reserva VUELTA: ".$_SESSION["idReservaVuelta"];
-                                // session_destroy();
-                                ?>
-
-                            </div><!-- /.panel-body -->
-                        </div><!-- /.panel panel-default -->
-                    </div><!-- /.col-md-6 -->  
-                </div><!-- /.row -->
-                    
-
-            </div><!-- /.container -->
-        </div><!-- /.wrap -->
-        
-        <?php include("footer.php") ?>
-        
-        <?php include("libreriasJS.php"); ?>
-    </body>
-</html>
