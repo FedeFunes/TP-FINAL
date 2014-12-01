@@ -25,197 +25,121 @@
 		<div class="container">
 			<?php include("navBar.php") ?>
 			<?php include("libreriasJS.php"); ?>
-			
-			<div class="panel panel-primary">
-				<div class="panel-heading">					
-					<h1>
-						Informes Semanales de Gesti&oacute;n
-					</h1>
-				</div>
-			</div>
-			
-		<form class="form-horizontal" role="form">
-			<div class="form-group">
-				<?php
-					$queryCantidadPasajesVendidos = "SELECT COUNT(*) 
-											FROM reservas
-											WHERE fecha_reserva BETWEEN '2014-11-01' AND '2014-12-31'";
-											
-					$cantidadPasajesVendidos = mysqli_query($conexion, $queryCantidadPasajesVendidos);
-					
-					echo '<label class="col-sm-2 control-label">Pasajes Vendidos</label>
-							<div class="col-sm-10">
-								<p class="form-control-static">' . $cantidadPasajesVendidos . '</p>
-							</div><br>
-								<label class="col-sm-2 control-label">Pasajes Vendidos Economy</label>
-							<div class="col-sm-10">
-								<p class="form-control-static">email@example.com</p>
-							</div><br>
-								<label class="col-sm-2 control-label">Pasajes Vendidos Primera</label>
-							<div class="col-sm-10">
-								<p class="form-control-static">email@example.com</p>
-							</div><br>
-							<label class="col-sm-2 control-label">Pasajes Vendidos Por Destino</label>
-							<select class="form-control" name="ciudades" id="ciudades" onChange="mostrarValorDestino();">												  	
-								<option value="" selected>Seleccionar Ciudad...</option>';
-				?>
+			<div class="row">
+                <div class="col-md-6 col-md-offset-3">
+					<div class="panel panel-primary" >
+						<div class="panel-heading">
+							<div class="panel-title">
+								Informes de Gesti&oacute;n Semanal
+							</div><!-- ./panel-title -->
+						</div><!-- ./panel-heading -->
 				
+						<div class="panel-body" >
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<?php
+										$queryCantidadPasajesVendidos = "SELECT * 
+																			FROM reservas
+																			WHERE fecha_reserva BETWEEN '2014-11-01' AND '2014-12-31'
+																			AND estado IN (2,5)";
+										
+										$resultQueryCantidadPasajesVendidos = mysqli_query($conexion, $queryCantidadPasajesVendidos);
+										$cantidadPasajesVendidos = mysqli_num_rows($resultQueryCantidadPasajesVendidos);
+										
+										echo '<table class="table table-hover">
+													<th>Pasajes Vendidos:&nbsp;&nbsp;' . $cantidadPasajesVendidos . '</th>
+												</table>';
+										
+										$queryCantidadEconomy = "SELECT * 
+																	FROM reservas
+																	WHERE fecha_reserva BETWEEN '2014-11-01' AND '2014-12-31'
+																	AND estado IN (2,5)
+																	AND categoria = 2";
+										
+										$resultQueryCantidadEconomy = mysqli_query($conexion, $queryCantidadEconomy);
+										$cantidadEconomy = mysqli_num_rows($resultQueryCantidadEconomy);
+										
+										echo '<table class="table table-hover">
+													<th>Pasajes Vendidos Economy:&nbsp;&nbsp;' . $cantidadEconomy . '</th>
+												</table>';
+										
+										$queryCantidadPrimera = "SELECT * 
+																	FROM reservas
+																	WHERE fecha_reserva BETWEEN '2014-11-01' AND '2014-12-31'
+																	AND estado IN (2,5)
+																	AND categoria = 1";
+										
+										$resultQueryCantidadPrimera = mysqli_query($conexion, $queryCantidadPrimera);
+										$cantidadPrimera = mysqli_num_rows($resultQueryCantidadPrimera);
+										
+										echo '<table class="table table-hover">
+													<th>Pasajes Vendidos Primera:&nbsp;&nbsp;' . $cantidadPrimera . '</th>
+												</table>';
+										
+										echo '<table class="table table-hover">
+													<th>Pasajes Vendidos Por Destino</th>
+												</table>
+												<select class="form-control" name="ciudades" id="ciudades" onChange="mostrarValorDestino(idCiudad)">												  	
+													<option value="" selected>Seleccionar Ciudad...</option>';
+													
+										/*echo '<table class="table table-hover">
+													<th>Ocupaci&oacute;n Por Avi&oacute;n</th>
+												</table>
+												<select class="form-control" name="aviones" id="aviones" onChange="mostrarValorAvion(idAvion)">												  	
+													<option value="" selected>Seleccionar Avi&oacute;n...</option>';*/
+									?>
+								
+									<?php
+										$queryCiudades = "SELECT * FROM ciudades ORDER BY descripcion";
+										$resultQueryCiudades = mysqli_query($conexion,$queryCiudades);
+								
+										while($row = mysqli_fetch_array($resultQueryCiudades)) {
+										  echo "<option value='".$row['idCiudad']."'>".$row['descripcion']."</option>";
+										}
+										
+										$queryAviones = "SELECT * FROM aviones ORDER BY modelo";
+										$resultQueryAviones = mysqli_query($conexion,$queryAviones);
+								
+										while($row = mysqli_fetch_array($resultQueryAviones)) {
+										  echo "<option value='".$row['idAvion']."'>".$row['modelo']."</option>";
+										}
+									?>
+								</div><!-- ./form-group -->
+							</form><!-- ./form-horizontal -->
+						</div><!-- ./panel-body -->
+					</div><!-- ./panel panel-primary -->
+				</div><!-- ./col-md-6 col-md-offset-3 -->
+			</div><!-- ./row -->
+		
+			<script type="text/javascript">
+				function mostrarValorDestino(idCiudad){
 					
-					<?php
-					$query = "SELECT * FROM ciudades ORDER BY descripcion";
-					$result = mysqli_query($conexion,$query);
-			
-					while($row = mysqli_fetch_array($result)) {
-					  echo "<option value='".$row['idCiudad']."'>".$row['descripcion']."</option>";
+					$queryCiudad = "SELECT C.idCiudad
+										FROM reservas R JOIN
+										vuelos V ON R.cod_vuelo = V.idVuelo JOIN
+										programacionvuelos PV ON V.cod_programacion_vuelo = PV.idProgramacionVuelo JOIN
+										aeropuertos A ON PV.cod_aeropuerto_destino = A.idAeropuerto JOIN
+										ciudades C ON A.cod_ciudad = C.idCiudad";
+					printf($queryCiudad);
+					
+					if(idCiudad === ){
+						$sql = "SELECT DISTINCT C.descripcion, COUNT(*) as 'Pasajes Vendidos Destino'
+								FROM reservas R JOIN
+										vuelos V ON R.cod_vuelo = V.idVuelo JOIN
+										programacionvuelos PV ON V.cod_programacion_vuelo = PV.idProgramacionVuelo JOIN
+										aeropuertos A ON PV.cod_aeropuerto_destino = A.idAeropuerto JOIN
+										ciudades C ON A.cod_ciudad = C.idCiudad
+								WHERE R.estado = 2
+								GROUP BY C.idCiudad, C.descripcion
+								ORDER BY C.descripcion";
+						
+						$result = mysqli_query($conexion,$sql);
 					}
-					?>
-
-				</select>
-			</div>
-		</form>
-		
-		<script type="text/javascript">
-			function mostrarValorDestino(){
-				
-				$sql = "SELECT DISTINCT C.descripcion, COUNT(*) as 'Pasajes Vendidos Destino'
-						FROM reservas R JOIN
-								vuelos V ON R.cod_vuelo = V.idVuelo JOIN
-								programacionvuelos PV ON V.cod_programacion_vuelo = PV.idProgramacionVuelo JOIN
-								aeropuertos A ON PV.cod_aeropuerto_destino = A.idAeropuerto JOIN
-								ciudades C ON A.cod_ciudad = C.idCiudad
-						WHERE R.estado = 2
-						GROUP BY C.idCiudad, C.descripcion
-						ORDER BY C.descripcion";
-				
-				$result = mysqli_query($conexion,$sql);
-			}
-		</script>
-		
-		<div class="table-responsive">  
-			<table class="table" id="tabla">
-				<thead>
-					<tr>
-						<th>
-						  Pasajes Vendidos
-						</th>
-										
-
-						<th>
-						  Pasajes Vendidos Economy
-						</th>
-										
-
-						<th>
-						  Pasajes Vendidos Primera
-						</th>
-										
-
-						<th>
-						  Destino
-						</th>
-										
-
-						<th>
-						  Pasajes Vendidos Destino
-						</th>
-
-						<th>
-						  Precio Primera
-						</th>
-
-						<th>
-						  Precio Economy
-						</th>
-
-						<th>
-						  Vuelos D&iacute;as
-						</th>
-
-						<th>
-						  Hora Partida
-						</th>
-								  
-					</tr>		  
-				</thead>
-							
-
-				<tbody>
-				  <?php  
-							
-							// Creamos la tabla con los campos que queremos mostrar de las personas
-							// Iteramos a través de los resultados que nos devolvió la consulta
-							// Le colocamos un id a cada fila para cuando las vayamos a eliminar con jQuery
-							// La acción de eliminar la llamamos a través de un evento onclick e indicando el id a eliminar
-							$query = "SELECT PV.idProgramacionVuelo, A1.descripcion as aeropuertoOrigen, C1.descripcion as ciudadOrigen, A2.descripcion as aeropuertoDestino, 
-										C2.descripcion as ciudadDestino, PV.precio_primera as precioPrimera, PV.precio_economy as precioEconomy,
-										TRIM(CONCAT((CASE WHEN vuelo_lunes THEN 'Lunes' ELSE '' END),(CASE WHEN vuelo_martes THEN ' Martes' ELSE '' END),
-                                        (CASE WHEN vuelo_miercoles THEN ' Miercoles' ELSE '' END),(CASE WHEN vuelo_jueves THEN ' Jueves' ELSE '' END),
-										(CASE WHEN vuelo_viernes THEN ' Viernes' ELSE '' END),(CASE WHEN vuelo_sabado THEN ' Sabado' ELSE '' END),
-										(CASE WHEN vuelo_domingo THEN ' Domingo' ELSE '' END))) as diasVuelos, TIME_FORMAT(PV.hora_partida,'%H:%i') as horaPartida
-										FROM programacionvuelos PV JOIN 
-											aeropuertos A1 ON A1.idAeropuerto = PV.cod_aeropuerto_origen JOIN 
-											aeropuertos A2 ON A2.idAeropuerto = PV.cod_aeropuerto_destino JOIN 
-											ciudades C1 ON C1.idCiudad = A1.cod_ciudad JOIN 
-											ciudades C2 ON C2.idCiudad = A2.cod_ciudad JOIN 
-											provincias P1 ON C1.cod_provincia = P1.idProvincia JOIN
-											provincias P2 ON C2.cod_provincia = P2.idProvincia
-										ORDER BY PV.idProgramacionVuelo;";
-							$result = mysqli_query($conexion,$query);
-							while($fila = $result->fetch_assoc()){
-										echo
-										'
+				}
+			</script>
+			
+			<?php include("footer.php") ?>  
 				  
-				  <tr id="fila_'.$fila['idProgramacionVuelo'].'">
-					<td>
-					  '.$fila['idProgramacionVuelo'].'
-					</td>
-											
-					
-					<td>
-					  '.$fila['aeropuertoOrigen'].'
-					</td>
-											
-					
-					<td>
-					  '.$fila['ciudadOrigen'].'
-					</td>
-											
-					
-					<td>
-					  '.$fila['aeropuertoDestino'].'
-					</td>                        
-					
-					<td>
-					  '.$fila['ciudadDestino'].'
-					</td>
-					
-					<td>
-					  $ '.$fila['precioPrimera'].'
-					</td>
-					
-					<td>
-					  $ '.$fila['precioEconomy'].'
-					</td>
-					
-					<td>
-					  '.$fila['diasVuelos'].'
-					</td>
-					
-					<td>
-					  '.$fila['horaPartida'].'
-					</td>
-										  
-				  </tr>';
-								  } 
-							  ?>
-							  
-				</tbody>
-						  
-			</table>
-		</div>
-		
-		<?php include("footer.php") ?>  
-				  
-		</div>
+		</div><!-- ./container -->
 	</body>
 </html>
