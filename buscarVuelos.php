@@ -4,18 +4,18 @@ include("conectarBaseDeDatos.php");
 
 //obtengo los datos del formulario
 $tipoViaje = $_POST["tipoViaje"]; 
-$provinciaOrigen = $_POST["provinciaOrigen"];
-$ciudadOrigen = $_POST["ciudadOrigen"]; // contiene el código del aeropuerto que esta en esa ciudad
-$provinciaDestino = $_POST["provinciaDestino"];
-$ciudadDestino = $_POST["ciudadDestino"]; // contiene el código del aeropuerto que esta en esa ciudad
-$categoria = $_POST["categoria"];
+$provinciaOrigen = $_POST["provinciaOrigen"]; // recibe el id de la provincia
+$ciudadOrigen = $_POST["ciudadOrigen"]; // recibe el id del aeropuerto que esta en esa ciudad
+$provinciaDestino = $_POST["provinciaDestino"]; // idem
+$ciudadDestino = $_POST["ciudadDestino"]; // idem
+$categoria = $_POST["categoria"]; // recibe el id de la categoría
 
 $fechaIda = $_POST["fechaIda"];
 $date = date_create($fechaIda); // retorna un DateTime object de la fecha que le pasé así puedo usar la siguiente función
 $diaIda = date_format($date,"l"); // me devuelve el nombre del día de la fecha que le pasé pero en ingles
 
 $fechaVuelta = $_POST["fechaVuelta"];
-$date = date_create($fechaVuelta); // idem
+$date = date_create($fechaVuelta);  // idem
 $diaVuelta = date_format($date,"l"); // idem
 
 
@@ -82,7 +82,7 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 		
 	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha ida: $fechaIda o no existe la categoria que eligió en el avión que realiza este vuelo.";
 	header("location: vueloNoDisponible.php"); 
-	die();
+	die(); // Corto la ejecución del php
 
 } else { // si existe 
 			
@@ -95,7 +95,7 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 	$query = "SELECT * FROM vuelos 
 	WHERE (cod_programacion_vuelo = ".$rowProgramacionVuelos['idProgramacionVuelo']."
 	AND fecha_vuelo = '$fechaIda')
-	AND tipo_viaje = 'ida';"; 
+	AND tipo_viaje = 1;"; // tipo_viaje = ida 
 
 	$result = mysqli_query($conexion,$query);
 	$cantDeFilasDevueltas = mysqli_num_rows($result); 
@@ -116,8 +116,18 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 		
 		$cantidadDeReservasHechas = mysqli_num_rows($result);
 
+		// según el id de la categoría, creo y le asigno el nombre de la categoría en cuestión a $categoriaNombre para realizar la siguiente consulta
+		switch ($categoria) {
+			case '1':
+				$categoriaNombre = "primera";
+		 		break;
+		 	case '2':
+				$categoriaNombre = "economy";
+		 		break;
+		 }
+
 		// Consulto cuál es el limite de reservas en esa categoría en el avión que va a realizar el vuelo
-		$query = "SELECT $categoria FROM programacionvuelos
+		$query = "SELECT $categoriaNombre FROM programacionvuelos
 		INNER JOIN aviones
 		ON programacionvuelos.cod_avion = aviones.idAvion
 		WHERE idProgramacionVuelo = ".$rowProgramacionVuelos['idProgramacionVuelo'].";";
@@ -131,7 +141,7 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 		
 		// si la cantidad de reservas hechas supera el limite pero puede quedar en lista de espera
 		if ($cantidadDeReservasHechas >= $limiteDeReservas && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
-			$_SESSION["estadoVueloIda"] = "lista de espera";
+			$_SESSION["estadoVueloIda"] = 4; // 4 es el id de "En lista de espera"
 		}
 
 		// si la lista de espera esta llena 
@@ -149,7 +159,7 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 }
 
 if($_SESSION["estadoVueloIda"] == null) {
-	$_SESSION["estadoVueloIda"] = "pendiente de pago";	
+	$_SESSION["estadoVueloIda"] = 1; // 1 es el id de "Pendiente de Pago"	
 } 
 
 
@@ -212,7 +222,7 @@ if($tipoViaje = "idaVuelta") {
 		$query = "SELECT * FROM vuelos 
 		WHERE (cod_programacion_vuelo = ".$rowProgramacionVuelos['idProgramacionVuelo']."
 		AND fecha_vuelo = '$fechaVuelta')
-		AND tipo_viaje = 'vuelta';"; 
+		AND tipo_viaje = 2;"; //tipo_viaje = vuelta 
 
 		$result = mysqli_query($conexion,$query);
 		$cantDeFilasDevueltas = mysqli_num_rows($result); 
@@ -233,6 +243,16 @@ if($tipoViaje = "idaVuelta") {
 			
 			$cantidadDeReservasHechas = mysqli_num_rows($result);
 
+			// según el id de la categoría, creo y le asigno el nombre de la categoría en cuestión a $categoriaNombre para realizar la siguiente consulta
+			switch ($categoria) {
+				case '1':
+					$categoriaNombre = "primera";
+			 		break;
+			 	case '2':
+					$categoriaNombre = "economy";
+			 		break;
+			 }
+
 			// Consulto cuál es el limite de reservas en esa categoría en el avión que va a realizar el vuelo
 			$query = "SELECT $categoria FROM programacionvuelos
 			INNER JOIN aviones
@@ -248,7 +268,7 @@ if($tipoViaje = "idaVuelta") {
 			
 			// si la cantidad de reservas hechas supera el limite pero puede quedar en lista de espera
 			if ($cantidadDeReservasHechas >= $limiteDeReservas && $cantidadDeReservasHechas < $limiteDeReservasMasListaDeEspera) { 
-				$_SESSION["estadoVueloVuelta"] = "lista de espera";
+				$_SESSION["estadoVueloVuelta"] = 4; // 4 es el id de "En lista de espera"
 			}
 
 			// si la lista de espera esta llena 
@@ -268,7 +288,7 @@ if($tipoViaje = "idaVuelta") {
 }
 
 if($_SESSION["estadoVueloVuelta"] == null) {
-	$_SESSION["estadoVueloVuelta"] = "pendiente de pago";	
+	$_SESSION["estadoVueloVuelta"] = 1; // 1 es el id de "Pendiente de Pago"	
 } 
 
 header("location: reservar.php");
