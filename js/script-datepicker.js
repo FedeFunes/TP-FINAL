@@ -1,7 +1,7 @@
 $(function() {
 	$( "#fechaIda" ).datepicker({
 		dateFormat: 'yy-mm-dd', 
-		minDate: 0, 
+		minDate: 1, 
 		maxDate: "+1M +20D" 
 	});
 });
@@ -9,7 +9,7 @@ $(function() {
 $(function() {
 $( "#fechaVuelta" ).datepicker({
 		dateFormat: 'yy-mm-dd', 
-		minDate: 1, 
+		minDate: 2, 
 		maxDate: "+1M +21D" 
 	});
 });
