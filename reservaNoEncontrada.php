@@ -15,9 +15,9 @@
             <div class="container">
                 <?php include("navBar.php") ?>
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-4 col-md-offset-4">
                         <?php 
-                        echo "<div class='alert alert-danger' role='alert'>Reserva no encontrada</div>";   
+                        echo "<div class='alert alert-danger text-center' role='alert'>Reserva no encontrada.</div>";   
                         ?>
                     </div><!-- /.row -->
                 </div><!-- /.col-md-8 col-md-offset-2 -->  

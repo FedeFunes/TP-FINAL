@@ -16,6 +16,7 @@ if($_SESSION["tipoViaje"] == "idaVuelta") {
 $pdf->Cell(40,10,"Origen: ".$_SESSION["nombreProvinciaOrigen"]." - ".$_SESSION["nombreCiudadOrigen"]."",0,1);  
 $pdf->Cell(40,10,"Destino: ".$_SESSION["nombreProvinciaDestino"]." - ".$_SESSION["nombreCiudadDestino"]."",0,1);
 $pdf->Cell(40,10,"Categoria: ".$_SESSION["categoriaNombre"]."",0,1);
+$pdf->Cell(40,10,"Precio: ".$_SESSION["precioCategoria"]."",0,1);
 
 $pdf->Output();
 
