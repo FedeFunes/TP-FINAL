@@ -5,9 +5,9 @@ include("conectarBaseDeDatos.php");
 # Primero: tengo que consultar en qué AVIÓN va a volar el pasajero pasa saber cuás es
 # la cantidad de FILAS y COLUMNAS que tiene dependiendo de la CATEGORÍA que haya elegido
 
-$_SESSION['idReserva'] = 2; # PARA TESTING
-$_SESSION['categoria'] = 1; # PARA TESTING, 2 es "economy"
-$_SESSION['cod_vuelo'] = 1; # PARA TESTING
+// $_SESSION['idReserva'] = 2; # PARA TESTING
+// $_SESSION['categoria'] = 1; # PARA TESTING, 2 es "economy"
+// $_SESSION['cod_vuelo'] = 1; # PARA TESTING
 
 switch ($_SESSION['categoria']) {
     case '1':
@@ -82,7 +82,7 @@ $columnasCategoria = $row[''.$columnas_categoria.''];
 
                                 $query = "SELECT * FROM asientos A
                                 INNER JOIN reservas R ON A.cod_reserva = R.idReserva
-                                WHERE R.cod_vuelo = ".$_SESSION['cod_vuelo']." 
+                                WHERE R.cod_vuelo = ".$_SESSION['codVuelo']." 
                                 AND R.categoria = ".$_SESSION['categoria']."
                                 AND A.fila = $i 
                                 AND A.columna = $j;";

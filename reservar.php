@@ -11,8 +11,10 @@ switch ($_SESSION["categoria"]) {
         break;
 }
 
-$query = "SELECT A1.descripcion as aeropuertoOrigen, C1.descripcion as ciudadOrigen, A2.descripcion as aeropuertoDestino, 
-C2.descripcion as ciudadDestino, PV.$precio_categoria as precioCategoria
+$query = "SELECT A1.descripcion as aeropuertoOrigen, A2.descripcion as aeropuertoDestino, 
+C1.descripcion as nombreCiudadOrigen, C2.descripcion as nombreCiudadDestino, 
+P1.descripcion as nombreProvinciaOrigen, P2.descripcion as nombreProvinciaDestino, 
+PV.$precio_categoria as precioCategoria
 FROM programacionvuelos PV JOIN 
 aeropuertos A1 ON A1.idAeropuerto = PV.cod_aeropuerto_origen JOIN 
 aeropuertos A2 ON A2.idAeropuerto = PV.cod_aeropuerto_destino JOIN 
@@ -24,6 +26,14 @@ WHERE PV.idProgramacionVuelo = ".$_SESSION["idProgramacionVuelo"].";";
 
 $result = mysqli_query($conexion,$query);
 $vueloElegido = mysqli_fetch_array($result); 
+
+$_SESSION["nombreProvinciaOrigen"] = $vueloElegido["nombreProvinciaOrigen"];
+$_SESSION["nombreProvinciaDestino"] = $vueloElegido["nombreProvinciaDestino"];
+$_SESSION["nombreCiudadDestino"] = $vueloElegido["nombreCiudadDestino"];
+$_SESSION["nombreCiudadOrigen"] = $vueloElegido["nombreCiudadOrigen"];
+$_SESSION["nombreCiudadDestino"] = $vueloElegido["nombreCiudadDestino"];
+$_SESSION["precioCategoria"] = $vueloElegido["precioCategoria"];
+
 ?>
 
 <!DOCTYPE html>
@@ -61,10 +71,10 @@ $vueloElegido = mysqli_fetch_array($result);
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><?php echo $vueloElegido["ciudadOrigen"] ?></td>
-                                    <td><?php echo $vueloElegido["ciudadDestino"] ?></td>
-                                    <td><?php echo $_SESSION["categoria"] ?></td>
-                                    <td><?php echo "$".$vueloElegido["precioCategoria"] ?></td>
+                                    <td><?php echo $_SESSION["nombreProvinciaOrigen"]." - ".$_SESSION["nombreCiudadOrigen"] ?></td>
+                                    <td><?php echo $_SESSION["nombreProvinciaDestino"]." - ".$_SESSION["nombreCiudadDestino"] ?></td>
+                                    <td><?php echo $_SESSION["categoriaNombre"] ?></td>
+                                    <td><?php echo "$".$_SESSION["precioCategoria"] ?></td>
                                     <td><?php echo $_SESSION["fechaIda"] ?></td>
                                     <td><?php if($_SESSION["fechaVuelta"] == '') {echo "-";} else {echo $_SESSION["fechaVuelta"];} ?></td>
                                 </tr>

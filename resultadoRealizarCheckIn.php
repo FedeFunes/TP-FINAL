@@ -12,7 +12,7 @@ session_start();
     <title>CYT Aerol&iacuteneas - Reservar</title>
 
     <?php include("libreriasCSS.php"); ?>
-    
+
     </head>
     <body>
         
@@ -21,11 +21,9 @@ session_start();
                 <?php include("navBar.php") ?>
  				
  				<div class="row">
- 				    <div class="col-md-8 col-md-offset-2">
- 				        <?php 
-						echo "<div class='alert alert-danger' role='alert'>".$_SESSION["resultadoBuscarVuelo"]."</div>";   
- 				        ?>
- 				    	<a href='grillaVuelos.php' class="btn btn-primary btn-lg">Consulte la grilla de vuelos</a>                       
+ 				    <div class="col-md-4 col-md-offset-4">
+						<div class='alert alert-success text-center' role='alert'>El Check-In ha sido realizado con &eacutexito.</div>
+ 				    	<a href="boardingPassPDF.php" class='btn btn-primary btn-lg'role="button" target="_blank">Descargar Boarding Pass</a>                       
  				    </div><!-- /.row -->
  				</div><!-- /.col-md-8 col-md-offset-2 -->  
 
@@ -38,4 +36,3 @@ session_start();
     </body>
 </html>
 
-<?php session_destroy(); ?>
