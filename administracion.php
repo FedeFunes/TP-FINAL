@@ -20,31 +20,32 @@
     
     </head>
     <body>
-		<div class="container">
-			<?php include("navBar.php") ?>
-			<div class="row">
-                <div class="col-md-6 col-md-offset-3">
-					<div class="panel panel-primary" >
-						<div class="panel-heading">
-							<div class="panel-title">
-								Actualizaci&oacute;n de Reservas
-							</div><!-- ./panel-title -->
-						</div><!-- ./panel-heading -->
+		<div class="wrap">
+			<div class="container">
+				<?php include("navBar.php") ?>
+				<div class="row">
+	                <div class="col-md-4 col-md-offset-4">
+						<div class="panel panel-primary" >
+							<div class="panel-heading">
+								<div class="panel-title">
+									Actualizaci&oacute;n de Reservas
+								</div><!-- ./panel-title -->
+							</div><!-- ./panel-heading -->
 
-						<div class="panel-body" >
-							<form action="anularReservas.php" method="post">
-								<input type="submit" class="btn btn-default" value="Dar de Baja">
-							</form>
-							<br>
-							<form>
-								<input type="button" class="btn btn-default" value="Generar Informe de Gesti&oacute;n" onClick="parent.location='generarInformes.php'">
-							</form>
+							<div class="panel-body" >
+								<form action="anularReservas.php" method="post">
+									<input type="submit" class="btn btn-default btn-block" value="Dar de Baja">
+								</form>
+								<br>
+								<form>
+									<input type="button" class="btn btn-default btn-block" value="Generar Informe de Gesti&oacute;n" onClick="parent.location='generarInformes.php'">
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><!-- /.container -->
-		
+			</div><!-- /.container -->
+		</div><!-- /.wrap -->
 	<?php
 		/*function darDeBajaReservas(){
 			include("conectarBaseDeDatos.php"); 
