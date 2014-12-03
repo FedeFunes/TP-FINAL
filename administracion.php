@@ -32,8 +32,8 @@
 						</div><!-- ./panel-heading -->
 
 						<div class="panel-body" >
-							<form>
-								<input type="button" class="btn btn-default" value="Dar de Baja" onClick="parent.location='anularReservas.php'">
+							<form action="anularReservas.php" method="post">
+								<input type="submit" class="btn btn-default" value="Dar de Baja">
 							</form>
 							<br>
 							<form>
