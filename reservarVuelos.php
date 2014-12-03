@@ -5,7 +5,9 @@ include("conectarBaseDeDatos.php");
 
 // guardo los datos del form
 $nombre = $_POST["nombre"];
+$_SESSION['nombre'] = $nombre;
 $apellido = $_POST["apellido"];
+$_SESSION['apellido'] = $apellido;
 $email = $_POST["email"];
 $dni = $_POST["dni"];
 $fechaDeNacimiento = $_POST["fechaNacimiento"];
@@ -57,6 +59,7 @@ if($idVueloIda != null) { // si ya existe un vuelo para esta reserva, directamen
 	#############################################################	
 
 	$idVueloIda = mysqli_insert_id($conexion); // esta función retorna el último id auto-incremental registrado
+	$_SESSION['idVueloIda'] = $idVueloIda;
 
 	$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
 	VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloIda, '$categoria', '$estadoVueloIda')";
@@ -107,6 +110,7 @@ if($tipoViaje == "idaVuelta") {
 		#############################################################	
 
 		$idVueloVuelta = mysqli_insert_id($conexion); // esta función retorna el último id auto-incremental registrado
+		$_SESSION['idVueloVuelta'] = $idVueloVuelta;
 
 		$sql = "INSERT INTO reservas (nombre, apellido, dni, email, fecha_nacimiento, fecha_reserva, cod_vuelo, categoria, estado)
 		VALUES ('$nombre', '$apellido', $dni, '$email', '$fechaDeNacimiento', '$fechaDeReserva', $idVueloVuelta, '$categoria', '$estadoVueloVuelta')";

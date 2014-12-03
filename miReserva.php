@@ -87,42 +87,43 @@ include("conectarBaseDeDatos.php");
                     echo "</br>";
                     echo "fechaHorarioActual: ".$fechaHorarioAhora;
                     echo "</br>";
+                    echo "</br>";
                     ########################################################
                    
                     // en todos los botones de pagar dejo un espacio 
                     if ($_SESSION["estado"] == 1) {  // 1 es el id de "Pendiente de Pago"
 
                         if($fechaHorarioAhora < $fechaHorarioVuelo24hsAntes) {
-                            echo "<a href='formPagarReserva.php'><button class='btn btn-primary btn-lg'>Pagar Reserva</button></a> ";
+                            echo "<a href='formPagarReserva.php' class='btn btn-primary btn-lg' role='button'>Pagar Reserva</a> ";
                         } else {
-                            echo "<button class='btn btn-primary btn-lg' disabled='disabled'>Pagar Reserva</button> ";  
+                            echo "<a class='btn btn-primary btn-lg' disabled='disabled'>Pagar Reserva</a> ";  
                         }
                         
                     } elseif ($_SESSION["estado"] == 6) { // 6 es el id de "Habilitado"
                     
-                        echo "<a href='formPagarReserva.php'><button class='btn btn-primary btn-lg' role='button'>Pagar Reserva</button></a> ";
+                        echo "<a href='formPagarReserva.php' class='btn btn-primary btn-lg' role='button'>Pagar Reserva</a> ";
                     
                     } else {
 
-                        echo "<button class='btn btn-primary btn-lg' disabled='disabled'>Pagar Reserva</button> ";
+                        echo "<a class='btn btn-primary btn-lg' disabled='disabled'>Pagar Reserva</a> ";
                     }
 
 
                     if ($_SESSION["estado"] == 2) {  // 2 es el id de "Pendiente de Check-In"
 
                         if($fechaHorarioVuelo48hsAntes < $fechaHorarioAhora and $fechaHorarioAhora < $fechaHorarioVuelo2hsAntes) {
-                            echo "<a href='realizarCheckIn.php''><button class='btn btn-primary btn-lg'>Realizar Check-In</button></a>";
+                            echo "<a href='realizarCheckIn.php' class='btn btn-primary btn-lg' role='button'>Realizar Check-In</a>";
                         } else {
-                            echo "<button class='btn btn-primary btn-lg' disabled='disabled'>Realizar Check-In</button>";
+                            echo "<a class='btn btn-primary btn-lg' disabled='disabled'>Realizar Check-In</a>";
                         }
                         
                     } elseif ($_SESSION["estado"] == 6) { // 6 es el id de "Habilitado"
                     
-                        echo "<a href='realizarCheckIn.php''><button class='btn btn-primary btn-lg'>Realizar Check-In</button></a>";
+                        echo "<a href='realizarCheckIn.php' class='btn btn-primary btn-lg' role='button'>Realizar Check-In</a>";
                     
                     } else {
 
-                        echo "<button class='btn btn-primary btn-lg' disabled='disabled'>Realizar Check-In</button>";
+                        echo "<a class='btn btn-primary btn-lg' disabled='disabled'>Realizar Check-In</a>";
                     }
 
 
@@ -133,8 +134,8 @@ include("conectarBaseDeDatos.php");
                 <div class="col-md-10 col-md-offset-1">
                     </br>
                     <div class="alert alert-warning" role="alert">
-                        Recuerde que hasta las 24hs previas al vuelo puede realizar el pago sino la reserva sera cancelada.
-                        Y desde las 48hs previas hasta las 2hs previas al vuelo puede realizar el Check-In.        
+                        Recuerde que hasta las 24hs previas al vuelo puede realizar el pago sino la reserva sera anulada
+                        y desde las 48hs previas hasta las 2hs previas al vuelo puede realizar el Check-In.        
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.col-md-10 col-md-offset-1 -->         
