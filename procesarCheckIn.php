@@ -16,4 +16,10 @@ VALUES ($fila, $columna, ".$_SESSION['idReserva'].")";
 
 mysqli_query($conexion, $sql);
 
+// Actualizo el estado de la reserva
+$sql = "UPDATE reservas SET estado = 5 WHERE idReserva = ".$_SESSION["idReserva"].";"; // estado = 5 es el id de "Completada" 
+
+mysqli_query($conexion, $sql);
+
+header('location: resultadoRealizarCheckIn.php');
 ?>

@@ -37,6 +37,17 @@ $_SESSION["idVueloVuelta"] = null;
 $_SESSION["estadoVueloIda"] = null; 
 $_SESSION["estadoVueloVuelta"] = null; 
 
+// según el id de la categoría, creo y le seteo el nombre de la categoría en cuestión a $categoriaNombre
+switch ($categoria) {
+	case '1':
+		$categoriaNombre = "primera";
+		$_SESSION["categoriaNombre"] = "Primera"; 
+ 		break;
+ 	case '2':
+		$categoriaNombre = "economy";
+		$_SESSION["categoriaNombre"] = "Economy"; 
+ 		break;
+ }
 
 // según $diaIda creo la variable $vuelo_dia para usarla en la consulta posterior
 switch ($diaIda) {
@@ -65,21 +76,22 @@ switch ($diaIda) {
 
 
 // Consulto en la tabla-programacionvuelos si existe el recorrido ($ciudadOrigen-$ciudadDestino) con $fechaIda 
-// y si en el avion que realiza el vuelo existe esa $categoria 
+// y si en el avion que realiza el vuelo existe esa $categoriaNombre
 $query = "SELECT * FROM programacionvuelos
 INNER JOIN aviones
 ON programacionvuelos.cod_avion = aviones.idAvion
 WHERE cod_aeropuerto_origen = $ciudadOrigen
 AND cod_aeropuerto_destino = $ciudadDestino
 AND $vuelo_dia = 1
-AND $categoria != 0;";
+AND $categoriaNombre != 0;";
+
 
 $result = mysqli_query($conexion,$query);
 // mysqli_num_rows() retorna el número de filas que devuelve la consulta
 $cantDeFilasDevueltas = mysqli_num_rows($result); 
 
 if ($cantDeFilasDevueltas == 0) { // en caso de que no exista 
-		
+
 	$_SESSION["resultadoBuscarVuelo"] = "No existe este recorrido con fecha ida: $fechaIda o no existe la categoria que eligió en el avión que realiza este vuelo.";
 	header("location: vueloNoDisponible.php"); 
 	die(); // Corto la ejecución del php
@@ -115,16 +127,6 @@ if ($cantDeFilasDevueltas == 0) { // en caso de que no exista
 		$result = mysqli_query($conexion,$query);					
 		
 		$cantidadDeReservasHechas = mysqli_num_rows($result);
-
-		// según el id de la categoría, creo y le asigno el nombre de la categoría en cuestión a $categoriaNombre para realizar la siguiente consulta
-		switch ($categoria) {
-			case '1':
-				$categoriaNombre = "primera";
-		 		break;
-		 	case '2':
-				$categoriaNombre = "economy";
-		 		break;
-		 }
 
 		// Consulto cuál es el limite de reservas en esa categoría en el avión que va a realizar el vuelo
 		$query = "SELECT $categoriaNombre FROM programacionvuelos
@@ -163,7 +165,7 @@ if($_SESSION["estadoVueloIda"] == null) {
 } 
 
 
-if($tipoViaje = "idaVuelta") {
+if($tipoViaje == "idaVuelta") {
 
 	// según $diaIda creo la variable $vuelo_dia para usarla en la consulta posterior
 	switch ($diaVuelta) {
@@ -192,14 +194,14 @@ if($tipoViaje = "idaVuelta") {
 
 
 	// Consulto en la tabla-programacionvuelos si existe el recorrido ($ciudadOrigen-$ciudadDestino) con $fechaVuelta 
-	// y si en el avion que realiza el vuelo existe esa $categoria 
+	// y si en el avion que realiza el vuelo existe esa $categoriaNombre
 	$query = "SELECT * FROM programacionvuelos
 	INNER JOIN aviones
 	ON programacionvuelos.cod_avion = aviones.idAvion
 	WHERE cod_aeropuerto_origen = $ciudadOrigen
 	AND cod_aeropuerto_destino = $ciudadDestino
 	AND $vuelo_dia = 1
-	AND $categoria != 0;";
+	AND $categoriaNombre != 0;";
 
 	$result = mysqli_query($conexion,$query);
 	// mysqli_num_rows() retorna el número de filas que devuelve la consulta
@@ -243,18 +245,9 @@ if($tipoViaje = "idaVuelta") {
 			
 			$cantidadDeReservasHechas = mysqli_num_rows($result);
 
-			// según el id de la categoría, creo y le asigno el nombre de la categoría en cuestión a $categoriaNombre para realizar la siguiente consulta
-			switch ($categoria) {
-				case '1':
-					$categoriaNombre = "primera";
-			 		break;
-			 	case '2':
-					$categoriaNombre = "economy";
-			 		break;
-			 }
 
 			// Consulto cuál es el limite de reservas en esa categoría en el avión que va a realizar el vuelo
-			$query = "SELECT $categoria FROM programacionvuelos
+			$query = "SELECT $categoriaNombre FROM programacionvuelos
 			INNER JOIN aviones
 			ON programacionvuelos.cod_avion = aviones.idAvion
 			WHERE idProgramacionVuelo = ".$rowProgramacionVuelos['idProgramacionVuelo'].";";

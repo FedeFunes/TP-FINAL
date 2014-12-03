@@ -32,7 +32,6 @@
 					      	 	<li><a href="index.php">Inicio</a></li>
 						        <li><a href="reservas.php">Reservas</a></li>
 						        <li><a href="grillaVuelos.php">Vuelos</a></li>
-						        <li><a href="contacto.php">Contacto</a></li>
 								<?php								
 									if(isset($_SESSION['usuario'])) { // and $_SESSION['usuario'] !='' // no es necesario
 										echo '<li><a href="administracion.php"><span>Administraci&oacute;n</span></a></li>';

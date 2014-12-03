@@ -1,46 +1,6 @@
 <?php
 session_start();
 include("conectarBaseDeDatos.php");
-
-/*#CÓDIGO BUGUEADO. NO INDISPENSABLE#############################################
-
-switch ($_SESSION["categoria"]) {
-    case 'economy':
-        $precio_categoria = 'precio_economy';
-        break;
-    case 'primera':
-        $precio_categoria = 'precio_primera';
-        break;
-}
-
-$query = "SELECT P1.descripcion as provinciaOrigen, C1.descripcion as ciudadOrigen,
-P2.descripcion as provinciaDestino, C2.descripcion as ciudadDestino,
-V.fecha_vuelo as fechaVuelo, PV.$precio_categoria as precioCategoria,
-R.categoria as categoria, R.estado as estado, R.cod_vuelo as codVuelo, R.categoria as categoria
-FROM reservas R JOIN 
-vuelos V ON R.cod_vuelo = V.idVuelo JOIN 
-programacionvuelos PV ON V.cod_programacion_vuelo = PV.idProgramacionVuelo JOIN 
-aeropuertos A1 ON A1.idAeropuerto = PV.cod_aeropuerto_origen JOIN 
-aeropuertos A2 ON A2.idAeropuerto = PV.cod_aeropuerto_destino JOIN 
-ciudades C1 ON C1.idCiudad = A1.cod_ciudad JOIN 
-ciudades C2 ON C2.idCiudad = A2.cod_ciudad JOIN 
-provincias P1 ON C1.cod_provincia = P1.idProvincia JOIN
-provincias P2 ON C2.cod_provincia = P2.idProvincia
-WHERE R.idReserva = ".$_SESSION["nroReserva"].";"; 
-
-$result = mysqli_query($conexion,$query);
-$reserva = mysqli_fetch_array($result); 
-
-$_SESSION["provinciaOrigen"] = $reserva["provinciaOrigen"];
-$_SESSION["codVuelo"] = $reserva["codVuelo"];
-$_SESSION["ciudadOrigen"] = $reserva["ciudadOrigen"];
-$_SESSION["provinciaDestino"] = $reserva["provinciaDestino"]; 
-$_SESSION["ciudadDestino"] = $reserva["ciudadDestino"];
-$_SESSION["categoria"] = $reserva["categoria"];
-$_SESSION["precioCategoria"] = $reserva["precioCategoria"];
-$_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
-
-###############################################################################*/ 
 ?>
 
 <!DOCTYPE html>
@@ -70,79 +30,111 @@ $_SESSION["fechaVuelo"] = $reserva["fechaVuelo"];
                             <tr>
                                 <th>Nro Reserva</th>
                                 <th>DNI Pasajero</th>
+                                <th>Origen</th>
+                                <th>Destino</th>                                
                                 <th>Id Vuelo</th>
                                 <th>Categor&iacutea</th>
+                                <th>Precio</th>
                                 <th>Estado</th>
-                                
-                                <!-- CODIGO BUGUEADO. NO INDISPENSABLE.
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Precio (<?php echo $_SESSION["categoria"]; ?>)</th>
-                                <th>Fecha Vuelo</th> 
-                                -->
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th><?php echo $_SESSION["idReserva"]; ?></th>
                                 <th><?php echo $_SESSION["dniPasajero"]; ?></th>
+                                <th><?php echo $_SESSION["provinciaOrigen"]." - </br>".$_SESSION["ciudadOrigen"];?></th>
+                                <th><?php echo $_SESSION["provinciaDestino"]." - </br>".$_SESSION["ciudadDestino"];?></th>
                                 <th><?php echo $_SESSION["codVuelo"]; ?></th>
-                                <th><?php echo $_SESSION["categoria"]; ?></th>
-                                <th><?php echo $_SESSION["estado"]; ?></th>
-                                
-                                <!-- CODIGO BUGUEADO. NO INDISPENSABLE.
-                                <td><?php echo $_SESSION["provinciaOrigen"]." - ".$_SESSION["ciudadOrigen"] ?></td>
-                                <td><?php echo $_SESSION["provinciaDestino"]." - ".$_SESSION["ciudadDestino"] ?></td>
-                                <td><?php echo "$".$_SESSION["precioCategoria"]?></td>
-                                <td><?php echo $_SESSION["fechaVuelo"]?></td> 
-                                -->
+                                <th><?php echo $_SESSION["categoriaNombre"]; ?></th>
+                                <th><?php echo $_SESSION["precioCategoria"]; ?></th>
+                                <th><?php echo $_SESSION["estadoNombre"]; ?></th>
                             </tr>
                         </tbody>   
                     </table>
+                    
                     <?php
+
+                    $fechaHorarioVuelo = $_SESSION['fechaVuelo']." ".$_SESSION['horarioPartida']; // cocateno la fecha y el horario 
+                    date_default_timezone_set("America/Argentina/Buenos_Aires"); // seteo la zona horaria
+                    $fechaHorarioActual = date("Y-m-d H:i:s"); // obtengo la hora actual en un string 
+
+                    $fechaHorarioVuelo2hsAntes = strtotime("-2 hours", strtotime($fechaHorarioVuelo)); // le resto 2hs 
+                    $fechaHorarioVuelo24hsAntes = strtotime("-24 hours", strtotime($fechaHorarioVuelo)); // le resto 48hs
+                    $fechaHorarioVuelo48hsAntes = strtotime("-48 hours", strtotime($fechaHorarioVuelo)); // le resto 48hs
+                    $fechaHorarioAhora = strtotime($fechaHorarioActual);
+                    
+                    #TESTING################################################                        
+                    echo "</br>";                        
+                    echo "<strong>Fecha y horario actual:</strong> ".date("Y-m-d / H:i:s",$fechaHorarioAhora);
+                    echo "</br>";
+                    echo "<strong>Fecha y horario del despuegue:</strong> ".$_SESSION['fechaVuelo']." / ".$_SESSION['horarioPartida'];
+                    echo "</br>";
+                    echo "<strong>Fecha y horario 2hs antes del despegue:</strong> ".date("Y-m-d / H:i:s",$fechaHorarioVuelo2hsAntes);                        
+                    echo "</br>";
+                    echo "<strong>Fecha y horario 24hs antes del despegue:</strong> ".date("Y-m-d / H:i:s",$fechaHorarioVuelo24hsAntes);
+                    echo "</br>";
+                    echo "<strong>Fecha y horario 48hs antes del despegue:</strong> ".date("Y-m-d / H:i:s",$fechaHorarioVuelo48hsAntes);
+                    echo "</br>";
                    
-                    if ($_SESSION["estado"] == 1) { // 1 es el id de "Pendiente de Pago"
-                       
-                        #HASTA FECHA-HORARIO PUEDE REALIZAR EL PAGO?
+                    echo "</br>";
+                    echo "En formatos timestamp:";
+                    echo "</br>";
+                    echo "fechaHorarioVuelo2hsAntes: ".$fechaHorarioVuelo2hsAntes;                        
+                    echo "</br>";
+                    echo "fechaHorarioVuelo24hsAntes: ".$fechaHorarioVuelo24hsAntes;
+                    echo "</br>";
+                    echo "fechaHorarioVuelo48hsAntes: ".$fechaHorarioVuelo48hsAntes;
+                    echo "</br>";
+                    echo "fechaHorarioActual: ".$fechaHorarioAhora;
+                    echo "</br>";
+                    ########################################################
+                   
+                    // en todos los botones de pagar dejo un espacio 
+                    if ($_SESSION["estado"] == 1) {  // 1 es el id de "Pendiente de Pago"
 
-                        echo "<a href='formPagarReserva.php'><button class='btn btn-link'> >> Pagar Reserva</button></a></br>";
-                        echo "<button class='btn btn-link' disabled='disabled'> >> Realizar Check-In</button>";
+                        if($fechaHorarioAhora < $fechaHorarioVuelo24hsAntes) {
+                            echo "<a href='formPagarReserva.php'><button class='btn btn-primary btn-lg'>Pagar Reserva</button></a> ";
+                        } else {
+                            echo "<button class='btn btn-primary btn-lg' disabled='disabled'>Pagar Reserva</button> ";  
+                        }
+                        
+                    } elseif ($_SESSION["estado"] == 6) { // 6 es el id de "Habilitado"
+                    
+                        echo "<a href='formPagarReserva.php'><button class='btn btn-primary btn-lg' role='button'>Pagar Reserva</button></a> ";
+                    
+                    } else {
+
+                        echo "<button class='btn btn-primary btn-lg' disabled='disabled'>Pagar Reserva</button> ";
                     }
 
-                    if ($_SESSION["estado"] == 2) { // 2 es el id de "Pendiente de Check-In"
+
+                    if ($_SESSION["estado"] == 2) {  // 2 es el id de "Pendiente de Check-In"
+
+                        if($fechaHorarioVuelo48hsAntes < $fechaHorarioAhora and $fechaHorarioAhora < $fechaHorarioVuelo2hsAntes) {
+                            echo "<a href='realizarCheckIn.php''><button class='btn btn-primary btn-lg'>Realizar Check-In</button></a>";
+                        } else {
+                            echo "<button class='btn btn-primary btn-lg' disabled='disabled'>Realizar Check-In</button>";
+                        }
                         
-                        //Consulto la FECHA y el HORARIO del VUELO
-                        $query = "SELECT fecha_vuelo, hora_partida FROM reservas R 
-                        INNER JOIN vuelos V ON R.cod_vuelo = V.idVuelo 
-                        INNER JOIN programacionvuelos PV ON V.cod_programacion_vuelo = PV.idProgramacionVuelo
-                        WHERE idReserva =".$_SESSION["idReserva"].";";
+                    } elseif ($_SESSION["estado"] == 6) { // 6 es el id de "Habilitado"
+                    
+                        echo "<a href='realizarCheckIn.php''><button class='btn btn-primary btn-lg'>Realizar Check-In</button></a>";
+                    
+                    } else {
 
-                        $result = mysqli_query($conexion,$query);
-                        $row = mysqli_fetch_array($result);
-                        
-
-                        $fechaHorarioVuelo = "".$row['fecha_vuelo']." ".$row['hora_partida'].""; // cocateno la fecha y el horario 
-                        date_default_timezone_set("America/Argentina/Buenos_Aires"); // seteo la zona horaria
-                        $fechaHorarioActual = date("Y-m-d H:i:s"); // obtengo la hora actual en un string 
-
-                        $fechaHorarioVuelo2hsAntes = strtotime("-2 hours", $fechaHorarioVuelo); // le resto 2hs 
-                        $fechaHorarioVuelo48hsAntes = strtotime("-48 hours", $fechaHorarioVuelo); // le resto 48hs
-
-                        if($fechaHorarioVuelo2hsAntes > strtotime($fechaHorarioActual) and strtotime($fechaHorarioActual) < $fechaHorarioVuelo48hsAntes) {
-                            echo "<button class='btn btn-link' disabled='disabled'> >> Pagar Reserva (ya est&aacute paga)</button>";
-                            echo "</br>";
-                            echo "<a href='#''><button class='btn btn-link'> >> Realizar Check-In</button></a>";
-                        } 
+                        echo "<button class='btn btn-primary btn-lg' disabled='disabled'>Realizar Check-In</button>";
                     }
+
 
                     ?>    
                 </div><!-- /.row -->
             </div><!-- /.col-md-10 col-md-offset-1 --> 
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
+                    </br>
                     <div class="alert alert-warning" role="alert">
-                        Recuerde que hasta 48hs previas al vuelo puede realizar el pago sino la reserva sera cancelada.
-                        Y reci&eacuten dentro de las 48hs previas al vuelo puede realizar el Check-In.        
+                        Recuerde que hasta las 24hs previas al vuelo puede realizar el pago sino la reserva sera cancelada.
+                        Y desde las 48hs previas hasta las 2hs previas al vuelo puede realizar el Check-In.        
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.col-md-10 col-md-offset-1 -->         
