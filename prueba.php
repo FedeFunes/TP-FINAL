@@ -1,11 +1,8 @@
 <?php
-session_start();
-include("conectarBaseDeDatos.php");
+include "phpqrcode/qrlib.php";
 
-for ($x=1; $x<=8; $x++) {
-	$sql = "INSERT INTO reservas (cod_vuelo, categoria)
-	VALUES (8, 'primera')";
+$file = 'jr-qrcode.png'; 
+$data = 'http://joserobinson.com/'; 
 
-	mysqli_query($conexion, $sql);
-} 
+QRcode::png($file);
 ?>

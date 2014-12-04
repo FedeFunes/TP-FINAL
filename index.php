@@ -232,9 +232,9 @@
 										<div class="col-xs-6 col-md-4">
 											<div class="thumbnail">
 												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
+													<img src="imgs/salta.jpg" alt="Image" class="img-responsive">
+													<h3>Viaja a Salta</h3>
+													<p>por $2100</p>
 													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
 												</div>
 												<!--/caption-->
@@ -246,9 +246,9 @@
 										<div class="col-xs-6 col-md-4">
 											<div class="thumbnail">
 												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
+													<img src="imgs/chubut.jpg" alt="Image" class="img-responsive">
+													<h3>Viaja a Chubut</h3>
+													<p>por $2500</p>
 													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
 												</div>
 												<!--/caption-->
@@ -260,9 +260,9 @@
 										<div class="col-xs-6 col-md-4">
 											<div class="thumbnail">
 												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
+													<img src="imgs/tierradelfuego.jpg" alt="Image" class="img-responsive">
+													<h3>Viaja a Tierra del Fuego</h3>
+													<p>por $3000</p>
 													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
 												</div>
 												<!--/caption-->
@@ -280,9 +280,9 @@
 										<div class="col-xs-6 col-md-4">
 											<div class="thumbnail">
 												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
+													<img src="imgs/cordoba.jpg" alt="Image" class="img-responsive">
+													<h3>Viaja a Cordoba</h3>
+													<p>por $1599</p>
 													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
 												</div>
 												<!--/caption-->
@@ -294,9 +294,9 @@
 										<div class="col-xs-6 col-md-4">
 											<div class="thumbnail">
 												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
+													<img src="imgs/tucuman.jpg" alt="Image" class="img-responsive">
+													<h3>Viaja a Tucuman</h3>
+													<p>por $2200</p>
 													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
 												</div>
 												<!--/caption-->
@@ -308,9 +308,9 @@
 										<div class="col-xs-6 col-md-4">
 											<div class="thumbnail">
 												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
+													<img src="imgs/jujuy.jpg" alt="Image" class="img-responsive">
+													<h3>Viaja a Jujuy</h3>
+													<p>por $3500</p>
 													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
 												</div>
 												<!--/caption-->
@@ -318,53 +318,6 @@
 											<!--/thumbnail-->
 										</div>
 										<!--/col-sm-3 col-xs-6--> 
-									</div>
-									<!--/row-->
-								</div>
-								<!--/item-->
-								<div class="item">
-									<div class="row">
-										<div class="col-xs-6 col-md-4">
-											<div class="thumbnail">
-												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
-													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
-												</div>
-												<!--/caption-->
-											</div>
-											<!--/thumbnail-->
-										</div>
-										<!--/col-xs-6 col-md-4-->
-										
-										<div class="col-xs-6 col-md-4">
-											<div class="thumbnail">
-												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
-													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
-												</div>
-												<!--/caption-->
-											</div>
-											<!--/thumbnail-->
-										</div>
-										<!--/col-xs-6 col-md-4-->
-
-										<div class="col-xs-6 col-md-4">
-											<div class="thumbnail">
-												<div class="caption">
-													<img src="imgs/playa.jpg" alt="Image" class="img-responsive">
-													<h3>Canc&uacute;n</h3>
-													<p>$ 10000</p>
-													<a href="#" class="btn btn-primary" role="button">Ver detalle</a>
-												</div>
-												<!--/caption-->
-											</div>
-											<!--/thumbnail-->
-										</div>
-										<!--/col-xs-6 col-md-4--> 
 									</div>
 									<!--/row-->
 								</div>
