@@ -45,7 +45,7 @@
 										
 										$resultQueryCantidadPasajesVendidos = mysqli_query($conexion, $queryCantidadPasajesVendidos);
 										$cantidadPasajesVendidos = mysqli_num_rows($resultQueryCantidadPasajesVendidos);
-										$_SESSION['cantidadPasajesVendidos'] = $cantidadPasajesVendidos;
+										$_SESSION['cantidadVendidas'] = $cantidadPasajesVendidos;
 										
 										echo '<table class="table table-hover">
 													<th>Pasajes Vendidos:&nbsp;&nbsp;' . $cantidadPasajesVendidos . '</th>
@@ -59,6 +59,7 @@
 										
 										$resultQueryCantidadEconomy = mysqli_query($conexion, $queryCantidadEconomy);
 										$cantidadEconomy = mysqli_num_rows($resultQueryCantidadEconomy);
+										$_SESSION['cantidadEconomy'] = $cantidadEconomy;
 										
 										echo '<table class="table table-hover">
 													<th>Pasajes Vendidos Economy:&nbsp;&nbsp;' . $cantidadEconomy . '</th>
@@ -80,6 +81,7 @@
 										
 										$resultQueryCantidadPrimera = mysqli_query($conexion, $queryCantidadPrimera);
 										$cantidadPrimera = mysqli_num_rows($resultQueryCantidadPrimera);
+										$_SESSION['cantidadPrimera'] = $cantidadPrimera;
 										
 										echo '<table class="table table-hover">
 													<th>Pasajes Vendidos Primera:&nbsp;&nbsp;' . $cantidadPrimera . '</th>
@@ -101,7 +103,18 @@
 														cargarAviones();
 										echo 	'</select><br>';
 										
-										echo '<select class="form-control" name="ciudades" id="selectDestinoEconomy" onChange="mostrarValorEconomy(this.value);">												  	
+										/*echo '<table class="table table-hover">
+													<th>Ocupaci&oacute;n Por Avi&oacute;n y Destino:&nbsp;&nbsp;<span id="valorAvionPorDestino"></span></th>
+												</table>
+												<select class="form-control" name="avionesPorDestino" id="selectAvionesDestinos" onChange="mostrarValorAvionesDestinos(this.value)">												  	
+													<option value="" selected>Seleccionar Avi&oacute;n...</option>';
+														cargarAviones();
+										echo 	'</select><br>';*/
+										
+										echo '<table class="table table-hover">
+													<th>Ocupaci&oacute;n Por Avi&oacute;n y Destino:&nbsp;&nbsp;<span id="valorAvionPorDestino"></span></th>
+												</table>
+												<select class="form-control" name="ciudadDestinos" id="selectCiudadesDestinos" onChange="mostrarValorAvionesPorDestino(selectAviones.value,this.value);">												  	
 													<option value="" selected>Seleccionar Ciudad...</option>';
 														cargarCiudades();
 										echo		'</select><br>';
@@ -113,10 +126,12 @@
 										
 										$resultQueryReservasCaidas = mysqli_query($conexion, $queryReservasCaidas);
 										$reservasCaidas = mysqli_num_rows($resultQueryReservasCaidas);
+										$_SESSION['reservasCaidas'] = $reservasCaidas;
 										
 										echo '<table class="table table-hover">
 													<th>Reservas Caidas:&nbsp;&nbsp;' . $reservasCaidas . '</th>
 												</table>';
+										echo '<hr style="margin-bottom:-15px">'
 									?>
 								
 									<?php
@@ -149,10 +164,13 @@
 					</div><!-- ./panel panel-primary -->
 				</div><!-- ./col-md-6 col-md-offset-3 -->
 			</div><!-- ./row -->
-			
+					
 			<div align="center">
-				<img src="graficos.php?pasajesVendidos=$cantidadPasajesVendidos&time=\'.now()." /> 
+				<img src="graficosBarra.php?time=\'.now()." /> 
+				<img src="graficosTorta.php?idAvion=' . idAvion . '&time=\'.now()." />
+				<img src="graficos.php?pasajesVendidos=$cantidadPasajesVendidos&time=\'.now()." />
 			</div>
+
 			<?php include("footer.php") ?>  
 				  
 		</div><!-- ./container -->
