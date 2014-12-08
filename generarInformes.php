@@ -27,6 +27,7 @@
 			<?php include("libreriasJS.php"); ?>
 			<div class="row">
                 <div class="col-md-6 col-md-offset-3">
+					
 					<div class="panel panel-primary" >
 						<div class="panel-heading">
 							<div class="panel-title">
@@ -103,14 +104,6 @@
 														cargarAviones();
 										echo 	'</select><br>';
 										
-										/*echo '<table class="table table-hover">
-													<th>Ocupaci&oacute;n Por Avi&oacute;n y Destino:&nbsp;&nbsp;<span id="valorAvionPorDestino"></span></th>
-												</table>
-												<select class="form-control" name="avionesPorDestino" id="selectAvionesDestinos" onChange="mostrarValorAvionesDestinos(this.value)">												  	
-													<option value="" selected>Seleccionar Avi&oacute;n...</option>';
-														cargarAviones();
-										echo 	'</select><br>';*/
-										
 										echo '<table class="table table-hover">
 													<th>Ocupaci&oacute;n Por Avi&oacute;n y Destino:&nbsp;&nbsp;<span id="valorAvionPorDestino"></span></th>
 												</table>
@@ -165,11 +158,33 @@
 				</div><!-- ./col-md-6 col-md-offset-3 -->
 			</div><!-- ./row -->
 					
-			<div align="center">
-				<img src="graficosBarra.php?time=\'.now()." /> 
-				<img src="graficosTorta.php?idAvion=' . idAvion . '&time=\'.now()." />
-				<img src="graficos.php?pasajesVendidos=$cantidadPasajesVendidos&time=\'.now()." />
-			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div align="center">
+						<h4>Cantidad Total de Reservas - Cantidad Reservas Economy - Cantidad Reservas Primera - Cantidad Reservas Caidas</h4>
+
+						<img src="graficosBarra.php" />
+				
+						<?php
+						echo '<h4>Cantidad de pasajes vendidos por categoría y por destino</h4>';
+						echo '<select class="form-control" onChange="mostrarGraficoCategoriaYDestino(this.value);">												  	
+								<option value="" selected>Seleccionar Ciudad...</option>';
+									cargarCiudades();
+						echo '</select><br>';
+						?>
+						<div id="graficoCategoriaYDestino"></div>
+
+						<?php
+						echo '<h4>Ocupación por avión y destino</h4>';
+						echo '<select class="form-control" onChange="mostrarGraficoAvionYDestino(this.value);">												  	
+								<option value="" selected>Seleccionar Ciudad...</option>';
+									cargarCiudades();
+						echo '</select><br>';
+						?>
+						<div id="graficoAvionYDestino"></div>
+					</div>
+				</div><!-- /.col-md-6 col-md-offset-3 -->
+			</div><!-- /.row -->			
 
 			<?php include("footer.php") ?>  
 				  

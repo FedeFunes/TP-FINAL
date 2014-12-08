@@ -17,8 +17,7 @@
 	$ancho = 580; $alto = 500;
 	//crear la instancia del objeto graph
 	$graph = new Graph($ancho, $alto, 'auto');
-	// titulo de grafico
-	$graph->title->Set("Gráficos - Informes de Gestión");
+	// $graph->xaxis->title->Set("Días");
 	$graph->title->SetFont(FF_ARIAL, FS_BOLD, 28);
 	//especificar la escala
 	$cant = "Cantidad";

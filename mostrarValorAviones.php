@@ -1,5 +1,5 @@
 <?php
-	
+
 	include("conectarBaseDeDatos.php"); 
 
 	$idAvion=$_REQUEST["idAvion"]; // OBTENGO LA VARIABLE idAvion

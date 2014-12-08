@@ -222,3 +222,197 @@ function validarFormPagarReserva() {
         errorTarjeta.style.display = "none";
     }
 }
+
+function mostrarValorEconomy(idCiudad) {
+     var xmlhttp;    
+
+    // EN CASO DE QUE idProvincia NO TENGA VALOR
+
+    if (idCiudad == "") {
+        document.getElementById("valorEconomy").innerHTML="";
+        return;
+    }
+
+   // CREA EL OBJETO XMLHttpRequest SEGúN EL NAVEGADOR
+
+    if (window.XMLHttpRequest) {
+       // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // VERIFICA onreadystatechange
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("valorEconomy").innerHTML = xmlhttp.responseText;  // LA RESPUESTA VA IR DENTRO DEL ELEMENTO INDICADO
+        }
+    }
+
+    xmlhttp.open("GET","mostrarValorEconomy.php?idCiudad="+idCiudad,true); //LLAMO AL PHP Y LE ENVÍO LA VARIABLE idProvincia
+    xmlhttp.send();
+}
+
+function mostrarValorPrimera(idCiudad) {
+     var xmlhttp;    
+
+    // EN CASO DE QUE idProvincia NO TENGA VALOR
+
+    if (idCiudad == "") {
+        document.getElementById("valorPrimera").innerHTML="";
+        return;
+    }
+
+   // CREA EL OBJETO XMLHttpRequest SEGúN EL NAVEGADOR
+
+    if (window.XMLHttpRequest) {
+       // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // VERIFICA onreadystatechange
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("valorPrimera").innerHTML = xmlhttp.responseText;  // LA RESPUESTA VA IR DENTRO DEL ELEMENTO INDICADO
+        }
+    }
+
+    xmlhttp.open("GET","mostrarValorPrimera.php?idCiudad="+idCiudad,true); //LLAMO AL PHP Y LE ENVÍO LA VARIABLE idProvincia
+    xmlhttp.send();
+}
+
+function mostrarValorAviones(idAvion) {
+     var xmlhttp;    
+
+    // EN CASO DE QUE idProvincia NO TENGA VALOR
+
+    if (idAvion == "") {
+        document.getElementById("valorAvion").innerHTML="";
+        return;
+    }
+
+   // CREA EL OBJETO XMLHttpRequest SEGúN EL NAVEGADOR
+
+    if (window.XMLHttpRequest) {
+       // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // VERIFICA onreadystatechange
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("valorAvion").innerHTML = xmlhttp.responseText;  // LA RESPUESTA VA IR DENTRO DEL ELEMENTO INDICADO
+        }
+    }
+
+    xmlhttp.open("GET","mostrarValorAviones.php?idAvion="+idAvion,true); //LLAMO AL PHP Y LE ENVÍO LA VARIABLE idProvincia
+    xmlhttp.send();
+}
+
+function mostrarGraficoCategoriaYDestino(idCiudad) {
+     var xmlhttp;    
+
+    // EN CASO DE QUE idProvincia NO TENGA VALOR
+
+    if (idCiudad == "") {
+        document.getElementById("graficoCategoriaYDestino").innerHTML="";
+        return;
+    }
+
+   // CREA EL OBJETO XMLHttpRequest SEGúN EL NAVEGADOR
+
+    if (window.XMLHttpRequest) {
+       // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // VERIFICA onreadystatechange
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("graficoCategoriaYDestino").innerHTML = xmlhttp.responseText;  // LA RESPUESTA VA IR DENTRO DEL ELEMENTO INDICADO
+        }
+    }
+
+    xmlhttp.open("GET","imgGraficoCategoriaYDestino.php?idCiudad="+idCiudad,true); //LLAMO AL PHP Y LE ENVÍO LA VARIABLE idProvincia
+    xmlhttp.send();
+}
+
+function mostrarGraficoAvionYDestino(idCiudad) {
+     var xmlhttp;    
+
+    // EN CASO DE QUE idProvincia NO TENGA VALOR
+
+    if (idCiudad == "") {
+        document.getElementById("graficoAvionYDestino").innerHTML="";
+        return;
+    }
+
+   // CREA EL OBJETO XMLHttpRequest SEGúN EL NAVEGADOR
+
+    if (window.XMLHttpRequest) {
+       // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // VERIFICA onreadystatechange
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("graficoAvionYDestino").innerHTML = xmlhttp.responseText;  // LA RESPUESTA VA IR DENTRO DEL ELEMENTO INDICADO
+        }
+    }
+
+    xmlhttp.open("GET","imgGraficoAvionYDestino.php?idCiudad="+idCiudad,true); //LLAMO AL PHP Y LE ENVÍO LA VARIABLE idProvincia
+    xmlhttp.send();
+}
+
+function mostrarValorAvionesPorDestino(idAvion,idCiudad) {
+    var xmlhttp;    
+
+    var idAvion = document.getElementById("selectAviones").value; // por las dudas
+
+    // EN CASO DE QUE idProvincia NO TENGA VALOR
+
+    if (idCiudad == "") {
+        document.getElementById("valorAvionPorDestino").innerHTML="";
+        return;
+    }
+
+   // CREA EL OBJETO XMLHttpRequest SEGúN EL NAVEGADOR
+
+    if (window.XMLHttpRequest) {
+       // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // VERIFICA onreadystatechange
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("valorAvionPorDestino").innerHTML = xmlhttp.responseText;  // LA RESPUESTA VA IR DENTRO DEL ELEMENTO INDICADO
+        }
+    }
+
+    xmlhttp.open("GET","mostrarValorAvionesDestinos.php?idCiudad="+idCiudad+"&idAvion="+idAvion+"",true); //LLAMO AL PHP Y LE ENVÍO LA VARIABLE idProvincia
+    xmlhttp.send();
+}

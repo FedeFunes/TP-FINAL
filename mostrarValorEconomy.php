@@ -12,7 +12,8 @@
 					ciudades C ON A.cod_ciudad = C.idCiudad
 				WHERE R.estado IN (2, 5)
 				AND R.categoria = 2
-				AND C.idCiudad = $idCiudad";
+				AND C.idCiudad = $idCiudad
+				AND V.tipo_viaje = '1'";
 
 	$result = mysqli_query($conexion,$query);
 	$cantidadEconomy = mysqli_num_rows($result);
