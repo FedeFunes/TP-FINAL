@@ -175,7 +175,7 @@
 						<div id="graficoCategoriaYDestino"></div>
 
 						<?php
-						echo '<h4>Ocupación por avión y destino</h4>';
+						echo '<h4>Ocupación por avión y destino (reservas completadas)</h4>';
 						echo '<select class="form-control" onChange="mostrarGraficoAvionYDestino(this.value);">												  	
 								<option value="" selected>Seleccionar Ciudad...</option>';
 									cargarCiudades();

@@ -9,11 +9,6 @@
 	$resultadoAvionTipo2=$_REQUEST["resultadoAvionTipo2"];
 	$resultadoAvionTipo3=$_REQUEST["resultadoAvionTipo3"];
 	$resultadoAvionTipo4=$_REQUEST["resultadoAvionTipo4"];
-
-	$resultadoAvionTipo1=1; 
-	$resultadoAvionTipo2=2;
-	$resultadoAvionTipo3=1;
-	$resultadoAvionTipo4=1;
 	
 	$datos = array($resultadoAvionTipo1,$resultadoAvionTipo2,$resultadoAvionTipo3,$resultadoAvionTipo4);
 	
