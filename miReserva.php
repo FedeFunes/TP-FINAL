@@ -64,6 +64,7 @@ include("conectarBaseDeDatos.php");
                     $fechaHorarioAhora = strtotime($fechaHorarioActual);
                     
                     #TESTING################################################                        
+                    /* 
                     echo "</br>";                        
                     echo "<strong>Fecha y horario actual:</strong> ".date("Y-m-d / H:i:s",$fechaHorarioAhora);
                     echo "</br>";
@@ -88,6 +89,7 @@ include("conectarBaseDeDatos.php");
                     echo "fechaHorarioActual: ".$fechaHorarioAhora;
                     echo "</br>";
                     echo "</br>";
+                    */
                     ########################################################
                    
                     // en todos los botones de pagar dejo un espacio 
