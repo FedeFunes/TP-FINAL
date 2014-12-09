@@ -73,7 +73,7 @@
 													  	<option value="" disabled selected>Provincia</option>
 														
 											 			<?php
-														$query = "SELECT * FROM provincias";
+														$query = "SELECT * FROM provincias ORDER BY descripcion";
 														$result = mysqli_query($conexion,$query);
 												
 														while($row = mysqli_fetch_array($result)) {
@@ -119,7 +119,7 @@
 					  								  	<option value="" disabled selected>Provincia</option>
 					  								  	
 					  								  	<?php
-														$query = "SELECT * FROM provincias";
+														$query = "SELECT * FROM provincias ORDER BY descripcion";
 														$result = mysqli_query($conexion,$query);
 												
 														while($row = mysqli_fetch_array($result)) {
