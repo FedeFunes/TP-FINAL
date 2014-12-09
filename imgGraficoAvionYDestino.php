@@ -59,10 +59,10 @@
 	// mysqli_num_rows() retorna el número de filas que devuelve la consulta
 	$resultadoAvionTipo4 = mysqli_num_rows($result); 
 
-	echo "</br> Resultado Avion Tipo 1: $resultadoAvionTipo1";
-	echo "</br> Resultado Avion Tipo 2: $resultadoAvionTipo2";
-	echo "</br> Resultado Avion Tipo 3: $resultadoAvionTipo3";
-	echo "</br> Resultado Avion Tipo 4: $resultadoAvionTipo4";
+	echo "</br> Resultado Avion Tipo 1 (Embraer EMB-120): $resultadoAvionTipo1";
+	echo "</br> Resultado Avion Tipo 2 (Embraer	ER-145 1): $resultadoAvionTipo2";
+	echo "</br> Resultado Avion Tipo 3 (Embraer	ER-145 2): $resultadoAvionTipo3";
+	echo "</br> Resultado Avion Tipo 4 (Embraer	ER-170): $resultadoAvionTipo4";
 	echo "</br>";
 
 	if($resultadoAvionTipo1 == 0 and $resultadoAvionTipo2 == 0 and $resultadoAvionTipo3 == 0 and $resultadoAvionTipo4 == 0) {
